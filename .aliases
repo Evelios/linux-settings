@@ -1,0 +1,96 @@
+# This file is used to store all the aliases that will be sourced from the
+# startup files for the shell
+
+
+# ---- Temporary ---------------------------------------------------------------
+
+alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/regtest.pl"
+alias difftest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
+
+# ---- Command Shortcuts -------------------------------------------------------
+
+alias v="vim"
+alias gv="gvim"
+alias ll="ls -ltrh"
+alias l="ll"
+alias ld="ls -d */"
+alias del="rm -rf"
+alias dirsize="du -sh */"
+alias diffsb="diff -r --exclude='program'"
+alias path="tr ":" "\n" <<< "$PATH""
+alias build="make all > build.log 2> build.err &"
+alias settings="v ~/.bashrc"
+alias refresh=". ~/.bashrc"
+alias vimsettings="v ~/.vimrc"
+
+function bak {
+  cp -p $1 $1.bak
+  echo "Backed up to : ${1}.bak"
+}
+
+# ---- Program Shortcuts -------------------------------------------------------
+
+alias dirdiff="/tod_nfs/afs/btv/data/tds/tools/dirdiff.pl"
+alias bc="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/bcompare.k"
+alias regtest="/tod_nfs/afs/btv/data/tds/versions/test/scripts/util/regression/regtest.pl"
+alias runpart="/tod_nfs/afs/btv/data/tds/versions/test/scripts/util/regression/runpart.k"
+alias formatsif="/tod_nfs/afs/btv/data/tds/versions/test/scripts/util/formatsif.k"
+alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
+
+# Cadence 15.13
+function cadence {
+  export CDS_LIC_FILE=27001@fc8engkey01:27001@sgpedakey01,27001@sgpedakey02,27001@sgpedakey03:27001@dedekey06
+  /tool/eda/eda_k26_g212_64/cadenceET/15.13.000/bin/et -gui &
+}
+
+# ---- TDS Gui Calls ----
+
+alias tds="/tod_nfs/afs/btv/data/tds/versions/test/scripts/setupTdsEnv.k gui &"
+
+function tdssb {
+  /tod_nfs/afs/btv/data/tds/sandboxes/twaters/$1/scripts/setupTdsEnv.k gui ON &
+}
+
+function tdsver {
+  /tod_nfs/afs/btv/data/tds/versions/$1/scripts/setupTdsEnv.k gui ON &
+}
+
+# ---- Directory Shortcuts -----------------------------------------------------
+
+alias sb="cd /tod_nfs/afs/btv/data/tds/sandboxes/twaters"
+alias src="cd /tod_nfs/afs/btv/data/tds/sandboxes/twaters/src"
+alias ver="cd /tod_nfs/afs/btv/data/tds/versions"
+alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
+alias nas="cd /nas/pnp1/twaters"
+alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
+alias tpgl="/tpgl/uflex"
+alias reg="cd /nas/pnp4/regression"
+alias parts="cd /nas/pnp4/regression/parts"
+alias pnp1="cd /nas/pnp1"
+alias pnp2="cd /nas/pnp2"
+alias pnp3="cd /nas/pnp3"
+alias pnp4="cd /nas/pnp4"
+
+# ---- Server SSH Commands -----------------------------------------------------
+
+# Production Servers
+alias prod="ssh -X fc9pftdsp02"
+alias prod1="ssh -X fc9pftdsp01"
+alias prod2="ssh -X fc9pftdsp02"
+alias prod3="ssh -X fc9pftdsp03"
+alias prod4="ssh -X fc9pftdsp04"
+
+# Dev
+alias dev1="ssh -X fc9pftdsp05"
+alias dev2="ssh -X fc9pftdsp06"
+alias dev3="ssh -X fc9pftdsp07"
+alias dev4="ssh -X fc9pftdsp08"
+alias dev5="ssh -X fc9pftdsp09"
+# alias dev6="ssh -X fc9pftdsp10"   # Allocated for the NAS space
+
+# EPSR
+alias epsr1="ssh -X fc9pfepsrp01"
+alias epsr2="ssh -X fc9pfepsrp02"
+
+alias pf9cim="ssh -X pf9cim"
+

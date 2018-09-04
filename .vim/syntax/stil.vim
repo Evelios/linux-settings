@@ -6,19 +6,36 @@ endif
 
 let b:current_syntax = 'stil'
 
-syn keyword basicKeywords PatternFailReport Ann
-syn region doubleQuote start='\v"' end='\v"'
-syn region singleQuote start="\v'" end="\v'"
+" Generics
+syn region stilDoubleQuote start='\v"' end='\v"'
+syn region stilSingleQuote start="\v'" end="\v'"
+syn region stilTickQuote   start='\v`' end="\v`"
+syn match  stilNumeric '\v<[+-]?[0-9][0-9\.]*>'
+syn match  stilComment '\v//.*$'
 
-" Ann {* ... *} Blocks
-syn region annBlock start='Ann {' end='}' fold transparent contains=patternKeyword,numeric
-syn match numeric '\v[0-9][0-9\.]*'
-syn keyword patternKeyword Pattern
+" Stil Specific
+syn keyword stilHeader STIL nextgroup=stilNumeric
 
+syn keyword stilKeyword 
+  \ Signals SignalGroups Spec Selector Timing WaveformTable
+  \ Pattern PatternBurst PatternExec 
+  \ nextgroup=stilBlockName skipwhite
 
-hi link basicKeywords    Identifier
-hi link patternKeyword   Statement
-hi link annIdentifier    Statement
-hi link numeric          Number
-hi link doubleQuote      String
-hi link singleQuote      String
+syn match   stilBlockName '\v\w(\w|-)+' contained display
+
+syn keyword stilSpecName Min Typ Max
+
+"syn region stilBlock start='{' end='}' fold transparent
+
+" Generics
+hi link stilNumeric           Number
+hi link stilDoubleQuote       String
+hi link stilSingleQuote       String
+hi link stilTickQuote         String
+hi link stilComment           Comment
+
+" Stil Specific
+hi link stilKeyword           Statement
+hi link stilHeader            Identifier
+hi link stilBlockName         Function 
+hi link stilSpecName          Type

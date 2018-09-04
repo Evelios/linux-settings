@@ -13,7 +13,7 @@ syn match Comment '\v^\s*\*.*$'  " Lines starting with    *
 syn match Comment '\v//.*$'   " C style comments       //
 
 " Misc
-syn match dir       '\v\/[[:alnum:]_]+\/[[:alnum:]_@\/\-\.]+'
+syn match dir       '\v\/[[:alnum:]]+\/[[:alnum:]_@\/\-\.]+'
 syn match quote     '\v\".*\"'       " Double Quote
 syn match quote     '\v\'.*\''       " Single Quote
 syn match list      '\v^\s+[\-\+]\s' " Match lists starting with - or +

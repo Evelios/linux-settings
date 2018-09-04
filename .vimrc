@@ -2,42 +2,44 @@ syntax on
 colorscheme molokai
 
 " Learning Vim The Hard Way
-let mapleader = ","
+let mapleader = "'"
 let maplocalleader = "//"
 
 " ---- Macros ----
-let @m = 'aMSG(SEV_I, (""));hhh'
+
+" ...
 
 " ---- Key Bindings ------------------------------------------------------------
 
-" ---- Insert Mode ----
+" ---- Global Mappings ----
 
-" Leave insert mode
-inoremap jk <esc>l
-inoremap <esc> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
+" Move to beginning / end of the line
+noremap H ^
+noremap L $
+noremap $ <nop>
+noremap ^ <nop>
 
-" ---- Visual Mode ----
+" Move up / down half a page 
+noremap J <c-d>
+noremap K <c-u>
+noremap <c-d> <nop>
+noremap <c-u> <nop>
 
-" Leave visual mode
-vnoremap jk <esc>
-vnoremap <esc> <nop>
+" Unmap the arrow keys
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
 
 " ---- Normal Mode ----
+
+" Insert a space
+nnoremap <space> i<space><esc>l
 
 " Edit your vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 " Source your vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Move to beginning / End of the line
-nnoremap H ^
-nnoremap L $
-nnoremap $ <nop>
-nnoremap ^ <nop>
 
 " Move the current line down
 nnoremap <leader>j ddp
@@ -48,11 +50,46 @@ nnoremap <leader>k kddpk
 nnoremap <leader>d dd
 " Delete Line and edit it
 nnoremap <leader>c ddO
-" Surrount line with double quotes
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-" Surround line with single quotes
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 
+" Surround line with double quotes
+"nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+" Surround line with single quotes
+"nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+" Remove Highlighting
+nnoremap <leader>n :noh<cr>
+
+" Turn object call to pointer call
+"nnoremap <leader>p xi-><esc>
+
+" Insert double quotes with terminating semicolon
+nnoremap <leader>" a"";<esc>h
+" Insert single quotes with terminating semicolon
+nnoremap <leader>' a'';<esc>h
+
+" Insert a function parenthesis and brackets
+nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
+" Insert a TDS c++ message statement
+nnoremap <leader>m aMSG(SEV_I, (""));<esc>hhh
+
+" Change a name varName to var_name
+nnoremap <leader>s i_<esc>lvu<esc> 
+
+" Resize split windows
+nnoremap <c-w>J :resize -2<cr>
+nnoremap <c-w>K :resize +2<cr>
+
+" Move between split windows
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
+
+" ---- Insert Mode ----
+
+" Leave insert mode
+inoremap jk <esc>l
+inoremap <esc> <nop>
 
 
 " ---- UI Config ---------------------------------------------------------------
