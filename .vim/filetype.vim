@@ -1,7 +1,8 @@
 " Put new file type declerations here
 
 au BufRead,BufNewFile *.k          setfiletype sh
-au BufRead,BufNewFile *.fsifpat    setfiletype fsifpat
+au BufRead,BufNewFile .aliases     setfiletype sh
+au BufRead,BufNewFile *.fsifpat*   setfiletype fsifpat
 au BufRead,BufNewFile *.fcat       setfiletype cat
 au BufRead,BufNewFile *.fept       setfiletype ept
 au BufRead,BufNewFile TBDpatt*     setfiletype TBDp

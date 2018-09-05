@@ -28,8 +28,13 @@ for file in $(ls -A $script_directory); do
   if [[ $file == "setup.sh" ]]; then continue; fi
 
   echo "  Linking up $file"
+ 
+  # Move to create a backup
+  if [[ -e ~/$file ]]; then 
+    mv ~/$file $backup_dir/$file
+  fi
 
-  mv ~/$file $backup_dir/$file
+  # Link config files to the git config files
   ln -s $script_directory/$file ~/$file
 
 done

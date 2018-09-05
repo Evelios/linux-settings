@@ -6,27 +6,27 @@ if [[ "$TERM" == "xterm" ]]; then
 fi
 
 # Try to set up zsh as the subshell
-zsh_path=$(which zsh)
+use_zsh=false
+zsh_path=$(which zsh 2> /dev/null)
 
-if [[ -e $zsh_path && $SHELL != $zsh_path ]]; then
+if [[ $use_zsh == true && -e $zsh_path && $SHELL != $zsh_path ]]; then
+
+  # Use the zsh terminal
   export SHELL=$zsh_path
 
-  if [[ $(grep $(whoami) /etc/passwd) ]]; then
+  if [[ $(grep $(whoami) /etc/passwd) != "" ]]; then
    chsh -s $zsh_path 
   else
     $zsh_path
   fi
 
+else
+
+  # Use the bash terminal
+  . ~/.bashrc
+
 fi
 unset zsh_path
-
-# Set the prompt command
-function get_pwd {
-  echo "${PWD/$HOME/~}"
-}
-
-PS1='$(get_pwd)\n$ '
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 # ---- General Setup -----------------------------------------------------------
 
@@ -40,11 +40,11 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# ---- Commands not available in zsh ----
 # Append to the history file not overwrite it
-shopt -s histappend
-
+#shopt -s histappend
 # Check the window size after each command and if necessary update window size
-shopt -s checkwinsize
+#shopt -s checkwinsize
 
 # ---- Source Config Files -----------------------------------------------------
 
@@ -68,26 +68,10 @@ if [[ -e ~/.gitcommands ]]; then
 fi
 
 # Python Settings
-if [[ -e $(which python3) ]]; then
+if [[ -e $(which python3 2> /dev/null) ]]; then
   PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
   PATH="$PATH:$PYTHON_BIN_PATH"
 fi
-
-# ---- Common Commands ---------------------------------------------------------
-
-alias settings="vim ~/.profile"
-alias refresh="source ~/.profile"
-
-alias vi="vim"
-alias v="vim"
-
-alias l="ls"
-alias ll="ls -ltr"
-alias la="ls -A"
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # ---- Set up color prompt -----------------------------------------------------
 
