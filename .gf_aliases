@@ -1,22 +1,51 @@
 # This file is used to store all the aliases that are used that are specific to
 # the work servers
 
+# ---- Environmental Variables -------------------------------------------------
+
+
+test=/tod_nfs/afs/btv/data/tds/versions/test
+
 # ---- Temoprary ---------------------------------------------------------------
 
+function testmode {
+  /nas/pnp1/twaters/jobs/testmode.k
+  formatsmall /nas/pnp4/bkessler/L01VU960_Zenith11/SIF_twaters/TMD1.spmisr_func0_diag.fsifpat
+}
+
 alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/regtest.pl"
-alias difftest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
+alias rtest_small="rtest -p /tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/parts_list_small.pl"
+
+alias rtest_tpgl_pre="rtest tpgl pre"
+alias rtest_tpgl_post="rtest tpgl post"
+# alias rtest_tpgl_pre="rtest_pl -e \"patti.labounty@globalfoundries.com,michael.combs@globalfoundries.com\" tpgl pre"
+# alias rtest_tpgl_post="rtest_pl -e \"patti.labounty@globalfoundries.com,michael.combs@globalfoundries.com\" tpgl post"
 
 # ---- Command Shortcuts -------------------------------------------------------
 
-alias build="make all > build.log 2> build.err &"
 alias diffsb="diff -r --exclude='program'"
+
+function build {
+  make_recipe=${1:-all}
+  echo "Building Recipe $make_recipe"
+  make $make_recipe > build.log 2> build.err
+  grep Made build.log
+  echo ""
+  echo "---- Listing Build Errors ----"
+  grep -i error build.err
+}
+
+function lnsrc {
+  rm src
+  ln -s $1 src
+}
 
 # ---- Program Shortcuts -------------------------------------------------------
 
 alias dirdiff="/tod_nfs/afs/btv/data/tds/tools/dirdiff.pl"
 alias bc="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/bcompare.k"
-alias regtest="/tod_nfs/afs/btv/data/tds/versions/test/scripts/util/regression/regtest.pl"
-alias runpart="/tod_nfs/afs/btv/data/tds/versions/test/scripts/util/regression/runpart.k"
+alias regtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
+alias runpart="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/runpart.k"
 alias formatsif="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/formatsif.k"
 alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
 
@@ -39,7 +68,7 @@ function formatsmall {
 
 # ---- TDS Gui Calls ----
 
-alias tds="/tod_nfs/afs/btv/data/tds/versions/test/scripts/setupTdsEnv.k gui &"
+alias tds="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/setupTdsEnv.k gui &"
 
 function tdssb {
   /tod_nfs/afs/btv/data/tds/sandboxes/twaters/$1/scripts/setupTdsEnv.k gui ON &
@@ -75,11 +104,12 @@ alias prod3="ssh -X fc9pftdsp03"
 alias prod4="ssh -X fc9pftdsp04"
 
 # Dev
-alias dev1="ssh -X fc9pftdsp05"
+alias dev="ssh -X fc9pftdsp08"
+alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
 alias dev2="ssh -X fc9pftdsp06"
-alias dev3="ssh -X fc9pftdsp07"
-alias dev4="ssh -X fc9pftdsp08"
-alias dev5="ssh -X fc9pftdsp09"
+alias dev3="ssh -X fc9pftdsp07"   # TDS Development Box
+alias dev4="ssh -X fc9pftdsp08"   # TDS Development Box
+# alias dev5="ssh -X fc9pftdsp09"   # Allicated for SFTP Service
 # alias dev6="ssh -X fc9pftdsp10"   # Allocated for the NAS space
 
 # EPSR

@@ -6,7 +6,7 @@ terminal dot files for setup as well as vim settings.
 
 ## Terminal Setup
 
-This setup uses the z-shell if available adn uses vi key bindings within the
+This setup uses the z-shell if available and uses vi key bindings within the
 terminal as well. When using z-shell it uses the oh-my-zsh plugin to help
 with customization.
 
@@ -20,3 +20,7 @@ Uses the molokai theme.
 
 The vim settings have many customizations and custom syntax hilighting files
 for specific file types.
+
+There are a couple of plugins included in these settings that I use
++ Git Gutter
++ Nerd Commenter

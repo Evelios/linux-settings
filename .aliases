@@ -7,11 +7,14 @@
 alias vimsettings="v ~/.vimrc"
 alias aliases="v ~/.aliases"
 alias gf_aliases="v ~/.gf_aliases"
+alias bashrc="v ~/.bashrc"
+alias zshrc="v ~/.zshrc"
 alias settings="v ~/.profile"
 alias refresh=". ~/.profile"
 
 alias v="vim"
 alias gv="gvim"
+alias vl="vim \$(ls -tr | tail -1)"
 
 alias l="ls"
 alias la="ls -A"
@@ -20,12 +23,23 @@ alias ld="ls -d */"
 
 alias del="rm -rf"
 alias dirsize="du -sh */"
-alias path="tr ":" "\n" <<< "$PATH""
+alias path='tr ":" "\n" <<< "$PATH"'
 
 
+# Create a backup of a file
 function bak {
   cp -p $1 $1.bak
   echo "Backed up to : ${1}.bak"
 }
 
+# Swap the positions of two files
+function swap {
+  if [[ ! -e $1 && ! -e $2 ]]; then
+    echo "You must provide two files to swap"
+  fi
 
+  tmp=/tmp/$1
+  mv $1   $tmp 
+  mv $2   $1
+  mv $tmp $2
+}

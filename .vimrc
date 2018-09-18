@@ -19,7 +19,7 @@ noremap L $
 noremap $ <nop>
 noremap ^ <nop>
 
-" Move up / down half a page 
+" Move up / down half a page
 noremap J <c-d>
 noremap K <c-u>
 noremap <c-d> <nop>
@@ -72,8 +72,11 @@ nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
 " Insert a TDS c++ message statement
 nnoremap <leader>m aMSG(SEV_I, (""));<esc>hhh
 
+" Insert a TDS perl message statement
+nnoremap <leader>p aMSG("I:");<esc>hhh
+
 " Change a name varName to var_name
-nnoremap <leader>s i_<esc>lvu<esc> 
+nnoremap <leader>s i_<esc>lvu<esc>
 
 " Resize split windows
 nnoremap <c-w>J :resize -2<cr>
@@ -102,14 +105,23 @@ set showmatch        " Hilight matching brackets like [{()}]
 "set wildmenu         " Visual autocomplete for command menu
 
 " ---- Whitespace ----
+
+" Show all tab characters
 set list
-set listchars=tab:..
+set listchars=tab:._
+
+" Show all trailing whitespace
+"highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+highlight def link ExtraWhitespace Error
+match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * redraw
+
 
 " ---- TABS ----
 set tabstop=2        " The number of spaces a tab appears as
 set softtabstop=2    " The number of spaces that are changed when tab is pressed
-set shiftwidth=2     " The number of spaces to shift for automatic indentation    
+set shiftwidth=2     " The number of spaces to shift for automatic indentation
 set expandtab        " Expand tabs out into spaces as indicated in the previous lines
-set autoindent       " Turn on auto indenting to match the previous line 
+set autoindent       " Turn on auto indenting to match the previous line
 "set smartindent      " Trys to do smarter indenting than autoindent
 

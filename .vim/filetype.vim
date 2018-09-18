@@ -2,6 +2,7 @@
 
 au BufRead,BufNewFile *.k          setfiletype sh
 au BufRead,BufNewFile .aliases     setfiletype sh
+au BufRead,BufNewFile .gf_aliases  setfiletype sh
 au BufRead,BufNewFile *.fsifpat*   setfiletype fsifpat
 au BufRead,BufNewFile *.fcat       setfiletype cat
 au BufRead,BufNewFile *.fept       setfiletype ept

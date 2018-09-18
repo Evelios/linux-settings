@@ -8,19 +8,12 @@ non_config_files=(
   setup.sh
 )
 
-echo $script_directory
-
-non_config_files=(
-  .git
-  setup.sh
-)
-
 # Create backup directories
 if [[ -e $backup_dir ]]; then
-  rm -r $backup_dir 
+  rm -r $backup_dir
 fi
 
-echo "Putting backup of previous dot files in $backup_dir" 
+echo "Putting backup of previous dot files in $backup_dir"
 mkdir $backup_dir
 
 for file in $(ls -A $script_directory); do
@@ -28,9 +21,9 @@ for file in $(ls -A $script_directory); do
   if [[ $file == "setup.sh" ]]; then continue; fi
 
   echo "  Linking up $file"
- 
+
   # Move to create a backup
-  if [[ -e ~/$file ]]; then 
+  if [[ -e ~/$file ]]; then
     mv ~/$file $backup_dir/$file
   fi
 

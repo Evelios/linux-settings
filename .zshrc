@@ -1,24 +1,45 @@
 # Source all the information that is stored in the .profile
+# This isn't necessary if the starting shell is bash since it
+# gets sourced from within the .profile. This is needed however if
+# zsh is the default shell because it doesn't source the .profile
+# I need to set a way to make sure this is only sourced once
 [[ -e ~/.profile ]] && emulate sh -c "source ~/.profile"
 
-bindkey -v
+# Use vim style keybindings (Not Working)
+# bindkey -v
 
+# Expand ~ into the full directory
+set -o magicequalsubst
+
+use_oh_my_zsh=true
+
+# ---- My Custom Theme ---------------------------------------------------------
+# set -x
+
+autoload -U colors && colors
+
+custom_theme=agnoster.zsh-theme
+
+# if [[ -e $custom_theme ]]; then
+  # source $custom_theme
+# fi
+
+# ---- Oh My ZSH! --------------------------------------------------------------
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="~/.oh-my-zsh"
+export ZSH=~/.oh-my-zsh
 
-if [[ -e ~/.oh-my-zsh ]]; then
+if [[ -e $ZSH && $use_oh_my_zsh == true ]]; then
 
 echo "Using Oh My Zsh!"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
+ZSH_THEME="agonster_custom"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
