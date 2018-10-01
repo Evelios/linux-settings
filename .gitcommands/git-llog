@@ -1,3 +1,4 @@
-#!/usr/bin/ksh
+#!/usr/bin/sh
+
 # Pretty output oneline of git
 git log -n 10 --pretty=oneline

@@ -10,7 +10,6 @@ use_zsh=true
 zsh_path=$(which zsh 2> /dev/null)
 
 if [[ $use_zsh == true && -e $zsh_path ]]; then
-  echo "Using The ZSHELL Terminal"
 
   # Setup to use the zsh terminal
   if [[ $SHELL != $zsh_path ]]; then
@@ -27,7 +26,6 @@ if [[ $use_zsh == true && -e $zsh_path ]]; then
   fi
 
 else
-  echo "Using The BASH Terminal"
 
   # Use the bash terminal
   export SHELL=$(which bash 2> /dev/null)

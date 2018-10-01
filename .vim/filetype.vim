@@ -1,8 +1,14 @@
 " Put new file type declerations here
 
-au BufRead,BufNewFile *.k          setfiletype sh
+" Config files
 au BufRead,BufNewFile .aliases     setfiletype sh
 au BufRead,BufNewFile .gf_aliases  setfiletype sh
+
+" Standard File Type Mapings
+au BufRead,BufNewFile *.k          setfiletype sh
+au BufRead,BufNewFile *.md         setfiletype markdown
+
+" GF File Type Syntaxes
 au BufRead,BufNewFile *.fsifpat*   setfiletype fsifpat
 au BufRead,BufNewFile *.fcat       setfiletype cat
 au BufRead,BufNewFile *.fept       setfiletype ept

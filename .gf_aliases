@@ -13,6 +13,7 @@ function testmode {
   formatsmall /nas/pnp4/bkessler/L01VU960_Zenith11/SIF_twaters/TMD1.spmisr_func0_diag.fsifpat
 }
 
+alias create_combs="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/create_template.k"
 alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/regtest.pl"
 alias rtest_small="rtest -p /tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/parts_list_small.pl"
 
@@ -20,6 +21,8 @@ alias rtest_tpgl_pre="rtest tpgl pre"
 alias rtest_tpgl_post="rtest tpgl post"
 # alias rtest_tpgl_pre="rtest_pl -e \"patti.labounty@globalfoundries.com,michael.combs@globalfoundries.com\" tpgl pre"
 # alias rtest_tpgl_post="rtest_pl -e \"patti.labounty@globalfoundries.com,michael.combs@globalfoundries.com\" tpgl post"
+
+alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
 
 # ---- Command Shortcuts -------------------------------------------------------
 
@@ -80,11 +83,15 @@ function tdsver {
 
 # ---- Directory Shortcuts -----------------------------------------------------
 
-alias sb="cd /tod_nfs/afs/btv/data/tds/sandboxes/twaters"
+# ---- Directory Variables ----
+export sb='/tod_nfs/afs/btv/data/tds/sandboxes/twaters'
+export nas='/nas/pnp1/twaters'
+
+alias sb="cd $sb"
 alias src="cd /tod_nfs/afs/btv/data/tds/sandboxes/twaters/src"
 alias ver="cd /tod_nfs/afs/btv/data/tds/versions"
 alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
-alias nas="cd /nas/pnp1/twaters"
+alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
 alias tpgl="/tpgl/uflex"
 alias reg="cd /nas/pnp4/regression"

@@ -3,11 +3,6 @@
 script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 backup_dir=~/.dot_backup
 
-non_config_files=(
-  .git
-  setup.sh
-)
-
 # Create backup directories
 if [[ -e $backup_dir ]]; then
   rm -r $backup_dir
@@ -17,8 +12,10 @@ echo "Putting backup of previous dot files in $backup_dir"
 mkdir $backup_dir
 
 for file in $(ls -A $script_directory); do
-  if [[ $file == ".git"     ]]; then continue; fi
-  if [[ $file == "setup.sh" ]]; then continue; fi
+  if [[ $file == "DejaVuSansMono"             ]]; then continue; fi
+  if [[ $file == "Putty-Fish-Of-Paradise.reg" ]]; then continue; fi
+  if [[ $file == "setup.sh"                   ]]; then continue; fi
+  if [[ $file == ".git"                       ]]; then continue; fi
 
   echo "  Linking up $file"
 

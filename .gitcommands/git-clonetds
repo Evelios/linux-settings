@@ -1,4 +1,4 @@
-#!/usr/bin/ksh
+#!/usr/bin/sh
 
 # Clone a new version of tds and checkout a branch
 

@@ -1,9 +1,12 @@
 syntax on
 colorscheme molokai
 
-" Learning Vim The Hard Way
+" ---- Leader Characters ----
 let mapleader = "'"
 let maplocalleader = "//"
+
+" ---- Plugin Settings ----
+let g:minimap_highlight='Title'
 
 " ---- Macros ----
 
@@ -14,7 +17,8 @@ let maplocalleader = "//"
 " ---- Global Mappings ----
 
 " Move to beginning / end of the line
-noremap H ^
+noremap H 0
+" noremap H ^
 noremap L $
 noremap $ <nop>
 noremap ^ <nop>
