@@ -15,6 +15,9 @@ alias profile="v ~/.profile"
 alias settings="v ~/.profile"
 alias refresh=". ~/.zshrc"
 
+# Compression
+alias untar="tar -zxvf"
+
 # Editors
 alias v="vim"
 alias gv="gvim"

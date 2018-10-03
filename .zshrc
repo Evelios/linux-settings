@@ -19,7 +19,7 @@ export ZSH=~/.oh-my-zsh
 if [[ -e $ZSH ]]; then
 
 plugins=(
-  git
+  # git
   zsh-syntax-highlighting
 )
 

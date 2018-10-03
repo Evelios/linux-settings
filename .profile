@@ -73,7 +73,7 @@ fi
 # Python Settings
 if [[ -e $(which python3 2> /dev/null) ]]; then
   PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
-  PATH="$PATH:$PYTHON_BIN_PATH"
+  PATH=$PATH:$PYTHON_BIN_PATH
 fi
 
 # ---- Set up color prompt -----------------------------------------------------
