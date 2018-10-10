@@ -8,6 +8,9 @@ let maplocalleader = "//"
 " ---- Plugin Settings ----
 let g:minimap_highlight='Title'
 
+" Open the NERDTree file bar
+nnoremap <leader>f :NERDTree <Enter>
+
 " ---- Macros ----
 
 " ...
@@ -73,14 +76,6 @@ nnoremap <leader>' a'';<esc>h
 
 " Insert a function parenthesis and brackets
 nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
-" Insert a TDS c++ message statement
-nnoremap <leader>m aMSG(SEV_I, (""));<esc>hhh
-
-" Insert a TDS perl message statement
-nnoremap <leader>p aMSG("I:");<esc>hhh
-
-" Change a name varName to var_name
-nnoremap <leader>s i_<esc>lvu<esc>
 
 " Resize split windows
 nnoremap <c-w>J :resize -2<cr>

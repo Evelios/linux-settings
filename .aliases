@@ -30,8 +30,18 @@ alias ll="ls -ltrh"
 alias ld="ls -d */"
 
 # Directory Hopping
+cs() {
+  cd "$@" && ls
+}
+
 alias c="cd"
-alias cdd='cd $OLDPWD'
+alias cdd="cd -"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 
 # Assorted
 alias del="rm -rf"

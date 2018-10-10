@@ -8,6 +8,16 @@
 # Expand ~ into the full directory
 set -o magicequalsubst
 
+# Change default cd directory chainging
+setopt auto_cd
+cdpath=(
+  # /tod_nfs/afs/btv/data/tds/versions
+  /tod_nfs/afs/btv/data/tds/sandboxes/twaters
+  /tod_nfs/afs/btv/data/tds/sandboxes
+  /nas/pnp4/regression
+  /nas
+)
+
 # ---- Oh My ZSH! --------------------------------------------------------------
 
 # If you come from bash you might have to change your $PATH.

@@ -3,7 +3,6 @@
 
 # ---- Environmental Variables -------------------------------------------------
 
-
 test=/tod_nfs/afs/btv/data/tds/versions/test
 
 # ---- Temoprary ---------------------------------------------------------------
@@ -13,9 +12,9 @@ function testmode {
   formatsmall /nas/pnp4/bkessler/L01VU960_Zenith11/SIF_twaters/TMD1.spmisr_func0_diag.fsifpat
 }
 
-alias create_combs="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/create_template.k"
-alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/regtest.pl"
-alias rtest_small="rtest -p /tod_nfs/afs/btv/data/tds/sandboxes/twaters/260/scripts/util/regression/parts_list_small.pl"
+alias create_combs="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/create_template.k"
+alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/regtest.pl"
+alias rtest_small="rtest -p /tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/parts_list_small.pl"
 
 alias rtest_tpgl_pre="rtest tpgl pre"
 alias rtest_tpgl_post="rtest tpgl post"
@@ -84,6 +83,9 @@ function tdsver {
 # ---- Directory Shortcuts -----------------------------------------------------
 
 # ---- Directory Variables ----
+
+alias advcombs="cd /afs/btv/data/tpgl/tdidefs/ENG"
+
 export sb='/tod_nfs/afs/btv/data/tds/sandboxes/twaters'
 export nas='/nas/pnp1/twaters'
 
