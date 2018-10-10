@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+if [[ ! $2 ]]; then
+  echo "Please Provide The Source And The Directory Destination"
+fi
+
+git clone --depth=1 --branch=master $1 $2
+rm -rf $2/.git
