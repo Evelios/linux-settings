@@ -1,4 +1,4 @@
 #!/usr/bin/sh
 
 # Pretty output oneline of git
-git log -n 10 --pretty=oneline
+git log -n 10 --pretty=oneline --name-only

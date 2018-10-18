@@ -30,12 +30,13 @@ alias ll="ls -ltrh"
 alias ld="ls -d */"
 
 # Directory Hopping
+alias c="cd"
+# alias cd"echo 'Use \`c\` or \`cs\`'"
+alias cdd="cd -"
+
 cs() {
   cd "$@" && ls
 }
-
-alias c="cd"
-alias cdd="cd -"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -47,6 +48,7 @@ alias ......="cd ../../../../.."
 alias del="rm -rf"
 alias dirsize="du -sh */"
 alias path='tr ":" "\n" <<< "$PATH"'
+alias delcore="rm core*"
 
 # Create a backup of a file
 function bak {

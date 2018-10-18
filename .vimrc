@@ -46,7 +46,13 @@ let maplocalleader = "//"
 let g:minimap_highlight='Title'
 
 " Open the NERDTree file bar
-nnoremap <leader>f :NERDTree <Enter>
+nnoremap <leader>f :NERDTree <cr>
+
+" ------------------------------------------------------------------------------
+" ---- Macros
+" ------------------------------------------------------------------------------
+
+" ...
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings
@@ -87,6 +93,7 @@ noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
 
+
 " ---- Normal Mode -------------------------------------------------------------
 
 " Move the current line down
@@ -103,6 +110,8 @@ nnoremap <leader>k kddpk
 "nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 " Surround line with single quotes
 "nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+nnoremap <leader>w :set wrap<cr>
 
 " Remove Highlighting
 nnoremap <leader>n :noh<cr>
@@ -129,3 +138,10 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
+
+" ---- Insert Mode -------------------------------------------------------------
+
+" ---- Code Syntax Additions ----
+
+" Add in the surrounding curly brackets
+inoremap {{ {<cr><tab><cr><bs>}<esc>k$

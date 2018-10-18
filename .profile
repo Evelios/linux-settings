@@ -40,11 +40,13 @@ unset zsh_path
 umask 002
 
 # Ignore duplicate lines or lines starting with a space in the history
-HISTCONTROL=ignoreboth
+
+# HISTCONTROL=ignoreboth
 
 # History file size settings
-HISTSIZE=1000
-HISTFILESIZE=2000
+
+# HISTSIZE=1000
+# HISTFILESIZE=2000
 
 # ---- Source Config Files -----------------------------------------------------
 

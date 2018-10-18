@@ -16,7 +16,7 @@ au BufRead,BufNewFile TBDpatt*     setfiletype TBDp
 au BufRead,BufNewFile *.stil       setfiletype stil
 au BufRead,BufNewFile *.combs      setfiletype combs
 au Bufread,BufNewFile */TMD1/*     setfiletype combs
-au BufRead,BufNewFile *.*log       setfiletype log
+au BufRead,BufNewFile *log*        setfiletype log
 au BufRead,BufNewFile *.tmx        setfiletype tmx
 au BufRead,BufNewFile *.TMX.*      setfiletype tmx
 au BufRead,BufNewFile LPXREF       setfiletype tmx

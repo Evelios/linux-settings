@@ -42,6 +42,11 @@ function lnsrc {
   ln -s $1 src
 }
 
+# $1 The PNP name with wildcards
+function findtmd {
+  ls -d /nas/pnp?/*/$1/TMD
+}
+
 # ---- Program Shortcuts -------------------------------------------------------
 
 alias dirdiff="/tod_nfs/afs/btv/data/tds/tools/dirdiff.pl"
@@ -54,7 +59,8 @@ alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
 # Cadence 15.13
 function cadence {
   export CDS_LIC_FILE=27001@fc8engkey01:27001@sgpedakey01,27001@sgpedakey02,27001@sgpedakey03:27001@dedekey06
-  /tool/eda/eda_k26_g212_64/cadenceET/15.13.000/bin/et -gui &
+  # /tool/eda/eda_k26_g212_64/cadenceET/15.13.000/bin/et -gui &
+  /tool/eda/eda_k26_g212_64/cadenceET/15.14.000/bin/et -gui &
 }
 
 function smallfsif {
@@ -85,6 +91,7 @@ function tdsver {
 # ---- Directory Variables ----
 
 alias advcombs="cd /afs/btv/data/tpgl/tdidefs/ENG"
+alias uflcombs="cd /gsa/btvgsa/projects/u/uflex_tpgl_gf/@COMBS"
 
 export sb='/tod_nfs/afs/btv/data/tds/sandboxes/twaters'
 export nas='/nas/pnp1/twaters'
@@ -95,7 +102,6 @@ alias ver="cd /tod_nfs/afs/btv/data/tds/versions"
 alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
 alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
-alias tpgl="/tpgl/uflex"
 alias reg="cd /nas/pnp4/regression"
 alias parts="cd /nas/pnp4/regression/parts"
 alias pnp1="cd /nas/pnp1"
