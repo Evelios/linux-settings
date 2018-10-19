@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+directory=$(git rev-parse --show-toplevel)
+buildlog=$directory/build.log
+builderr=$directory/build.err
+
+echo "Making Recipe: $1"
+make -C $directory $1 > $buildlog 2> $builderr
+
+echo "---- Listing Build Errors ----"
+grep -i error $builderr
+

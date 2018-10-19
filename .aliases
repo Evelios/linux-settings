@@ -1,0 +1,69 @@
+# This file is used to store all the aliases that will be sourced from the
+# startup files for the shell
+
+
+# ---- Command Shortcuts -------------------------------------------------------
+
+# Shortcuts to settings files
+alias vimsettings="v ~/.vimrc"
+alias aliases="v ~/.aliases"
+alias gf_aliases="v ~/.gf_aliases"
+alias bashrc="v ~/.bashrc"
+alias zshrc="v ~/.zshrc"
+alias theme="v ~/.zsh_theme"
+alias profile="v ~/.profile"
+alias settings="v ~/.profile"
+alias refresh=". ~/.zshrc"
+
+# Compression
+alias untar="tar -zxvf"
+
+# Editors
+alias v="vim"
+alias gv="gvim"
+alias vl="vim \$(ls -tr | tail -1)"
+
+# Directory Listings
+alias l="ls"
+alias la="ls -A"
+alias ll="ls -ltrh"
+alias ld="ls -d */"
+
+# Directory Hopping
+alias c="cd"
+# alias cd"echo 'Use \`c\` or \`cs\`'"
+alias cdd="cd -"
+
+cs() {
+  cd "$@" && ls
+}
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# Assorted
+alias del="rm -rf"
+alias dirsize="du -sh */"
+alias path='tr ":" "\n" <<< "$PATH"'
+alias delcore="rm core*"
+
+# Create a backup of a file
+function bak {
+  cp -pr $1 $1.bak
+  echo "Backed up to : ${1}.bak"
+}
+
+# Swap the positions of two files
+function swap {
+  if [[ ! -e $1 && ! -e $2 ]]; then
+    echo "You must provide two files to swap"
+  fi
+
+  tmp=/tmp/$1
+  mv $1   $tmp
+  mv $2   $1
+  mv $tmp $2
+}

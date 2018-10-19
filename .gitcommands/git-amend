@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+# Ammend changes to old commit and don't change message
+git commit --amend --no-edit

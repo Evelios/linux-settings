@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+#-------------------------------------------------------------------------------
+# Usage
+# -----
+# Clone a repository of a particular branch into the target directory (default
+# named by the branch-name). Then the source is built and
+# ?.git directory removed?
+#
+# git export <repository> <branch-name> [directory]
+#
+#-------------------------------------------------------------------------------
+
+
+if [[ ! $1 ]]; then
+  echo "Please Provide A Repository To Clone From"
+fi
+
+if [[ ! $2 ]]; then
+  echo "Please Provide A Branch To Export From"
+fi
+
+repo=$1
+branch=$2
+dir_name=${3:-$2}
+
+echo $dir_name
+
+exit 1
+
+git clone --depth=1 -b $branch $repo $dir_name
+cd $dir_name
+make all > build.log 2> build.err &
+cd ..
+
+echo "\nBuilding source in $dir_name in the background"
+

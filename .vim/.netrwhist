@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/nas/pnp4/regression/tpgl/50Y7301_Mercury10/UFLEXMOD_Mon'
+let g:netrw_dirhist_2='/nas/pnp4/regression/tpgl/50Y7301_Mercury10/UFLEXMOD_Mon/CustomLogicTDS'
+let g:netrw_dirhist_3='/nas/pnp4/regression/tpgl/50Y7301_Mercury10/UFLEXMOD_Mon/CustomLogicTDS/Base'
+let g:netrw_dirhist_4='/nas/pnp4/regression/tpgl/50Y7301_Mercury10/UFLEXMOD_Mon/CustomLogicTDS/Base/Program_Support'
+let g:netrw_dirhist_5='/tod_nfs/afs/btv.ibm.com/data/tds/sandboxes/twaters/372_ht_ddd/com/libpartinfo'
