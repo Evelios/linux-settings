@@ -60,7 +60,7 @@ fi
 
 # ---- Environment Variables ---------------------------------------------------
 
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:/sbin
 
 # For the ddd debugger
 export PATH=$PATH:/usr/lib64:/usr/share/doc

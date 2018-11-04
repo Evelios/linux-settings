@@ -27,11 +27,11 @@ syn match log_eq  '\v\='              nextgroup=log_val skipwhite
 syn match log_val '\v\w+(\.|\w)*'      contained display
 
 " Messaging Levels
-syn match info   '\vI\-'
-syn match warn   '\vW\-'
-syn match err    '\vE\-' nextgroup=atten skipwhite
-syn match severe '\vS\-' nextgroup=atten skipwhite
-syn match term   '\vT\-' nextgroup=atten skipwhite
+syn match info   '\v^I\-'
+syn match warn   '\v^W\-'
+syn match err    '\v^E\-' nextgroup=atten skipwhite
+syn match severe '\v^S\-' nextgroup=atten skipwhite
+syn match term   '\v^T\-' nextgroup=atten skipwhite
 syn region atten start='\v.' end='\v$' contains=dir,quote,seperator contained display
 
 " Summary Statements
