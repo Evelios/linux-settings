@@ -3,7 +3,7 @@
 script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 backup_dir=~/.dot_backup
 
-if [[ !-e ~/.fonts ]]; then
+if [[ ! -e ~/.fonts ]]; then
   mkdir ~/.fonts
 fi
 
