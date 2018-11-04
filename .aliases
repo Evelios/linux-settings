@@ -4,6 +4,9 @@
 
 # ---- Command Shortcuts -------------------------------------------------------
 
+# Core
+alias temp="sensors"
+
 # Shortcuts to settings files
 alias vimsettings="v ~/.vimrc"
 alias aliases="v ~/.aliases"
