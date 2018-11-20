@@ -22,6 +22,7 @@ alias untar="tar -zxvf"
 alias v="vim"
 alias gv="gvim"
 alias vl="vim \$(ls -tr | tail -1)"
+alias vdiff="vimdiff"
 
 # Directory Listings
 alias l="ls"
@@ -31,6 +32,7 @@ alias ld="ls -d */"
 
 # Directory Hopping
 alias c="cd"
+alias cl="cd \$(ls -dtr */ | tail -1)"
 # alias cd"echo 'Use \`c\` or \`cs\`'"
 alias cdd="cd -"
 
@@ -49,11 +51,24 @@ alias del="rm -rf"
 alias dirsize="du -sh */"
 alias path='tr ":" "\n" <<< "$PATH"'
 alias delcore="rm core*"
+alias fext="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 
 # Create a backup of a file
 function bak {
-  cp -pr $1 $1.bak
+  cp -pr $1 ${1}.bak
   echo "Backed up to : ${1}.bak"
+}
+
+function revert {
+  if [[ ! -e ${1}.bak ]]; then
+    echo 'No Backup File Exists'
+    return 1;
+  fi;
+
+  rm $1
+  cp -p ${1}.bak $1
+
+  echo $1 restored from ${1}.bak
 }
 
 # Swap the positions of two files
