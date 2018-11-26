@@ -40,7 +40,7 @@ highlight def link ExtraWhitespace Error
 match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * redraw
 
-" ---- TABS ----
+" ---- Tabspace ----
 set tabstop=2        " The number of spaces a tab appears as
 set softtabstop=2    " The number of spaces that are changed when tab is pressed
 set shiftwidth=2     " The number of spaces to shift for automatic indentation
@@ -76,6 +76,27 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " ------------------------------------------------------------------------------
 
 " ...
+
+" ------------------------------------------------------------------------------
+" ---- Tab Management
+" ------------------------------------------------------------------------------
+
+" Move inbetween tabs
+nnoremap tn :tabnext<cr>
+nnoremap tp :tabprevious<cr>
+
+" Close the current tab
+nnoremap tc :tabclose<cr>
+
+" Open up a new empty tab
+nnoremap te :tabnew<cr>
+
+" Open up the file under the cursor in a new tab
+nnoremap to <c-w> gf
+
+" Move the tabs
+nnoremap tl :tabm +1<cr>
+nnoremap th :tabm -1<cr>
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings

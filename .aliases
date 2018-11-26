@@ -5,7 +5,7 @@
 # ---- Command Shortcuts -------------------------------------------------------
 
 # Shortcuts to settings files
-alias vimsettings="v ~/.vimrc"
+alias vimrc="v ~/.vimrc"
 alias aliases="v ~/.aliases"
 alias gf_aliases="v ~/.gf_aliases"
 alias bashrc="v ~/.bashrc"
