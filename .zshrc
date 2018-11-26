@@ -24,6 +24,10 @@ zsh_stats () {
 
 # ---- Oh My ZSH! --------------------------------------------------------------
 
+function localtelnet {
+  echo $@ | telnet localhost 4444
+}
+
 # If you come from bash you might have to change your $PATH.
 #export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -37,7 +41,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-ZSH_THEME="agonster_custom"
+# ZSH_THEME="agonster_custom"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
