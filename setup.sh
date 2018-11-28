@@ -38,3 +38,7 @@ for file in $(ls -A $script_directory); do
   ln -s $script_directory/$file ~/$file
 
 done
+
+# Create the Neovim Setup Files
+mkdir -p ~/.config/neovim
+ln -s ~/.vimrc ~/.config/neovim

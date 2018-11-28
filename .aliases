@@ -4,8 +4,10 @@
 
 # ---- Command Shortcuts -------------------------------------------------------
 
-# Core
-alias temp="sensors"
+# Test Programs
+alias temp="sensors"  # install lm-sensors
+alias gpu_tests="phoronix-test-suite list-tests"
+alias gpu="phoronix-test-suite run unigine-heaven"
 
 # Shortcuts to settings files
 alias vimsettings="v ~/.vimrc"
@@ -20,17 +22,24 @@ alias refresh=". ~/.zshrc"
 
 # Compression
 alias untar="tar -zxvf"
+alias 7z="p7zip"
 
 # Editors
-alias v="vim"
-alias gv="gvim"
-alias vl="vim \$(ls -tr | tail -1)"
+if [[ $(command -v nvim) ]]; then
+  alias v="nvim"
+  alias vl="nvim \$(ls -tr | tail -1)"
+else
+  alias v="vim"
+  alias gv="gvim"
+  alias vl="vim \$(ls -tr | tail -1)"
+fi
 
 # Directory Listings
 alias l="ls"
-alias la="ls -A"
-alias ll="ls -ltrh"
-alias ld="ls -d */"
+alias la="ls -A"     # List all files including hidden
+alias ll="ls -ltrh"  # Descriptive listing
+alias ld="ls -d */"  # List all directories
+alias lh="ls -Ad .*" # List all hidden files
 
 # Directory Hopping
 alias c="cd"

@@ -74,8 +74,8 @@ fi
 
 # Python Settings
 if [[ -e $(which python3 2> /dev/null) ]]; then
-  PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
-  PATH=$PATH:$PYTHON_BIN_PATH
+  export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"
+  export PATH=$PATH:$PYTHON_BIN_PATH
 fi
 
 # ---- Set up color prompt -----------------------------------------------------
@@ -83,21 +83,17 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# enable color support of ls and also add handy aliases
+# Import the dircolors and enable color support of ls and grep
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    eval $(dircolors -b $HOME/.dircolors)
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
-# Import the dircolors for the ls command
-if [[ -f $HOME/.dircolors ]]; then
-  eval $(dircolors -b $HOME/.dircolors)
-fi
-
-# Log into the devault development environment
+# Log into the default development environment
 if [[ "$HOSTNAME" == "vfc9jump01" || "$HOSTNAME" == "sfc9pfetxp02" ]]; then
   prod
 fi

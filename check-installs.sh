@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 
 programs=(
+  # Basics
   make
   gcc
   g++
+  # Editors
   vim
-  python
+  neovim
+  # Programming Languages
+  python3
+  python2
   perl
+  ruby
+  gem    # ruby package manager
+  nodejs
+  npm
 )
 
 echo "Double Check The Following:"
