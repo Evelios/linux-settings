@@ -1,4 +1,8 @@
 #!/usr/bin/sh
 
+numcommits=${1:-10}
+tab="%x09"
+format="%h$tab%an$tab%ad$tab%s"
+
 # Pretty output oneline of git
-git log -n 10 --pretty=oneline --name-only
+git --no-pager  log -$numcommits --pretty=format:"${format}" --name-only --date=short

@@ -10,7 +10,7 @@ alias gpu_tests="phoronix-test-suite list-tests"
 alias gpu="phoronix-test-suite run unigine-heaven"
 
 # Shortcuts to settings files
-alias vimsettings="v ~/.vimrc"
+alias vimrc="v ~/.vimrc"
 alias aliases="v ~/.aliases"
 alias gf_aliases="v ~/.gf_aliases"
 alias bashrc="v ~/.bashrc"
@@ -43,7 +43,7 @@ alias lh="ls -Ad .*" # List all hidden files
 
 # Directory Hopping
 alias c="cd"
-# alias cd"echo 'Use \`c\` or \`cs\`'"
+alias cl="cd \$(ls -dtr */ | tail -1)"
 alias cdd="cd -"
 
 cs() {
@@ -61,11 +61,24 @@ alias del="rm -rf"
 alias dirsize="du -sh */"
 alias path='tr ":" "\n" <<< "$PATH"'
 alias delcore="rm core*"
+alias fext="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 
 # Create a backup of a file
 function bak {
-  cp -pr $1 $1.bak
+  cp -pr $1 ${1}.bak
   echo "Backed up to : ${1}.bak"
+}
+
+function revert {
+  if [[ ! -e ${1}.bak ]]; then
+    echo 'No Backup File Exists'
+    return 1;
+  fi;
+
+  rm $1
+  cp -p ${1}.bak $1
+
+  echo $1 restored from ${1}.bak
 }
 
 # Swap the positions of two files

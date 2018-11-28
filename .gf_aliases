@@ -3,7 +3,16 @@
 
 # ---- Environmental Variables -------------------------------------------------
 
-test=/tod_nfs/afs/btv/data/tds/versions/test
+export nas=/nas/pnp1/twaters
+
+export sandboxes=/tod_nfs/afs/btv/data/tds/sandboxes
+export twaters=$sandboxes/twaters
+export titano=$sandboxes/titano
+export huisman=$sandboxes/huisman
+
+export versions=/tod_nfs/afs/btv/data/tds/versions
+export test=$versions/test
+export pending=$versions/pending
 
 # ---- Temoprary ---------------------------------------------------------------
 
@@ -12,14 +21,19 @@ function testmode {
   formatsmall /nas/pnp4/bkessler/L01VU960_Zenith11/SIF_twaters/TMD1.spmisr_func0_diag.fsifpat
 }
 
-alias create_combs="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/create_template.k"
-alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/regtest.pl"
+alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/465_release/scripts/util/regression/regtest.pl"
 alias rtest_small="rtest -p /tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/parts_list_small.pl"
 
 alias rtest_tpgl_pre="rtest tpgl pre"
 alias rtest_tpgl_post="rtest tpgl post"
-# alias rtest_tpgl_pre="rtest_pl -e \"patti.labounty@globalfoundries.com,michael.combs@globalfoundries.com\" tpgl pre"
-# alias rtest_tpgl_post="rtest_pl -e \"patti.labounty@globalfoundries.com,michael.combs@globalfoundries.com\" tpgl post"
+
+alias regtest_dev="rtest -e thomas.waters2@globalfoundries.com dev"
+
+# function rtest_dev {
+  # script=/tod_nfs/afs/btv/data/tds/sandboxes/twaters/465_release/scripts/util/regression/regtest.pl
+  # email=thomas.waters2@globalfoundries.com
+  # nohup $script -e $email "$@" &
+# }
 
 alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
 
@@ -30,10 +44,14 @@ alias diffsb="diff -r --exclude='program'"
 function build {
   make_recipe=${1:-all}
   echo "Building Recipe $make_recipe"
+  echo ""
+  echo "---- Listing Built Objects ----"
+  echo ""
   make $make_recipe > build.log 2> build.err
   grep Made build.log
   echo ""
   echo "---- Listing Build Errors ----"
+  echo ""
   grep -i error build.err
 }
 
@@ -74,6 +92,10 @@ function formatsmall {
   smallfsif $fsif
 }
 
+function fl {
+  last=$(ls -tr *.sifpat | tail -1)
+  formatsmall $last
+}
 # ---- TDS Gui Calls ----
 
 alias tds="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/setupTdsEnv.k gui &"
@@ -93,12 +115,9 @@ function tdsver {
 alias advcombs="cd /afs/btv/data/tpgl/tdidefs/ENG"
 alias uflcombs="cd /gsa/btvgsa/projects/u/uflex_tpgl_gf/@COMBS"
 
-export sb='/tod_nfs/afs/btv/data/tds/sandboxes/twaters'
-export nas='/nas/pnp1/twaters'
-
-alias sb="cd $sb"
-alias src="cd /tod_nfs/afs/btv/data/tds/sandboxes/twaters/src"
-alias ver="cd /tod_nfs/afs/btv/data/tds/versions"
+alias sb="cd $twaters"
+alias src="cd $twaters/src"
+alias ver="cd $versions"
 alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
 alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"

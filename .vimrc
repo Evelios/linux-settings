@@ -1,4 +1,19 @@
 " ------------------------------------------------------------------------------
+" ---- Testing
+" ------------------------------------------------------------------------------
+
+fun! ShowFuncName()
+  let lnum = line(".")
+  let col = col(".")
+  echohl ModeMsg
+  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
+  echohl None
+  call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfun
+
+nnoremap <leader>t :call ShowFuncName() <CR>
+
+" ------------------------------------------------------------------------------
 " ---- General Configuration
 " ------------------------------------------------------------------------------
 
@@ -25,7 +40,7 @@ highlight def link ExtraWhitespace Error
 match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * redraw
 
-" ---- TABS ----
+" ---- Tabspace ----
 set tabstop=2        " The number of spaces a tab appears as
 set softtabstop=2    " The number of spaces that are changed when tab is pressed
 set shiftwidth=2     " The number of spaces to shift for automatic indentation
@@ -43,16 +58,45 @@ let maplocalleader = "//"
 " ------------------------------------------------------------------------------
 " ---- Plugin Settings
 " ------------------------------------------------------------------------------
-let g:minimap_highlight='Title'
 
-" Open the NERDTree file bar
-nnoremap <leader>f :NERDTree <cr>
+" ---- NERDTree ----
+
+" Open NERDTree when opening vim with no arguments
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Toggle the NERDTree file bar
+nnoremap <leader>f :NERDTreeToggle<cr>
+
+" Close NERDTree when the only thing open is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ------------------------------------------------------------------------------
 " ---- Macros
 " ------------------------------------------------------------------------------
 
 " ...
+
+" ------------------------------------------------------------------------------
+" ---- Tab Management
+" ------------------------------------------------------------------------------
+
+" Move inbetween tabs
+nnoremap tn :tabnext<cr>
+nnoremap tp :tabprevious<cr>
+
+" Close the current tab
+nnoremap tc :tabclose<cr>
+
+" Open up a new empty tab
+nnoremap te :tabnew<cr>
+
+" Open up the file under the cursor in a new tab
+nnoremap to <c-w> gf
+
+" Move the tabs
+nnoremap tl :tabm +1<cr>
+nnoremap th :tabm -1<cr>
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings
@@ -68,6 +112,9 @@ nnoremap <leader>rv :source $MYVIMRC<cr>
 " Leave insert mode
 inoremap jk <esc>l
 inoremap <esc> <nop>
+
+" Quit Everything
+nnoremap <leader>qq :qa<cr>
 
 " Insert a space
 nnoremap <space> i<space><esc>l
@@ -129,19 +176,22 @@ nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
 
 " ---- Buffer Management ----
 
-" Resize split windows
-nnoremap <c-w>J :resize -2<cr>
-nnoremap <c-w>K :resize +2<cr>
-
 " Move between split windows
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
 
+" Resize split windows
+nnoremap <c-u> :resize -4<cr>
+nnoremap <c-i> :resize +4<cr>
+
+nnoremap <c-y> :vertical resize +4<cr>
+nnoremap <c-o> :vertical resize -4<cr>
+
 " ---- Insert Mode -------------------------------------------------------------
 
 " ---- Code Syntax Additions ----
 
 " Add in the surrounding curly brackets
-inoremap {{ {<cr><tab><cr><bs>}<esc>k$
+inoremap {{ {<cr><tab><cr><bs>}<esc>k$a

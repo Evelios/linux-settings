@@ -1,12 +1,27 @@
 #!/usr/bin/bash
 
+if [[ $# != 1 ]]; then
+  echo "Please Provide A Make Target"
+  return
+fi
+
 directory=$(git rev-parse --show-toplevel)
 buildlog=$directory/build.log
 builderr=$directory/build.err
+recipe=$1
 
-echo "Making Recipe: $1"
-make -C $directory $1 > $buildlog 2> $builderr
+echo "Making Recipe: $recipe"
+make -C $directory $recipe > $buildlog 2> $builderr
 
+echo ""
+echo "---- Listing Built Objects ----"
+echo ""
+
+grep -i made $buildlog
+
+echo ""
 echo "---- Listing Build Errors ----"
+echo ""
+
 grep -i error $builderr
 

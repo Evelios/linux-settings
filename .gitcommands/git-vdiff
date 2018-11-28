@@ -1,4 +1,4 @@
 #!/usr/bin/ksh
 # Run git diff with the vim diff tool
 
-git difftool --tool=vimdiff --no-prompt "$*"
+git difftool --tool=vimdiff --no-prompt "$@"

@@ -72,6 +72,10 @@ if [[ -e ~/.gitcommands ]]; then
   export PATH=$PATH:~/.gitcommands
 fi
 
+if [[ -e ~/scripts ]]; then
+  export PATH=$PATH:~/scripts
+fi
+
 # Python Settings
 if [[ -e $(which python3 2> /dev/null) ]]; then
   export PYTHON_BIN_PATH="$(python3 -m site --user-base)/bin"

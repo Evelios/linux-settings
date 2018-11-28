@@ -44,7 +44,7 @@ syntax keyword cppSTLtype  LONG_LONG LONG_ULONG TIME_T
 syntax keyword cppSTLtype  INPUT_FILE OUTPUT_FILE FILE_TYPE FC_INFO
 syntax keyword cppSTLtype  SEV_I SEV_W SEV_E SEV_S SEV_T NOID
 syntax keyword cppSTLtype  SEV_1 SEV_2 SEV_3 SEV_4 SEV_5 STATS
-syntax match   cppOperator '\v,|\+\+|\=|\=\=|\!\=|\<|\>|\*|\?|:|::|\&'
+syntax match   cppOperator '\v,|\+\+|\=|\=\=|\!\=|\<|\>|\*|\?|:|::|\&|\||-\>'
 
 hi def link cppoperator Operator
 " ==============================================================================
