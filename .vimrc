@@ -19,7 +19,8 @@ nnoremap <leader>t :call ShowFuncName() <CR>
 
 " ---- UI Config ----
 syntax on
-colorscheme molokai
+let &background = 'dark'
+colorscheme gruvbox
 
 set nowrap           " Do not wrap lines around. Let them get cut off
 set number           " Show line numbers
@@ -70,6 +71,25 @@ nnoremap <leader>f :NERDTreeToggle<cr>
 
 " Close NERDTree when the only thing open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ---- Lightline ----
+set noshowmode
+
+let g:lightline = {
+  \ 'colorscheme': 'gruvbox',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
+  \ },
+\ }
+
+" Powerline Style Separators
+let g:lightline.separator = {
+  \   'left': '', 'right': ''
+\ }
+let g:lightline.subseparator = {
+  \ 'left': '', 'right': ''
+\ }
 
 " ------------------------------------------------------------------------------
 " ---- Macros
