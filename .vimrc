@@ -93,6 +93,9 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 " ---- NeoTex ----
 let g:tex_flavor = 'latex'
 
+" ---- Markdown ----
+let g:markdown_fenced_languages = ['hs=haskell']
+
 " ---- NERDTree ----
 
 " Open NERDTree when opening vim with no arguments
@@ -221,6 +224,10 @@ noremap H 0
 noremap L $
 noremap $ <nop>
 noremap ^ <nop>
+
+" Move through softwrap lines
+noremap j gj
+noremap k gk
 
 " Move up / down half a page
 noremap J <c-d>
