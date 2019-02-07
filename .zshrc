@@ -41,7 +41,7 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-# ZSH_THEME="agonster_custom"
+#  ZSH_THEME="agonster_custom"
 ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.

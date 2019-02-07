@@ -25,7 +25,9 @@ alias untar="tar -zxvf"
 alias 7z="p7zip"
 
 # Editors
-if [[ $(command -v nvim) ]]; then
+alias vdiff="vimdiff"
+
+if [[ $(command -v nvim) != 1 ]]; then
   alias v="nvim"
   alias vl="nvim \$(ls -tr | tail -1)"
 else
@@ -79,6 +81,13 @@ function revert {
   cp -p ${1}.bak $1
 
   echo $1 restored from ${1}.bak
+}
+
+alias psall="ps -ef | grep twaters"
+
+# Kill a process on a grep command
+function pskill {
+  ps -ef | grep twaters | grep -v grep | grep $1 | awk '{print $2}' | xargs kill
 }
 
 # Swap the positions of two files

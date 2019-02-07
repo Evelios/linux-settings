@@ -12,7 +12,7 @@ au BufRead,BufNewFile *.md         setfiletype markdown
 au BufRead,BufNewFile *.fsifpat*   setfiletype fsifpat
 au BufRead,BufNewFile *.fcat       setfiletype cat
 au BufRead,BufNewFile *.fept       setfiletype ept
-au BufRead,BufNewFile TBDpatt*     setfiletype TBDp
+au BufRead,BufNewFile TBDpat*      setfiletype TBDp
 au BufRead,BufNewFile *.stil       setfiletype stil
 au BufRead,BufNewFile *.combs      setfiletype combs
 au Bufread,BufNewFile */TMD1/*     setfiletype combs

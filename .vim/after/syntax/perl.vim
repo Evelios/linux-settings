@@ -12,4 +12,7 @@ hi def link perlFunName Function
 syn keyword perlStatementType Any Item Bool Maybe Undef Defined Value Str Num Int
 syn keyword perlStatementType Ref ScalarRef ArrayRef HashRef CodeRef RegexpRef GlobRef FileHandle Object
 
+" Try::Tiny module for error handling
+syn keyword perlStatementType try catch
+
 hi def link perlStatementType perlStatement

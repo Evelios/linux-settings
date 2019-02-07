@@ -12,6 +12,7 @@ recipe=$1
 
 echo "Making Recipe: $recipe"
 make -C $directory $recipe > $buildlog 2> $builderr
+make_rc=$?
 
 echo ""
 echo "---- Listing Built Objects ----"
@@ -19,9 +20,14 @@ echo ""
 
 grep -i made $buildlog
 
-echo ""
-echo "---- Listing Build Errors ----"
-echo ""
+errors=$(grep -i error $builderr)
 
-grep -i error $builderr
+if [[ ! -z $errors ]]; then
+  echo ""
+  echo "---- Listing Build Errors ----"
+  echo ""
 
+  echo $errors
+fi
+
+exit $make_rc

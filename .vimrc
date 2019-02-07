@@ -1,4 +1,18 @@
 " ------------------------------------------------------------------------------
+" ---- VIMRC
+" ------------------------------------------------------------------------------
+"   Sections
+"   * Testing 
+"   * Leader Characters
+"   * General Configuration
+"   * Plugin Settings
+"   * Tab Management
+"   * Buffer Management
+"   * Window Management
+"   * Abbreviations
+"   * Key Bindings
+
+" ------------------------------------------------------------------------------
 " ---- Testing
 " ------------------------------------------------------------------------------
 
@@ -14,11 +28,19 @@ endfun
 nnoremap <leader>t :call ShowFuncName() <CR>
 
 " ------------------------------------------------------------------------------
+" ---- Leader Characters
+" ------------------------------------------------------------------------------
+"
+let mapleader = "'"
+let maplocalleader = "//"
+
+" ------------------------------------------------------------------------------
 " ---- General Configuration
 " ------------------------------------------------------------------------------
 
 " ---- UI Config ----
 syntax on
+filetype plugin indent on
 let &background = 'dark'
 colorscheme gruvbox
 
@@ -42,23 +64,34 @@ match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * redraw
 
 " ---- Tabspace ----
+inoremap <S-Tab> <C-V><Tab>
 set tabstop=2        " The number of spaces a tab appears as
 set softtabstop=2    " The number of spaces that are changed when tab is pressed
 set shiftwidth=2     " The number of spaces to shift for automatic indentation
 set expandtab        " Expand tabs out into spaces as indicated in the previous lines
 set autoindent       " Turn on auto indenting to match the previous line
-"set smartindent      " Trys to do smarter indenting than autoindent
+" set smartindent      " Trys to do smarter indenting than autoindent
 
-" ------------------------------------------------------------------------------
-" ---- Leader Characters
-" ------------------------------------------------------------------------------
-"
-let mapleader = "'"
-let maplocalleader = "//"
+" ---- Terminal Config ----
+if has('nvim')
+  let g:neoterm_autoinsert=1
+endif
+
+" ---- Haskell Package Features ----
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 " ------------------------------------------------------------------------------
 " ---- Plugin Settings
 " ------------------------------------------------------------------------------
+
+" ---- NeoTex ----
+let g:tex_flavor = 'latex'
 
 " ---- NERDTree ----
 
@@ -92,12 +125,6 @@ let g:lightline.subseparator = {
 \ }
 
 " ------------------------------------------------------------------------------
-" ---- Macros
-" ------------------------------------------------------------------------------
-
-" ...
-
-" ------------------------------------------------------------------------------
 " ---- Tab Management
 " ------------------------------------------------------------------------------
 
@@ -112,11 +139,50 @@ nnoremap tc :tabclose<cr>
 nnoremap te :tabnew<cr>
 
 " Open up the file under the cursor in a new tab
-nnoremap to <c-w> gf
+nnoremap to <c-w>gf
 
 " Move the tabs
 nnoremap tl :tabm +1<cr>
 nnoremap th :tabm -1<cr>
+
+" ------------------------------------------------------------------------------
+" ---- Buffer Management
+" ------------------------------------------------------------------------------
+
+nnoremap wn :n<cr>
+nnoremap wp :prev<cr>
+
+" ------------------------------------------------------------------------------
+" ---- Window Management
+" ------------------------------------------------------------------------------
+
+" Move between split windows
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
+
+if has('nvim')
+  nnoremap <c-j> <c-\><c-n><c-w><c-j>
+  nnoremap <c-k> <c-\><c-n><c-w><c-k>
+  nnoremap <c-h> <c-\><c-n><c-w><c-h>
+  nnoremap <c-l> <c-\><c-n><c-w><c-l>
+endif
+
+" Resize split windows
+nnoremap <c-u> :resize -4<cr>
+nnoremap <c-i> :resize +4<cr>
+
+nnoremap <c-y> :vertical resize +4<cr>
+nnoremap <c-o> :vertical resize -4<cr>
+
+" ------------------------------------------------------------------------------
+" ---- Abbreviations
+" ------------------------------------------------------------------------------
+
+" Abbreviate the directional arrows
+iabbrev << <-
+iabbrev >> ->
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings
@@ -125,9 +191,9 @@ nnoremap th :tabm -1<cr>
 " ---- Basic Keybindings ----
 
 " Edit your vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ve :tabe $MYVIMRC<cr>
 " Reload or Source your vimrc
-nnoremap <leader>rv :source $MYVIMRC<cr>
+nnoremap <leader>vr :source $MYVIMRC<cr>
 
 " Leave insert mode
 inoremap jk <esc>l
@@ -136,8 +202,16 @@ inoremap <esc> <nop>
 " Quit Everything
 nnoremap <leader>qq :qa<cr>
 
-" Insert a space
+" Quit Everything Force
+nnoremap <leader>qq :qa!<cr>
+
+" Insert a space in normal mode with spacebar
 nnoremap <space> i<space><esc>l
+
+" Set Terminal Break As Escape Character
+if has('nvim')
+  tnoremap <Esc> <c-\><c-n>
+endif
 
 " ---- Movement Keybindings ----
 "
@@ -168,16 +242,7 @@ nnoremap <leader>j ddp
 " Move the current line up
 nnoremap <leader>k kddpk
 
-" Delete Line
-"nnoremap <leader>d dd
-" Delete Line and edit it
-"nnoremap <leader>c ddO
-
-" Surround line with double quotes
-"nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-" Surround line with single quotes
-"nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-
+" Enable Wrapping
 nnoremap <leader>w :set wrap<cr>
 
 " Remove Highlighting
@@ -194,24 +259,10 @@ nnoremap <leader>' a'';<esc>h
 " Insert a function parenthesis and brackets
 nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
 
-" ---- Buffer Management ----
-
-" Move between split windows
-nnoremap <c-j> <c-w><c-j>
-nnoremap <c-k> <c-w><c-k>
-nnoremap <c-h> <c-w><c-h>
-nnoremap <c-l> <c-w><c-l>
-
-" Resize split windows
-nnoremap <c-u> :resize -4<cr>
-nnoremap <c-i> :resize +4<cr>
-
-nnoremap <c-y> :vertical resize +4<cr>
-nnoremap <c-o> :vertical resize -4<cr>
 
 " ---- Insert Mode -------------------------------------------------------------
 
 " ---- Code Syntax Additions ----
 
 " Add in the surrounding curly brackets
-inoremap {{ {<cr><tab><cr><bs>}<esc>k$a
+inoremap {{ {<cr><cr><bs>}<esc>k$a

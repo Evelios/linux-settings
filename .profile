@@ -1,10 +1,5 @@
 # ---- Terminal Setup ----------------------------------------------------------
 
-# Change xterm setting to 256 color mode
-if [[ "$TERM" == "xterm" ]]; then
-  export TERM=xterm-256color
-fi
-
 # Try to set up zsh as the subshell
 use_zsh=true
 zsh_path=$(which zsh 2> /dev/null)
@@ -60,10 +55,19 @@ fi
 
 # ---- Environment Variables ---------------------------------------------------
 
+# Standard Path Variables
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:/sbin
 
 # For the ddd debugger
 export PATH=$PATH:/usr/lib64:/usr/share/doc
+
+if [[ -e ~/.cabal/bin ]]; then
+  export PATH=$PATH:~/.cabal/bin
+fi
+
+if [[ -e ~/linux-settings/scripts ]]; then
+  export PATH=$PATH:~/linux-settings/scripts
+fi
 
 # Mitosis Keyboard
 export GNU_INSTALL_ROOT=/usr/
@@ -96,8 +100,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
 # Log into the default development environment
-if [[ "$HOSTNAME" == "vfc9jump01" || "$HOSTNAME" == "sfc9pfetxp02" ]]; then
+if [[ "$HOSTNAME" == "vfc9jump01" || "$HOSTNAME" == "sfc9pfetxp01" || "$HOSTNAME" == "sfc9pfetxp02" ]]; then
   prod
 fi

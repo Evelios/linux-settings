@@ -21,19 +21,18 @@ function testmode {
   formatsmall /nas/pnp4/bkessler/L01VU960_Zenith11/SIF_twaters/TMD1.spmisr_func0_diag.fsifpat
 }
 
-alias rtest="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/465_release/scripts/util/regression/regtest.pl"
-alias rtest_small="rtest -p /tod_nfs/afs/btv/data/tds/sandboxes/twaters/260_reg/scripts/util/regression/parts_list_small.pl"
+alias rtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
 
-alias rtest_tpgl_pre="rtest tpgl pre"
-alias rtest_tpgl_post="rtest tpgl post"
+function rtest_dev {
+  script=/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl
+  email=thomas.waters2@globalfoundries.com
+  nohup $script -e $email dev "$@" &
+}
 
-alias regtest_dev="rtest -e thomas.waters2@globalfoundries.com dev"
-
-# function rtest_dev {
-  # script=/tod_nfs/afs/btv/data/tds/sandboxes/twaters/465_release/scripts/util/regression/regtest.pl
-  # email=thomas.waters2@globalfoundries.com
-  # nohup $script -e $email "$@" &
-# }
+function rtest_tpgl {
+  script=/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl
+  nohup $script tpgl "$@" &
+}
 
 alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
 
@@ -69,10 +68,12 @@ function findtmd {
 
 alias dirdiff="/tod_nfs/afs/btv/data/tds/tools/dirdiff.pl"
 alias bc="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/bcompare.k"
+alias cpplint="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cpplint.py"
 alias regtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
 alias runpart="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/runpart.k"
 alias formatsif="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/formatsif.k"
 alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
+alias cppcheck="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cppcheck-1.86/cppcheck"
 
 # Cadence 15.13
 function cadence {

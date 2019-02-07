@@ -15,8 +15,11 @@ function usage {
 
 function printHeader {
   file=$1
-  echo "----------------------------------------"
   echo "---- File Changed : $file"
+  echo "----------------------------------------"
+}
+
+function printFooter {
   echo "----------------------------------------"
 }
 
@@ -60,6 +63,13 @@ for file in $followed_files; do
   file_timestamps[$file]=$(getTimestamp $file)
 done
 
+# ---- Run command at the start of execution -----------------------------------
+
+if [[ $PASS_FILE != true ]]; then
+  eval "$run_command"
+  printFooter
+fi
+
 # ---- Wait for modifications and run command ----------------------------------
 
 while true; do
@@ -80,6 +90,8 @@ while true; do
       else
         eval "$run_command"
       fi
+
+      printFooter
     fi
   done
 

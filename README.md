@@ -11,16 +11,23 @@ terminal as well. When using z-shell it uses the oh-my-zsh plugin to help
 with customization.
 
 These dot files include settings to do the following...
-+ Uses the solarized theme
-+ Customizes the command prompt
++ Has Fish Of Paradise Putty Color Scheme
++ Uses Agonizer, a powerline theme for style
 
 ## Vim Settings
-
-Uses the molokai theme.
 
 The vim settings have many customizations and custom syntax hilighting files
 for specific file types.
 
-There are a couple of plugins included in these settings that I use
+**Colorschemes**
++ gruvbox (default)
++ molokai
+
+**Vim Plugins**
 + Git Gutter
-+ Nerd Commenter
++ NERDCommenter
++ NERDTree
+
+Possible Additions
++ vim-fugitive : git tool
++ vim-bufferline : show buffers in the status line
