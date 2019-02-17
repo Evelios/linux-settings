@@ -211,6 +211,9 @@ nnoremap <leader>qq :qa!<cr>
 " Insert a space in normal mode with spacebar
 nnoremap <space> i<space><esc>l
 
+" Insert a space after the cursor in normal mode
+nnoremap <S-space> a<space><esc>h
+
 " Set Terminal Break As Escape Character
 if has('nvim')
   tnoremap <Esc> <c-\><c-n>
@@ -273,3 +276,6 @@ nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
 
 " Add in the surrounding curly brackets
 inoremap {{ {<cr><cr><bs>}<esc>k$a
+
+" Map Ctrl-Backspace to delete the previous word
+inoremap <C-BS> <C-W>
