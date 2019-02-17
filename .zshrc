@@ -22,6 +22,8 @@ zsh_stats () {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20
 }
 
+# ---- General Configuration ---------------------------------------------------
+
 # ---- Oh My ZSH! --------------------------------------------------------------
 
 function localtelnet {
@@ -41,8 +43,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-#  ZSH_THEME="agonster_custom"
-ZSH_THEME="agnoster"
+ZSH_THEME="agnoster_custom"
+# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
