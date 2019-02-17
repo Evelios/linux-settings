@@ -97,6 +97,19 @@ function fl {
   last=$(ls -tr *.sifpat | tail -1)
   formatsmall $last
 }
+
+# TR File Manager
+function fmfile {
+   /tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMover get -r $1 -l $1 -f /users/home/achampag/pw.gprod -t GPRODREC
+}
+
+function fmSearch {
+/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMover search -f /users/home/achampag/pw.gprod -t GPRODREC -a FILENAME,$1
+}
+
+# Need to be in etx for this
+alias  trfmGui="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC"
+
 # ---- TDS Gui Calls ----
 
 alias tds="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/setupTdsEnv.k gui &"
