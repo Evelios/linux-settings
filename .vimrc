@@ -2,7 +2,7 @@
 " ---- VIMRC
 " ------------------------------------------------------------------------------
 "   Sections
-"   * Testing 
+"   * Testing
 "   * Leader Characters
 "   * General Configuration
 "   * Plugin Settings
@@ -115,17 +115,34 @@ let g:lightline = {
   \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
-  \ },
-\ }
+  \             [ 'readonly', 'buffers', 'modified' ] ]
+  \},
+\}
 
 " Powerline Style Separators
 let g:lightline.separator = {
-  \   'left': '', 'right': ''
-\ }
+  \ 'left': '', 'right': ''
+\}
 let g:lightline.subseparator = {
   \ 'left': '', 'right': ''
-\ }
+\}
+
+" Lightline Bufferline Listings
+" let g:lightline.tabline = {
+ " \ 'left'  : [[ 'buffers' ]],
+ " \ 'right' : [[ 'close' ]]
+" \}
+
+let g:lightline.component_expand = {
+ \ 'buffers' : 'lightline#bufferline#buffers'
+\}
+
+let g:lightline.component_type = {
+  \ 'buffers' : 'tabsel'
+\}
+
+" Allow for autoupdating of the 'modified' indicator
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 " ------------------------------------------------------------------------------
 " ---- Tab Management

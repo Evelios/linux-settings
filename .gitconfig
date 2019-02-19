@@ -1,4 +1,10 @@
+# Example Files
 # https://gist.github.com/rab/4067067
+# https://gist.github.com/pksunkara/988716
+
+[alias]
+  c = commit -m
+  a = add --all
 [color]
   branch = auto
   diff = auto
@@ -18,3 +24,8 @@
   added = yellow
   changed = green
   untracked = cyan
+[github]
+  user = evelios
+[user]
+  name = twaters
+  email = thomas.waters@globalfoundries.com

@@ -27,7 +27,15 @@ for specific file types.
 + Git Gutter
 + NERDCommenter
 + NERDTree
++ Lightline
++ Lightline-bufferline
++ Tabluar?
+
+**Syntax Plugins**
++ vim-javascript
++ vim-markdown
++ haskell-vim
 
 Possible Additions
 + vim-fugitive : git tool
-+ vim-bufferline : show buffers in the status line
++ fzf : file fuzzy finder tool
