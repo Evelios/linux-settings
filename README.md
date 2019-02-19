@@ -29,7 +29,7 @@ for specific file types.
 + NERDTree
 + Lightline
 + Lightline-bufferline
-+ Tabluar?
++ Tabluar
 
 **Syntax Plugins**
 + vim-javascript
