@@ -3,7 +3,6 @@
 This is my setup for terminal navigation on Linux distributions. This includes
 terminal dot files for setup as well as vim settings.
 
-
 ## Terminal Setup
 
 This setup uses the z-shell if available and uses vi key bindings within the
@@ -36,6 +35,7 @@ for specific file types.
 + vim-markdown
 + haskell-vim
 
-Possible Additions
+**Possible Additions**
 + vim-fugitive : git tool
-+ fzf : file fuzzy finder tool
++ fzf          : file fuzzy finder tool
++ vim-latexs   : latex tools suite

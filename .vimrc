@@ -169,8 +169,8 @@ nnoremap th :tabm -1<cr>
 " ---- Buffer Management
 " ------------------------------------------------------------------------------
 
-nnoremap wn :n<cr>
-nnoremap wp :prev<cr>
+nnoremap <leader>wn :n<cr>
+nnoremap <leader>wp :prev<cr>
 
 " ------------------------------------------------------------------------------
 " ---- Window Management
