@@ -24,6 +24,8 @@ zsh_stats () {
 
 # ---- General Configuration ---------------------------------------------------
 
+setopt auto_cd # Allow cd without typing 'cd'. $cd ../foo/bar -> $ ../foo/bar
+
 # ---- Oh My ZSH! --------------------------------------------------------------
 
 function localtelnet {

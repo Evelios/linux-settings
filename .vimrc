@@ -44,6 +44,8 @@ filetype plugin indent on
 let &background = 'dark'
 colorscheme gruvbox
 
+set ignorecase       " Case insensitive search
+set smartcase        " Case insensitive except when searching for a capital letter (needs ignorecase)
 set nowrap           " Do not wrap lines around. Let them get cut off
 set number           " Show line numbers
 set showcmd          " Show the previous command in the bottom bar
@@ -77,6 +79,10 @@ if has('nvim')
   let g:neoterm_autoinsert=1
 endif
 
+" ------------------------------------------------------------------------------
+" ---- Plugin Settings
+" ------------------------------------------------------------------------------
+
 " ---- Haskell Package Features ----
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -85,10 +91,6 @@ let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
 let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-
-" ------------------------------------------------------------------------------
-" ---- Plugin Settings
-" ------------------------------------------------------------------------------
 
 " ---- NeoTex ----
 let g:tex_flavor = 'latex'
@@ -149,21 +151,21 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 " ------------------------------------------------------------------------------
 
 " Move inbetween tabs
-nnoremap tn :tabnext<cr>
-nnoremap tp :tabprevious<cr>
+nnoremap <leader>tn :tabnext<cr>
+nnoremap <leader>tp :tabprevious<cr>
 
 " Close the current tab
-nnoremap tc :tabclose<cr>
+nnoremap <leader>tc :tabclose<cr>
 
 " Open up a new empty tab
-nnoremap te :tabnew<cr>
+nnoremap <leader>te :tabnew<cr>
 
 " Open up the file under the cursor in a new tab
-nnoremap to <c-w>gf
+nnoremap <leader>to <c-w>gf
 
 " Move the tabs
-nnoremap tl :tabm +1<cr>
-nnoremap th :tabm -1<cr>
+nnoremap <leader>tl :tabm +1<cr>
+nnoremap <leader>th :tabm -1<cr>
 
 " ------------------------------------------------------------------------------
 " ---- Buffer Management
@@ -233,8 +235,13 @@ if has('nvim')
   tnoremap <Esc> <c-\><c-n>
 endif
 
+" ---- Syntax Keybindings ----
+
+noremap <leader>sc :set syntax=combs<cr>
+noremap <leader>sp :set syntax=pinfo<cr>
+
 " ---- Movement Keybindings ----
-"
+
 " Move to beginning / end of the line
 noremap H 0
 " noremap H ^   <-- Use this to go to the first character on the line
@@ -282,6 +289,9 @@ nnoremap <leader>' a'';<esc>h
 
 " Insert a function parenthesis and brackets
 nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
+
+" Insert a single character
+nnoremap <leader>i i_<esc>r
 
 
 " ---- Insert Mode -------------------------------------------------------------

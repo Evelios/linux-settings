@@ -154,10 +154,10 @@ alias prod4="ssh -X fc9pftdsp04"
 
 # Dev
 alias dev="ssh -X fc9pftdsp08"
-alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
-alias dev2="ssh -X fc9pftdsp06"
-alias dev3="ssh -X fc9pftdsp07"   # TDS Development Box
-alias dev4="ssh -X fc9pftdsp08"   # TDS Development Box
+# alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
+alias dev2="ssh -X fc9pftdsp06"     # TDS Development Box
+alias dev3="ssh -X fc9pftdsp07"     # TDS Development Box
+alias dev4="ssh -X fc9pftdsp08"     # TDS Development Box
 # alias dev5="ssh -X fc9pftdsp09"   # Allicated for SFTP Service
 # alias dev6="ssh -X fc9pftdsp10"   # Allocated for the NAS space
 

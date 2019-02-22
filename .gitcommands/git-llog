@@ -5,4 +5,4 @@ tab="%x09"
 format="%h$tab%an$tab%ad$tab%s"
 
 # Pretty output oneline of git
-git --no-pager  log -$numcommits --pretty=format:"${format}" --name-only --date=short
+git --no-pager  log -$numcommits --pretty=format:"${format}" --name-only --date=short --decorate
