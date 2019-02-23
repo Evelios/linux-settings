@@ -3,7 +3,6 @@
 This is my setup for terminal navigation on Linux distributions. This includes
 terminal dot files for setup as well as vim settings.
 
-
 ## Terminal Setup
 
 This setup uses the z-shell if available and uses vi key bindings within the
@@ -27,7 +26,16 @@ for specific file types.
 + Git Gutter
 + NERDCommenter
 + NERDTree
++ Lightline
++ Lightline-bufferline
++ Tabluar
 
-Possible Additions
+**Syntax Plugins**
++ vim-javascript
++ vim-markdown
++ haskell-vim
+
+**Possible Additions**
 + vim-fugitive : git tool
-+ vim-bufferline : show buffers in the status line
++ fzf          : file fuzzy finder tool
++ vim-latexs   : latex tools suite

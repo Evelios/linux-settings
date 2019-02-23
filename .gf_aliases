@@ -74,6 +74,7 @@ alias runpart="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regressio
 alias formatsif="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/formatsif.k"
 alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
 alias cppcheck="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cppcheck-1.86/cppcheck"
+alias sysload="/tod_nfs/afs/btv/data/tds/tools/systemStats.k"
 
 # Cadence 15.13
 function cadence {
@@ -153,10 +154,10 @@ alias prod4="ssh -X fc9pftdsp04"
 
 # Dev
 alias dev="ssh -X fc9pftdsp08"
-alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
-alias dev2="ssh -X fc9pftdsp06"
-alias dev3="ssh -X fc9pftdsp07"   # TDS Development Box
-alias dev4="ssh -X fc9pftdsp08"   # TDS Development Box
+# alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
+alias dev2="ssh -X fc9pftdsp06"     # TDS Development Box
+alias dev3="ssh -X fc9pftdsp07"     # TDS Development Box
+alias dev4="ssh -X fc9pftdsp08"     # TDS Development Box
 # alias dev5="ssh -X fc9pftdsp09"   # Allicated for SFTP Service
 # alias dev6="ssh -X fc9pftdsp10"   # Allocated for the NAS space
 

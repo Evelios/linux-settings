@@ -2,27 +2,45 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn match combsInclude '\v#\w+'
-syn match combsComment '\v//.*$'
+" ---- Group Creation ----------------------------------------------------------
 
-syn match combsVariable '\v^\s*\w+' nextgroup=equals skipwhite
-syn match combsVariable '\v\$\w+' nextgroup=equals skipwhite
-syn match combsFunction '\v\w+(\()@='
-syn match equals '=' nextgroup=value,strValue skipwhite
-syn match semicolon ';'
-syn match comma ','
-syn match value '\v[\.\-_[:alnum:]]+' contained display
-syn match value '\v\"[\.\-_[:alnum:][:space:]]+\"' contained display
-syn match combsNumber '\v<[0-9]+>'
-syn keyword combsKeyword NO YES X H Z I W S T
+syn match   combsInclude '\v#\w+'
+syn match   combsComment '\v//.*$'
 
-hi def link combsInclude  Include
-hi def link combsComment  Comment
-hi def link equals        Operator
-hi def link semicolon     Operator
-hi def link comma         Operator
-hi def link combsVariable Identifier
-hi def link combsFunction Identifier
-hi def link value         Constant
-hi def link combsNumber   Constant
-hi def link combsKeyword  Constant
+syn keyword combsPatset PATSET nextgroup=combsPatsetDef skipwhite
+syn match   combsPatsetDef '\v\w+' contained display
+syn match   combsFunction '\v\w+(\()@='
+
+syn match   combsVariable '\v^\s*\$?\w+\s*(\=)@=' nextgroup=equals skipwhite
+syn match   combsVariable '\v\$\{?\w+\}?'
+syn match   combsEquals '=' nextgroup=value,strValue skipwhite
+syn match   combsSemicolon ';'
+syn match   combsComma ','
+syn match   combsValue '\v[\.\-_[:alnum:]]+' contained display
+syn match   combsValue '\v\"[\.\-_[:alnum:][:space:]]+\"' contained display
+syn region  combsString start='\v"' end='\v"'
+syn region  combsString start='\v\'' end='\v\''
+syn match   combsNumber '\v<[0-9]+>'
+syn keyword combsConstant NO YES H L X Z I W S T
+
+syn match   combsDirectory '\v/[[:alnum:]_\@\-\.]+'
+
+" ---- Linking -----------------------------------------------------------------
+
+hi def link combsInclude   Include
+hi def link combsComment   Comment
+
+hi def link combsPatset    Statement
+hi def link combsPatsetDef Function
+hi def link combsFunction  Function
+
+hi def link combsEquals    Operator
+hi def link combsSemicolon Operator
+hi def link combsComma     Operator
+hi def link combsVariable  Identifier
+hi def link combsValue     Constant
+hi def link combsNumber    Constant
+hi def link combsConstant  Constant
+hi def link combsString    String
+
+hi def link combsDirectory Special

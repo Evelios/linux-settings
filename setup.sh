@@ -24,6 +24,7 @@ for file in $(ls -A $script_directory); do
   if [[ $file == "setup.sh"                   ]]; then continue; fi
   if [[ $file == "check-installs.sh"          ]]; then continue; fi
   if [[ $file == "README.md"                  ]]; then continue; fi
+  if [[ $file == ".config"                    ]]; then continue; fi
   if [[ $file == ".git"                       ]]; then continue; fi
 
   echo "  Linking up $file"
@@ -39,5 +40,4 @@ for file in $(ls -A $script_directory); do
 done
 
 # Create the Neovim Setup Files
-mkdir -p ~/.config/neovim
-ln -s ~/.vimrc ~/.config/neovim
+cp -prf $script_directory/.config ~/.
