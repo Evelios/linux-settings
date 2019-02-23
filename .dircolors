@@ -346,7 +346,8 @@ EXEC 01;92
 .abw   00;35
 .wpd   00;35
 
-# colorize text documents (brown)
+# colorize text documents (purple)
+.tex   00;35
 .txt   00;35
 .patch 00;35
 .diff  00;35
@@ -354,11 +355,14 @@ EXEC 01;92
 .htm   00;35
 .html  00;35
 .shtml 00;35
-.xml   00;35
+*README          00;35
+*README.txt      00;35
+*readme.txt      00;35
+.md              00;35
+*README.markdown 00;35
 
 
-# Files of special interest (base1)
-.tex             00;33
+# Files of special interest (yellow)
 .rdf             00;33
 .owl             00;33
 .n3              00;33
@@ -373,11 +377,6 @@ EXEC 01;92
 *rc              00;33
 *1               00;33
 .nfo             00;33
-*README          00;33
-*README.txt      00;33
-*readme.txt      00;33
-.md              00;33
-*README.markdown 00;33
 .ini             00;33
 .yml             00;33
 .cfg             00;33
@@ -395,8 +394,11 @@ EXEC 01;92
 .csv             00;33
 .pl              00;33
 .pm              00;33
+.hs              00;33
+.js              00;33
 
-# "unimportant" files as logs and backups (base01)
+
+# Less important files (gray)
 .log        00;38;5;240
 .err        00;38;5;240
 .bak        00;38;5;240
@@ -419,3 +421,4 @@ EXEC 01;92
 .pyc        00;38;5;240
 .class      00;38;5;240
 .cache      00;38;5;240
+.hi         00;38;5;240

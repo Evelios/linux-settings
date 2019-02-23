@@ -127,6 +127,9 @@ let g:lightline.subseparator = {
   \ 'left': '', 'right': ''
 \ }
 
+" ---- Semantic Highlight ----
+nnoremap <Leader>h :SemanticHighlightToggle<cr>
+
 " ------------------------------------------------------------------------------
 " ---- Tab Management
 " ------------------------------------------------------------------------------
