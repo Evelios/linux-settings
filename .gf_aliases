@@ -138,10 +138,6 @@ alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
 alias reg="cd /nas/pnp4/regression"
 alias parts="cd /nas/pnp4/regression/parts"
-alias pnp1="cd /nas/pnp1"
-alias pnp2="cd /nas/pnp2"
-alias pnp3="cd /nas/pnp3"
-alias pnp4="cd /nas/pnp4"
 
 # ---- Server SSH Commands -----------------------------------------------------
 
@@ -153,7 +149,7 @@ alias prod3="ssh -X fc9pftdsp03"
 alias prod4="ssh -X fc9pftdsp04"
 
 # Dev
-alias dev="ssh -X fc9pftdsp08"
+# alias dev="ssh -X fc9pftdsp08"
 # alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
 alias dev2="ssh -X fc9pftdsp06"     # TDS Development Box
 alias dev3="ssh -X fc9pftdsp07"     # TDS Development Box

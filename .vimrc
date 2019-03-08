@@ -25,7 +25,7 @@ fun! ShowFuncName()
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfun
 
-nnoremap <leader>t :call ShowFuncName() <CR>
+nnoremap <leader>rf :call ShowFuncName() <CR>
 
 " ------------------------------------------------------------------------------
 " ---- Leader Characters
@@ -185,10 +185,10 @@ nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
 
 if has('nvim')
-  nnoremap <c-j> <c-\><c-n><c-w><c-j>
-  nnoremap <c-k> <c-\><c-n><c-w><c-k>
-  nnoremap <c-h> <c-\><c-n><c-w><c-h>
-  nnoremap <c-l> <c-\><c-n><c-w><c-l>
+  " nnoremap <c-j> <c-\><c-n><c-w><c-j>
+  " nnoremap <c-k> <c-\><c-n><c-w><c-k>
+  " nnoremap <c-h> <c-\><c-n><c-w><c-h>
+  " nnoremap <c-l> <c-\><c-n><c-w><c-l>
 endif
 
 " Resize split windows

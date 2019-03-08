@@ -21,7 +21,7 @@ syn match   combsValue '\v\"[\.\-_[:alnum:][:space:]]+\"' contained display
 syn region  combsString start='\v"' end='\v"'
 syn region  combsString start='\v\'' end='\v\''
 syn match   combsNumber '\v<[0-9]+>'
-syn keyword combsConstant NO YES H L X Z I W S T
+syn keyword combsConstant TRUE FALSE YES NO H L X Z I W S T
 
 syn match   combsDirectory '\v/[[:alnum:]_\@\-\.]+'
 

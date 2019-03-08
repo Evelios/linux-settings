@@ -44,7 +44,6 @@ alias ld="ls -d */"  # List all directories
 alias lh="ls -Ad .*" # List all hidden files
 
 # Directory Hopping
-alias c="cd"
 alias cl="cd \$(ls -dtr */ | tail -1)"
 alias cdd="cd -"
 
