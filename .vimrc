@@ -27,6 +27,16 @@ endfun
 
 nnoremap <leader>rf :call ShowFuncName() <CR>
 
+fun! AppendInInsert(char)
+  let lnum = line(".")
+  let col  = col(".")
+  :execute ":normal! A" . char
+  call cursor(lnum, col + 1)
+  :startinsert!
+endfun;
+
+inoremap <c-s> <esc>:call AppendSemi() <cr>
+
 " ------------------------------------------------------------------------------
 " ---- Leader Characters
 " ------------------------------------------------------------------------------
@@ -202,9 +212,6 @@ nnoremap <c-o> :vertical resize -4<cr>
 " ---- Abbreviations
 " ------------------------------------------------------------------------------
 
-" Abbreviate the directional arrows
-iabbrev << <-
-iabbrev >> ->
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings
@@ -250,8 +257,8 @@ noremap $ <nop>
 noremap ^ <nop>
 
 " Move through softwrap lines
-noremap j gj
-noremap k gk
+nnoremap j gj
+nnoremap k gk
 
 " Move up / down half a page
 noremap J <c-d>
@@ -265,6 +272,11 @@ noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
 
+" ---- Deleting and Pasting ----
+
+noremap <leader>d "pd
+noremap <leader>p "pp
+noremap <leader>P "pP
 
 " ---- Normal Mode -------------------------------------------------------------
 

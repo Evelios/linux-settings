@@ -4,10 +4,18 @@
 
 # ---- Command Shortcuts -------------------------------------------------------
 
+
+if [[ $(command -v nvim) != 1 ]]; then
+  export EDITOR="nvim"
+else
+  export EDITOR="vim"
+fi
+
 # Test Programs
 alias temp="sensors"  # install lm-sensors
 alias gpu_tests="phoronix-test-suite list-tests"
 alias gpu="phoronix-test-suite run unigine-heaven"
+alias todo="mkdir -p ~/Notes && $EDITOR ~/Notes/todo.md"
 
 # Shortcuts to settings files
 alias vimrc="v ~/.vimrc"
@@ -20,6 +28,12 @@ alias profile="v ~/.profile"
 alias settings="v ~/.profile"
 alias refresh=". ~/.zshrc"
 
+# Assorted
+last() {
+  file_num=${1:-1}
+  ls -tr 2> /dev/null | tail -$file_num | head -1
+}
+
 # Compression
 alias untar="tar -zxvf"
 alias 7z="p7zip"
@@ -27,26 +41,40 @@ alias 7z="p7zip"
 # Editors
 alias vdiff="vimdiff"
 
-if [[ $(command -v nvim) != 1 ]]; then
-  alias v="nvim"
-  alias vl="nvim \$(ls -tr | tail -1)"
-else
-  alias v="vim"
-  alias gv="gvim"
-  alias vl="vim \$(ls -tr | tail -1)"
-fi
+alias v="$EDITOR"
+# $1 The n'th lastest file to edit
+vl() {
+  file_num=${1:-1}
+  dir=$(ls -ptr 2> /dev/null | grep -v / | tail -$file_num | head -1)
+  $EDITOR $dir
+}
 
 # Directory Listings
+time_style='--time-style=+"%a %b %d %l:%M"'
 alias l="ls"
-alias la="ls -A"     # List all files including hidden
-alias ll="ls -ltrh"  # Descriptive listing
-alias ld="ls -d */"  # List all directories
-alias lh="ls -Ad .*" # List all hidden files
+alias la="ls -A"                             # List all files including hidden
+alias lf="ls | grep -v /"                    # List all non-directory files
+alias llf="ls -lrth $time_style | grep -v /" # Descriptive listing of all files
+alias ll="ls -lrth $time_style"              # Descriptive listing
+alias ld="ls -d */"                          # List all directories
+alias lld="ls -ltrhd */ $time_style"         # Descriptive listing of all directories
+alias lh="ls -Ad .*"                         # List all hidden files
 
 # Directory Hopping
-alias cl="cd \$(ls -dtr */ | tail -1)"
 alias cdd="cd -"
 
+# $1 The n'th latest directory to move to
+cl() {
+  dir_num=${1:-1}
+  dir=$(ls -dtr */ 2> /dev/null | tail -$dir_num | head -1)
+  if [[ -e $dir ]]; then
+   cd $dir
+  else
+    echo "There are no directories here"
+  fi
+}
+
+# $1 The directory to move to and list
 cs() {
   cd "$@" && ls
 }

@@ -29,3 +29,8 @@
 [user]
   name = twaters
   email = thomas.waters@globalfoundries.com
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false

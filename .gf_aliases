@@ -113,7 +113,7 @@ alias  trfmGui="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC"
 
 # ---- TDS Gui Calls ----
 
-alias tds="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/setupTdsEnv.k gui &"
+alias tds="/tod_nfs/afs/btv/data/tds/versions/gui/scripts/setupTdsEnv.k gui &"
 
 function tdssb {
   /tod_nfs/afs/btv/data/tds/sandboxes/twaters/$1/scripts/setupTdsEnv.k gui ON &

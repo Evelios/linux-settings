@@ -1,8 +1,8 @@
 # Mastering vim
 
-This section is about mastering the basics of vim and honing the core skills.
+This section is about mastering the basics of vim and honing the core skills. For a good reference of these commands look at `:help quickref`.
 
-## Basic Movement (left-right-motions) (up-down-motions)
+## Basic Movement (left-right-motions) (up-down-motions) (scrolling)
 
 * `h, j, k, l` left, down, up, right
 * `gm` go to the middle of the line
@@ -12,6 +12,15 @@ This section is about mastering the basics of vim and honing the core skills.
   + `{linenum}G` go to a partiuclar line number in a file
   + `:{linenum}` similar to the command above
     - This command modifies the jump list
+
+## Basic commands
+
+* `y{motion}` yank the contents after motion
+* `Y` yank the current line (alias `yy`)
+* `x` delete the character(s) under the cursor
+* `X` delete the character(s) before the cursor
+* `d{motion}` delete the characters from motion
+* `D` delete the characters until the end of the line (alias `d$`)
 
 ## Word motions (word-motions)
 
@@ -47,6 +56,7 @@ These commands are to enable the movement commands to use the same behaviour you
 * `A` enter insert mode at the end of the line
 * `o` create a new line below the cursor and enter insert mode
 * `O` create a new line above the cursor and enter inset mode
+* `c-v` insert the next character literally
 
 ## Other operators (operator)
 
@@ -54,6 +64,8 @@ These commands are to enable the movement commands to use the same behaviour you
 * `g~` swap the case of a block which is selected by an operator
 * `gu` make uppercase
 * `gU` make lowercase
+
+## Pattern searches (pattern-searches)
 
 ## Buffer Management (buffer-hidden)
 
@@ -93,10 +105,9 @@ Take a look at *CtrlP* to make full use of the buffer functionality.
   + `"<reg>p` paste this information from that register
 * `<c-R><reg>` in insert mode paste the contents of <reg>ister into the buffer
 
-## Marks
+## Marks and motions (mark-motions)
 
 * `m`
-
 
 ## Other
 
@@ -105,13 +116,35 @@ Take a look at *CtrlP* to make full use of the buffer functionality.
 * `:sh` run a shell in the terminal to run commands
   + `$ exit` close the shell and retun to vim
 
+
 # Improving Vim
 
 This section is about extending and improving the core editing experience.
 
+## Fuzzy finding
+The allows fuzzy finding in the working directory using things like
+* allows for searching for files like `:find <file>`
+* `:ls` to show all the buffers that are open
+* `:b <substr>` using a unique *substr* of a buffer that is open to open it
+* `<c-]>` Open
+
+`~/.vimrc` Enablement of this functionality
+```vim
+" Search down into subfolders
+set path+=**
+
+" Display all matching files when tab completing
+set wildmenu
+```
+
 ## Tags
 
 Look at tag support for various languages.
+* Need a tool called `ctags` for this functionality
+* In the source directory run `ctags -R .`
+* `<c-]>` jump to the tag under the cursor
+* `g<c-]>` look up all uses of the tag
+* `<c-t>` jump back through the tab stack
 
 ## Plugins
 * Syntastic
