@@ -83,6 +83,11 @@ endif
 " ---- Plugin Settings
 " ------------------------------------------------------------------------------
 
+" ---- Tabular ----
+nnoremap <leader>a= :Tabularize /=<cr>
+nnoremap <leader>a: :Tabularize /:<cr>
+nnoremap <leader>a// :Tabularize /\/\/
+
 " ---- Haskell Package Features ----
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -195,11 +200,10 @@ if has('nvim')
 endif
 
 " Resize split windows
-nnoremap <c-u> :resize -4<cr>
-nnoremap <c-i> :resize +4<cr>
-
-nnoremap <c-y> :vertical resize +4<cr>
-nnoremap <c-o> :vertical resize -4<cr>
+nnoremap <nop> :resize -4<cr>
+nnoremap <nop> :resize +4<cr>
+nnoremap <nop> :vertical resize +4<cr>
+nnoremap <nop> :vertical resize -4<cr>
 
 " ------------------------------------------------------------------------------
 " ---- Abbreviations
@@ -208,6 +212,7 @@ nnoremap <c-o> :vertical resize -4<cr>
 " Abbreviate the directional arrows
 iabbrev << <-
 iabbrev >> ->
+iabbrev ``` ```<cr>```<up><right><right>
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings
