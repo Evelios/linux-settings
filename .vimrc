@@ -93,6 +93,11 @@ endif
 " ---- Plugin Settings
 " ------------------------------------------------------------------------------
 
+" ---- Tabular ----
+nnoremap <leader>a= :Tabularize /=<cr>
+nnoremap <leader>a: :Tabularize /:<cr>
+nnoremap <leader>a// :Tabularize /\/\/
+
 " ---- Haskell Package Features ----
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
@@ -156,6 +161,9 @@ let g:lightline.component_type = {
 " Allow for autoupdating of the 'modified' indicator
 autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
+" ---- Semantic Highlight ----
+nnoremap <Leader>h :SemanticHighlightToggle<cr>
+
 " ------------------------------------------------------------------------------
 " ---- Tab Management
 " ------------------------------------------------------------------------------
@@ -202,16 +210,14 @@ if has('nvim')
 endif
 
 " Resize split windows
-nnoremap <c-u> :resize -4<cr>
-nnoremap <c-i> :resize +4<cr>
-
-nnoremap <c-y> :vertical resize +4<cr>
-nnoremap <c-o> :vertical resize -4<cr>
+nnoremap <nop> :resize -4<cr>
+nnoremap <nop> :resize +4<cr>
+nnoremap <nop> :vertical resize +4<cr>
+nnoremap <nop> :vertical resize -4<cr>
 
 " ------------------------------------------------------------------------------
 " ---- Abbreviations
 " ------------------------------------------------------------------------------
-
 
 " ------------------------------------------------------------------------------
 " ---- Key Bindings
@@ -236,6 +242,9 @@ nnoremap <leader>qq :qa!<cr>
 
 " Insert a space in normal mode with spacebar
 nnoremap <space> i<space><esc>l
+
+" Insert a space after the cursor in normal mode
+nnoremap <S-space> a<space><esc>h
 
 " Set Terminal Break As Escape Character
 if has('nvim')
@@ -312,3 +321,6 @@ nnoremap <leader>i i_<esc>r
 
 " Add in the surrounding curly brackets
 inoremap {{ {<cr><cr><bs>}<esc>k$a
+
+" Map Ctrl-Backspace to delete the previous word
+inoremap <C-BS> <C-W>

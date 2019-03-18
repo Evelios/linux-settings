@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 numcommits=${1:-10}
 tab="%x09"
