@@ -50,20 +50,28 @@ let maplocalleader = "//"
 
 " ---- UI Config ----
 syntax on
+set nocompatible     " Override any potentially conflicting .vimrc files
 filetype plugin indent on
 let &background = 'dark'
 colorscheme gruvbox
 
-set ignorecase       " Case insensitive search
-set smartcase        " Case insensitive except when searching for a capital letter (needs ignorecase)
-set nowrap           " Do not wrap lines around. Let them get cut off
-set number           " Show line numbers
-set showcmd          " Show the previous command in the bottom bar
-set cursorline       " Hilight the current cursor line
-set showmatch        " Hilight matching brackets like [{()}]
-set splitright       " Default split behavior send new vertical window right
-set splitbelow       " Devault split behavior send new horizontal window down
-"set wildmenu         " Visual autocomplete for command menu
+set ignorecase        " Case insensitive search
+set smartcase         " Case insensitive except when searching for a capital letter (needs ignorecase)
+set nowrap            " Do not wrap lines around. Let them get cut off
+set number            " Show line numbers
+set showcmd           " Show the previous command in the bottom bar
+set cursorline        " Hilight the current cursor line
+set showmatch         " Hilight matching brackets like [{()}]
+set splitright        " Default split behavior send new vertical window right
+set splitbelow        " Devault split behavior send new horizontal window down
+set wildmenu          " Visual autocomplete for command menu
+set lazyredraw        " Only redraw when needed. Can lead to more responsive redraws
+set incsearch         " Search as characters are entered
+set hlsearch          " Hilight search matches
+set foldenable        " Enable folding
+" set foldlevelstart=10 " Open most folds by default
+" set foldnestmax=10    " Set the max folde level
+" set foldmethod=syntax " Folding styles: marker, manual, expr, syntax, diff
 
 " ---- Whitespace ----
 " Show all tab characters
@@ -163,6 +171,28 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 " ---- Semantic Highlight ----
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
+
+" ------------------------------------------------------------------------------
+" ---- Autogroups
+" ------------------------------------------------------------------------------
+
+augroup configgroup
+  autocmd!
+  autocmd BufWritePre *.cpp *.h *.pl *.js *.hs *.txt *.md
+        \:call <SID>StripTrailingWhitespaces()
+augroup END
+
+" strips trailing whitespace at the end of files. this
+" is called on buffer write in the autogroup above.
+function! <SID>StripTrailingWhitespaces()
+  " save last search & cursor position
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  let @/=_s
+  call cursor(l, c)
+endfunction
 
 " ------------------------------------------------------------------------------
 " ---- Tab Management
