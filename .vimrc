@@ -1,20 +1,13 @@
 " ------------------------------------------------------------------------------
 " ---- VIMRC
 " ------------------------------------------------------------------------------
-"   Sections
-"   * Testing
-"   * Leader Characters
-"   * General Configuration
-"   * Plugin Settings
-"   * Tab Management
-"   * Buffer Management
-"   * Window Management
-"   * Abbreviations
-"   * Key Bindings
 
-" ------------------------------------------------------------------------------
-" ---- Testing
-" ------------------------------------------------------------------------------
+"{{{ Testing
+
+" Show the syntax hilighting group under the cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 fun! ShowFuncName()
   let lnum = line(".")
@@ -37,16 +30,16 @@ endfun;
 
 inoremap <c-s> <esc>:call AppendSemi() <cr>
 
-" ------------------------------------------------------------------------------
-" ---- Leader Characters
-" ------------------------------------------------------------------------------
-"
+au BufReadPost,BufNewFile .vimrc set foldmethod=marker
+
+"}}}
+"{{{ Leader Characters
+
 let mapleader = "'"
 let maplocalleader = "//"
 
-" ------------------------------------------------------------------------------
-" ---- General Configuration
-" ------------------------------------------------------------------------------
+"}}}
+"{{{ General Configuration
 
 " ---- UI Config ----
 syntax on
@@ -89,9 +82,8 @@ if has('nvim')
   let g:neoterm_autoinsert=1
 endif
 
-" ------------------------------------------------------------------------------
-" ---- Plugin Settings
-" ------------------------------------------------------------------------------
+"}}}
+"{{{ Plugin Settings
 
 " ---- Tabular ----
 nnoremap <leader>a= :Tabularize /=<cr>
@@ -164,9 +156,8 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 " ---- Semantic Highlight ----
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
 
-" ------------------------------------------------------------------------------
-" ---- Tab Management
-" ------------------------------------------------------------------------------
+"}}}
+"{{{ Tab Management
 
 " Move inbetween tabs
 nnoremap <leader>tn :tabnext<cr>
@@ -185,16 +176,18 @@ nnoremap <leader>to <c-w>gf
 nnoremap <leader>tl :tabm +1<cr>
 nnoremap <leader>th :tabm -1<cr>
 
-" ------------------------------------------------------------------------------
-" ---- Buffer Management
-" ------------------------------------------------------------------------------
+"}}}
+"{{{ Buffer Management
 
-nnoremap <leader>wn :n<cr>
+nnoremap <leader>wn :next<cr>
 nnoremap <leader>wp :prev<cr>
+nnoremap <leader>bn :bnext<cr>
+nnoremap <leader>bp :bprev<cr>
+nnoremap <leader>bd :bdelete<cr>
+nnoremap <leader>bl :b#<cr>
 
-" ------------------------------------------------------------------------------
-" ---- Window Management
-" ------------------------------------------------------------------------------
+"}}}
+"{{{ Window Management
 
 " Move between split windows
 nnoremap <c-j> <c-w><c-j>
@@ -215,13 +208,10 @@ nnoremap <nop> :resize +4<cr>
 nnoremap <nop> :vertical resize +4<cr>
 nnoremap <nop> :vertical resize -4<cr>
 
-" ------------------------------------------------------------------------------
-" ---- Abbreviations
-" ------------------------------------------------------------------------------
+"{{{ Abbreviations
 
-" ------------------------------------------------------------------------------
-" ---- Key Bindings
-" ------------------------------------------------------------------------------
+"}}}
+"{{{ Key Bindings
 
 " ---- Basic Keybindings ----
 
@@ -324,3 +314,5 @@ inoremap {{ {<cr><cr><bs>}<esc>k$a
 
 " Map Ctrl-Backspace to delete the previous word
 inoremap <C-BS> <C-W>
+
+"}}}

@@ -68,7 +68,7 @@ cl() {
   dir_num=${1:-1}
   dir=$(ls -dtr */ 2> /dev/null | tail -$dir_num | head -1)
   if [[ -e $dir ]]; then
-   cd $dir
+   cd "./$dir"
   else
     echo "There are no directories here"
   fi

@@ -39,20 +39,8 @@ alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl
 # ---- Command Shortcuts -------------------------------------------------------
 
 alias diffsb="diff -r --exclude='program'"
-
-function build {
-  make_recipe=${1:-all}
-  echo "Building Recipe $make_recipe"
-  echo ""
-  echo "---- Listing Built Objects ----"
-  echo ""
-  make $make_recipe > build.log 2> build.err
-  grep Made build.log
-  echo ""
-  echo "---- Listing Build Errors ----"
-  echo ""
-  grep -i error build.err
-}
+alias grepsb="grep -r --exclude-dir='program'"
+alias build="~/scripts/build.sh"
 
 function lnsrc {
   rm src
@@ -137,7 +125,6 @@ alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
 alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
 alias reg="cd /nas/pnp4/regression"
-alias parts="cd /nas/pnp4/regression/parts"
 
 # ---- Server SSH Commands -----------------------------------------------------
 
