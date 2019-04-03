@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function usage {
+usage() {
   echo ''
   echo 'This program watches a collection of files and runs a command whenever'
   echo 'any of those files have changed.'
@@ -8,37 +8,69 @@ function usage {
   echo 'Usage:'
   echo '  follow [df] <command> <file(s)...>'
   echo '    -f  : Pass the file that was changed to the command'
+  echo '    -c  : Colorize the output'
   echo '    -h  : Print the help text'
   echo ''
   exit 1
 }
 
-function printHeader {
+printHeader() {
   file=$1
-  echo "---- File Changed : $file"
-  echo "----------------------------------------"
+  timestamp=$(date +"%T")
+  msg="  File Changed  : $timestamp  :  $file"
+
+  echo ''
+  if [[ $COLORIZE == 'true' ]]; then
+    echo -e "$(colorize "$msg")"
+  else
+    echo $msg
+  fi
+  printBar
 }
 
-function printFooter {
-  echo "----------------------------------------"
+printFooter() {
+  printBar
 }
 
-function getTimestamp {
+repl() {
+  printf "$1%.s" $(seq 1 $2)
+}
+
+printBar() {
+  width=$(tput cols)
+  bar=$(repl '_' $width)
+  if [[ $COLORIZE == 'true' ]]; then
+    echo -e "$(colorize "$bar")"
+  else
+    echo $bar
+  fi
+}
+
+colorize() {
+  DIM='\e[90m'
+  NC='\e[0m'
+  echo "${DIM}$1${NC}"
+}
+
+getTimestamp() {
   stat -c %Z $1
 }
 
 # ---- Process the arguments ---------------------------------------------------
 
-if [[ $# == 0 ]]; then
+if   [[ $# == 0 ]]; then
   usage
 elif [[ $# == 1 ]]; then
   echo "Provide Files To Run"
 fi
 
-while getopts ":fh" opt; do
+while getopts ":fch" opt; do
   case $opt in
     f)
       PASS_FILE=true
+      ;;
+    c)
+      COLORIZE=true
       ;;
     h)
       usage
@@ -50,6 +82,9 @@ while getopts ":fh" opt; do
       ;;
   esac
 done
+
+# Remove all the options from the args
+shift $((OPTIND -1))
 
 # Command Parsing My Not Be Happening
 run_command=$1
@@ -67,8 +102,9 @@ done
 
 if [[ $PASS_FILE != true ]]; then
   eval "$run_command"
-  printFooter
 fi
+
+printFooter
 
 # ---- Wait for modifications and run command ----------------------------------
 

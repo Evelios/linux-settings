@@ -30,6 +30,10 @@ for specific file types.
 + Lightline-bufferline
 + Tabluar
 
+**Editor Plugins**
++ Goyo   : zenmode
++ Pencil : writing plugin
+
 **Syntax Plugins**
 + vim-javascript
 + vim-markdown
