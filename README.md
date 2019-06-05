@@ -30,6 +30,8 @@ for specific file types.
 + Lightline-bufferline
 + Tabluar
 + Diffconflicts
++ syntastic
++ scrollfix
 
 **Editor Plugins**
 + Goyo   : zenmode
