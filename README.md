@@ -29,6 +29,8 @@ for specific file types.
 + Lightline
 + Lightline-bufferline
 + Tabluar
++ syntastic
++ scrollfix
 
 **Editor Plugins**
 + Goyo   : zenmode
