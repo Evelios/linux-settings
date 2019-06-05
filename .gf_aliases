@@ -10,6 +10,9 @@ export twaters=$sandboxes/twaters
 export titano=$sandboxes/titano
 export huisman=$sandboxes/huisman
 
+# Add shortened paths for these locations
+: ~twaters ~titano ~huisman
+
 export versions=/tod_nfs/afs/btv/data/tds/versions
 export test=$versions/test
 export pending=$versions/pending
@@ -39,7 +42,7 @@ alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl
 # ---- Command Shortcuts -------------------------------------------------------
 
 alias diffsb="diff -r --exclude='program'"
-alias grepsb="grep -r --exclude-dir='program'"
+alias grepsb="grep -r --exclude-dir='program' --exclude='build.*'"
 alias build="~/scripts/build.sh"
 
 function lnsrc {
@@ -71,6 +74,14 @@ function cadence {
   /tool/eda/eda_k26_g212_64/cadenceET/15.14.000/bin/et -gui &
 }
 
+function totalview {
+  totalview=/tool/eda/apps/roguewaveTotalView/2018.3.8/toolworks/totalview.2018.3.8/bin
+  export TOTALVIEW=totalview
+  export LM_LICENSE_FILE=27060@fc8engkey01
+  export PATH=$PATH:$totalview
+  totalview "$@"
+}
+
 function smallfsif {
   grep -e "^ [0-9]" $1 > ${1}_small
 }
@@ -89,7 +100,7 @@ function fl {
 
 # TR File Manager
 function fmfile {
-   /tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMover get -r $1 -l $1 -f /users/home/achampag/pw.gprod -t GPRODREC
+   /too/lTRFM_APP/PROD/TRFileManager/bin/TRFileMover get -r $1 -l $1 -f /users/home/achampag/pw.gprod -t GPRODREC
 }
 
 function fmSearch {
@@ -137,11 +148,11 @@ alias prod4="ssh -X fc9pftdsp04"
 
 # Dev
 # alias dev="ssh -X fc9pftdsp08"
-# alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
+alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
 alias dev2="ssh -X fc9pftdsp06"     # TDS Development Box
 alias dev3="ssh -X fc9pftdsp07"     # TDS Development Box
 alias dev4="ssh -X fc9pftdsp08"     # TDS Development Box
-# alias dev5="ssh -X fc9pftdsp09"   # Allicated for SFTP Service
+# alias dev5="ssh -X fc9pftdsp09"     # Allicated for SFTP Service
 # alias dev6="ssh -X fc9pftdsp10"   # Allocated for the NAS space
 
 # EPSR

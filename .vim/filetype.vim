@@ -8,6 +8,9 @@ au BufRead,BufNewFile .gf_aliases  setfiletype sh
 au BufRead,BufNewFile *.k          setfiletype sh
 au BufRead,BufNewFile *.md         setfiletype markdown
 
+" Clang Fily Types
+au BufRead,BufNewFile .clang*      setfiletype yaml
+
 " GF File Type Syntaxes
 au BufRead,BufNewFile *.fsifpat*   setfiletype fsifpat
 au BufRead,BufNewFile *.fcat       setfiletype cat
@@ -25,3 +28,4 @@ au BufRead,BufNewFile *.TMX.*      setfiletype tmx
 au BufRead,BufNewFile LPXREF       setfiletype tmx
 au BufRead,BufNewFile *.LPXREF.*   setfiletype tmx
 au BufRead,BufNewFile *.PartInfo*  setfiletype pinfo
+au BufRead,BufNewFile *.InfoPart*  setfiletype pinfo

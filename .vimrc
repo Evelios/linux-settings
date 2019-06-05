@@ -30,13 +30,14 @@ endfun;
 
 inoremap <c-s> <esc>:call AppendSemi() <cr>
 
-au BufReadPost,BufNewFile .vimrc set foldmethod=marker
+autocmd BufReadPost,BufNewFile .vimrc set foldmethod=marker
 
 "}}}
 "{{{ Leader Characters
 
-let mapleader = "'"
-let maplocalleader = "//"
+nnoremap <space> <nop>
+let g:mapleader = " "
+let g:maplocalleader = "/"
 
 "}}}
 "{{{ General Configuration
@@ -88,6 +89,7 @@ set autoindent       " Turn on auto indenting to match the previous line
 " ---- Terminal Config ----
 if has('nvim')
   let g:neoterm_autoinsert=1
+  set inccommand=nosplit     " Realtime view of search and replace
 endif
 
 "}}}
@@ -111,7 +113,7 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:tex_flavor = 'latex'
 
 " ---- Markdown ----
-let g:markdown_fenced_languages = ['hs=haskell']
+let g:markdown_fenced_languages = ['hs=haskell','js=javascript','sh','cpp']
 
 " ---- NERDTree ----
 
@@ -167,15 +169,15 @@ nnoremap <Leader>h :SemanticHighlightToggle<cr>
 "}}}
 "{{{ Autogroups file auto commands
 
-augroup configgroup
-  autocmd!
-  autocmd BufWritePre *.cpp *.h *.pl *.js *.hs *.txt *.md
-        \:call <SID>StripTrailingWhitespaces()
-augroup END
+" augroup configgroup
+  " autocmd!
+  " autocmd BufWritePre *.cpp,*.h,*.pl,*.js,*.hs,*.txt,*.md,*.vim,.vimrc
+        " \:call StripTrailingWhitespaces()
+" augroup END
 
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
+function! StripTrailingWhitespaces()
   " save last search & cursor position
   let _s=@/
   let l = line(".")
@@ -184,6 +186,23 @@ function! <SID>StripTrailingWhitespaces()
   let @/=_s
   call cursor(l, c)
 endfunction
+
+"}}}
+"{{{ Abbreviations
+
+" Abbreviations can either be expanded with <C-]> or they can use the space
+" escape and then the `Eatchar` function can be used for quicker expansion
+
+" Consume the character around the cursor
+" https://stackoverflow.com/questions/11858927/preventing-trailing-whitespace-when-using-vim-abbreviations
+func! Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
+
+autocmd FileType cpp  inoreabbrev msg MSG(SEV_I, (""));<left><left><left><left><C-R>=Eatchar('\s')<CR>
+autocmd FileType perl inoreabbrev msg MSG("I:");<left><left><left><C-R>=Eatchar('\s')<CR>
+autocmd FileType perl inoreabbrev prn print("");<left><left><left><C-R>=Eatchar('\s')<CR>
 
 "}}}
 "{{{ Tab Management
@@ -236,13 +255,8 @@ nnoremap <nop> :resize -4<cr>
 nnoremap <nop> :resize +4<cr>
 nnoremap <nop> :vertical resize +4<cr>
 nnoremap <nop> :vertical resize -4<cr>
-
-"{{{ Abbreviations
-
 "}}}
-"{{{ Key Bindings
-
-" ---- Basic Keybindings ----
+"{{{ Basic Keybindings
 
 " Edit your vimrc
 nnoremap <leader>ve :tabe $MYVIMRC<cr>
@@ -253,24 +267,35 @@ nnoremap <leader>vr :source $MYVIMRC<cr>
 inoremap jk <esc>l
 inoremap <esc> <nop>
 
-" Quit Everything
-nnoremap <leader>qq :qa<cr>
+
+" Write to the file
+nnoremap <leader>w :w<cr>
+
+" Write and exit
+nnoremap <leader>x :x<cr>
+
+" Quit the file
+nnoremap <leader>q :q<cr>
 
 " Quit Everything Force
 nnoremap <leader>qq :qa!<cr>
 
 " Insert a space in normal mode with spacebar
-nnoremap <space> i<space><esc>l
+nnoremap <c-space> i<space><esc>l
 
 " Insert a space after the cursor in normal mode
-nnoremap <S-space> a<space><esc>h
+nnoremap <s-space> a<space><esc>h
+
+" Insert a newline after the cursor in normal mode
+nnoremap <c-cr> o<esc>
 
 " Set Terminal Break As Escape Character
 if has('nvim')
   tnoremap <Esc> <c-\><c-n>
 endif
 
-" ---- Syntax Keybindings ----
+"}}}
+"{{{ Syntax Keybindings
 
 noremap <leader>sc :set syntax=combs<cr>
 noremap <leader>sp :set syntax=pinfo<cr>
@@ -300,24 +325,26 @@ noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
 
-" ---- Deleting and Pasting ----
+"}}}
+"{{{ Deleting and Pasting
 
 noremap <leader>d "pd
 noremap <leader>p "pp
 noremap <leader>P "pP
 
-" ---- Normal Mode -------------------------------------------------------------
+"}}}
+"{{{ Normal Mode
 
 " Move the current line down
 nnoremap <leader>j ddp
 " Move the current line up
 nnoremap <leader>k kddpk
 
-" Enable Wrapping
-nnoremap <leader>w :set wrap<cr>
-
 " Remove Highlighting
 nnoremap <leader>n :noh<cr>
+
+" Execute the current file in vim
+nnoremap <leader>e :!./%<cr>
 
 " Turn object call to pointer call
 "nnoremap <leader>p xi-><esc>
@@ -333,8 +360,8 @@ nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
 " Insert a single character
 nnoremap <leader>i i_<esc>r
 
-
-" ---- Insert Mode -------------------------------------------------------------
+"}}}
+"{{{ Insert Mode
 
 " ---- Code Syntax Additions ----
 

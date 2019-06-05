@@ -29,6 +29,7 @@ for specific file types.
 + Lightline
 + Lightline-bufferline
 + Tabluar
++ Diffconflicts
 
 **Editor Plugins**
 + Goyo   : zenmode

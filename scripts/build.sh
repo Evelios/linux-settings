@@ -32,7 +32,7 @@ echoFlag 'Listing Built Objects'
 # Make and output build sections as they happen
 make $make_recipe > $build_log 2> $build_err &
 makepid=$!
-tail -f -n +0 $build_log | grep Made &
+tail -f -n +0 $build_log 2> /dev/null | grep Made &
 tailpid=$!
 wait $makepid
 sleep 0.5
@@ -45,3 +45,5 @@ if [[ ! -z "$errors" ]]; then
 fi
 
 echo ''
+
+exit $make_rc

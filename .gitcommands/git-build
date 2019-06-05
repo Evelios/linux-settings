@@ -1,33 +1,48 @@
 #!/bin/bash
 
-if [[ $# != 1 ]]; then
-  echo "Please Provide A Make Target"
-  return
-fi
+make_recipe=${@:-all}
+dir=$(git rev-parse --show-toplevel)
 
-directory=$(git rev-parse --show-toplevel)
-buildlog=$directory/build.log
-builderr=$directory/build.err
-recipe=$1
+build_log=$dir/build.log
+build_err=$dir/build.err
 
-echo "Making Recipe: $recipe"
-make -C $directory $recipe > $buildlog 2> $builderr
+RED='\e[1;31m'
+YELLOW='\e[0;33m'
+NC='\e[0m'
+
+function echoFlag() {
+  echo -e "\n--- $1 ---\n"
+}
+
+# Not currently implemented
+function colorOutput() {
+  read buildobj
+  search='(Made)(.*)'
+  substitute="${RED}\\1${YELLOW}\\2${NC}"
+  set -x
+  colored_str=$(echo $buildobj | sed -e "s/$search/$substitute/")
+  set +x
+  echo -e $colored_str
+}
+
+echo -e "${RED}Building Recipe ${YELLOW}$make_recipe${NC}"
+echoFlag 'Listing Built Objects'
+
+# Make and output build sections as they happen
+make -C $directory $recipe > $build_log 2> $build_err
 make_rc=$?
+makepid=$!
+tail -f -n +0 $build_log 2> /dev/null | grep Made &
+tailpid=$!
+wait $makepid
+sleep 0.5
+kill $tailpid
 
-echo ""
-echo "---- Listing Built Objects ----"
-echo ""
+errors=$(grep -i error $build_err)
 
-grep -i made $buildlog
-
-errors=$(grep -i error $builderr)
-
-if [[ ! -z $errors ]]; then
-  echo ""
-  echo "---- Listing Build Errors ----"
-  echo ""
-
-  echo $errors
+if [[ ! -z "$errors" ]]; then
+  echoFlag "Listing Build Errors"
 fi
 
+echo ''
 exit $make_rc

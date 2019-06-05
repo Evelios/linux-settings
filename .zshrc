@@ -11,15 +11,19 @@ set -o magicequalsubst
 # Change default cd directory chainging
 setopt auto_cd
 cdpath=(
+  .
   # /tod_nfs/afs/btv/data/tds/versions
-  /tod_nfs/afs/btv/data/tds/sandboxes/twaters
   /tod_nfs/afs/btv/data/tds/sandboxes
+  /tod_nfs/afs/btv/data/tds/sandboxes/twaters
   /nas/pnp4/regression
   /nas
 )
 
 # Allow extended globbing patterns in zsh
 setopt extendedglob
+
+# Allow variable substitutions in `cd` for `var` without `$var`
+# setopt cd_able_vars
 
 zsh_stats () {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n20

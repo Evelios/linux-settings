@@ -2,6 +2,10 @@
 
 This section is about mastering the basics of vim and honing the core skills. For a good reference of these commands look at `:help quickref`.
 
+## RANDOM
+
+`set scrolloff=5` don't ever let the cursor touch the top or bottom of file
+
 ## Basic Movement (left-right-motions) (up-down-motions) (scrolling)
 
 * `h, j, k, l` left, down, up, right

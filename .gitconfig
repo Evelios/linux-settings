@@ -5,32 +5,43 @@
 [alias]
   c = commit -m
   a = add --all
+  s = status
+  d = difftool
+  m = mergetool
 [color]
-  branch = auto
-  diff = auto
-  status = auto
+  branch     = auto
+  diff       = auto
+  status     = auto
   showbranch = auto
-  ui = true
+  ui         = true
 [color "branch"]
   current = yellow reverse
-  local = yellow
-  remote = green
+  local   = yellow
+  remote  = green
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
-  old = red bold
-  new = green bold
+  old  = red bold
+  new  = green bold
 [color "status"]
-  added = yellow
-  changed = green
+  added     = yellow
+  changed   = green
   untracked = cyan
 [github]
   user = evelios
 [user]
-  name = twaters
+  name  = twaters
   email = thomas.waters@globalfoundries.com
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = diffconflicts
+  conflictstyle = diff3
 [mergetool]
-	prompt = false
+  prompt     = false
+  keepBackup = false
+[mergetool "diffconflicts"]
+  cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+  trustExitCode = true
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
