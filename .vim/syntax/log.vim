@@ -18,7 +18,7 @@ syn match quote     '\v\".*\"'       " Double Quote
 syn match quote     '\v\'.*\''       " Single Quote
 syn match list      '\v^\s+[\-\+]\s' " Match lists starting with - or +
 syn match log_opers '\v\@|\=|:|;|\>|\<|,'            " Match various operators in logfiles
-syn match functionName '\v\[\w+\]($)@=' " The function call printed from MSG statements
+syn match functionName '\v\[\w+(::\w+)?\]($)@=' " The function call printed from MSG statements
 syn region parens start="(" end=")" oneline contains=log_val
 
 " Log variables and values
@@ -27,12 +27,13 @@ syn match log_eq  '\v\='              nextgroup=log_val skipwhite
 syn match log_val '\v\w+(\.|\w)*'      contained display
 
 " Messaging Levels
-syn match info   '\v^I\-'
-syn match warn   '\v^W\-'
-syn match err    '\v^E\-' nextgroup=atten skipwhite
-syn match severe '\v^S\-' nextgroup=atten skipwhite
-syn match term   '\v^T\-' nextgroup=atten skipwhite
-syn region atten start='\v.' end='\v$' contains=dir,quote,seperator contained display
+syn match dbg_lev '\v^[1-5]\-'
+syn match info    '\v^I\-'
+syn match warn    '\v^W\-'
+syn match err     '\v^E\-' nextgroup=atten skipwhite
+syn match severe  '\v^S\-' nextgroup=atten skipwhite
+syn match term    '\v^T\-' nextgroup=atten skipwhite
+syn region atten start='\v.' end='\v^(\w|\s*$)@=' contains=dir,quote,seperator,functionName contained display
 
 " Summary Statements
 syn match elapsed_kw 'Elapsed Time' nextgroup=elapsed_op skipwhite
@@ -61,12 +62,13 @@ hi def link log_var  Identifier
 hi def link log_val  String
 
 " Message Levels
-hi def link info   Statement
-hi def link warn   Statement 
-hi def link err    Statement
-hi def link severe Statement
-hi def link term   Statement
-hi def link atten  Number
+hi def link dbg_lev Statement
+hi def link info    Statement
+hi def link warn    Statement
+hi def link err     Statement
+hi def link severe  Statement
+hi def link term    Statement
+hi def link atten   Number
 
 " Summary Statements
 hi def link elapsed_kw   Identifier

@@ -18,7 +18,7 @@ TRAPWINCH() {
 zle -N zle-keymap-select
 zle -N edit-command-line
 
-
+# Set Vim Keybindings
 bindkey -v
 
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)

@@ -30,8 +30,8 @@
 [github]
   user = evelios
 [user]
-  name  = twaters
-  email = thomas.waters@globalfoundries.com
+	name = Waters, Thomas (ENG)
+	email = thomas.waters2@globalfoundries.com
 [merge]
   tool = diffconflicts
   conflictstyle = diff3

@@ -2,6 +2,14 @@
 
 This section is about mastering the basics of vim and honing the core skills. For a good reference of these commands look at `:help quickref`.
 
+**Advanced Navigation**
+* Various Motions
+* Editing
+* Searches
+* Marks
+* Tags
+* Jumplist + Changelist
+
 ## RANDOM
 
 `set scrolloff=5` don't ever let the cursor touch the top or bottom of file
@@ -68,6 +76,10 @@ These commands are to enable the movement commands to use the same behaviour you
 * `g~` swap the case of a block which is selected by an operator
 * `gu` make uppercase
 * `gU` make lowercase
+* `!` filter to external program
+* `<` shift left
+* `>` shift right
+* `=` indent
 
 ## Pattern searches (pattern-searches)
 
@@ -80,14 +92,28 @@ Take a look at *CtrlP* to make full use of the buffer functionality.
 * `:bn[ext]` open the next buffer
 * `:b#` open the previously opened buffer
 * `:ls<cr>:b<space>` list current buffers and open a command to open one
+* `:n` go to next file (based on argument list
+* `:arga {filename}` add {filename} to arglist
+* `:argl {files}` make a local arg copy via {files}
+* `:args` print out all the arguments
 
 ## Window Management
-
+* `<c-w> s` or `:sp` split window
+* `<c-w> v` or `:vs` split window vertically
+* `<c-w> q` close window
+* `<c-w> w` alternate window
+* `<c-w> r` rotate window
+* `:windo {cmd}` execute {cmd} for all windows
+* `:sf {FILE}` split window and :find {FILE}
+* `:vert {cmd}` make any split {cmd} be vertical
 
 ## Tabs
 
 * `gt` go to the next tab
 * `gT` go to the previous tags
+* `tabc` close tab
+* `tabe` open tab
+* `tabo` close all other tabs
 
 ## Finding text
 

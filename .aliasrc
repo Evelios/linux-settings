@@ -1,9 +1,7 @@
 # This file is used to store all the aliases that will be sourced from the
 # startup files for the shell
 
-
 # ---- Command Shortcuts -------------------------------------------------------
-
 
 if [[ $(command -v nvim) != 1 ]]; then
   export EDITOR="nvim"
@@ -18,10 +16,21 @@ alias gpu="phoronix-test-suite run unigine-heaven"
 alias todo="mkdir -p ~/Notes && $EDITOR ~/Notes/todo.md"
 alias rmatl="matlab -nodisplay -nodisplay -nosplash -nodesktop -r \"run('$1')\";exit;"
 
+# Editors
+alias vdiff="vimdiff"
+
+alias v="$EDITOR"
+# $1 The n'th lastest file to edit
+vl() {
+  file_num=${1:-1}
+  dir=$(ls -ptr 2> /dev/null | grep -v / | tail -$file_num | head -1)
+  $EDITOR $dir
+}
+
 # Shortcuts to settings files
 alias vimrc="v ~/.vimrc"
-alias aliases="v ~/.aliases"
-alias gf_aliases="v ~/.gf_aliases"
+alias aliasrc="v ~/.aliasrc"
+alias gfaliasrc="v ~/.gfaliasrc"
 alias bashrc="v ~/.bashrc"
 alias zshrc="v ~/.zshrc"
 alias theme="v ~/.zsh_theme"
@@ -39,24 +48,14 @@ last() {
 alias untar="tar -zxvf"
 alias 7z="p7zip"
 
-# Editors
-alias vdiff="vimdiff"
-
-alias v="$EDITOR"
-# $1 The n'th lastest file to edit
-vl() {
-  file_num=${1:-1}
-  dir=$(ls -ptr 2> /dev/null | grep -v / | tail -$file_num | head -1)
-  $EDITOR $dir
-}
-
 # Directory Listings
 time_style='--time-style=+"%a %b %d %l:%M"'
 alias l="ls"
 alias la="ls -A"                             # List all files including hidden
-alias lf="ls | grep -v /"                    # List all non-directory files
-alias llf="ls -lrth $time_style | grep -v /" # Descriptive listing of all files
+alias lf="ls --color=always | grep -v /"     # List all non-directory files
 alias ll="ls -lrth $time_style"              # Descriptive listing
+alias llf="ll --color=always | grep -v /"    # Descriptive listing of all files
+alias lls="ll --color=always | tail"         # Descriptive listing of some of the files
 alias ld="ls -d */"                          # List all directories
 alias lld="ls -ltrhd */ $time_style"         # Descriptive listing of all directories
 alias lh="ls -Ad .*"                         # List all hidden files

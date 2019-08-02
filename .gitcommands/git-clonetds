@@ -1,14 +1,16 @@
 #!/bin/sh
-
-# Clone a new version of tds and checkout a branch
+# Clone a new version of tds and checkout a branch from the remote if it
+# exists. Otherwise create a new branch off of the master branch. Then
+# build the binaries in the background.
+repo=git@fc9pftdsp05.usgfoundries.com:TestDataSystemDev/TDS.git
 
 if [ $# -eq 0 ]; then
-  echo "Specify a directory name to clone the repository into"
+  echo "Specify a directory and branch name to clone the repository into"
   exit 1;
 fi
 
 if [ $# -eq 1 ]; then
-  echo "Specify a branch to checkout. Don't do development on the master branch";
+  echo "Specify a branch to checkout.";
   exit 1;
 fi
 
@@ -17,15 +19,26 @@ if [ $# -ge 3 ]; then
   exit 1;
 fi
 
-dir_name=$1
-branch_name=$2
+dir=$1
+branch=$2
 
 # Clone and rename directory to $1
-git clone git@fc9pftdsp05.usgfoundries.com:TestDataSystemDev/TDS.git $dir_name
+git clone $repo $dir
+cd $dir
 
-# Checkout branch $2 and create it if it doesn't exist
-cd $dir_name
-git checkout -B $branch_name
+# Check if branch exists in remote
+git ls-remote --heads ${repo} ${branch} | grep ${branch} >/dev/null
+if [[ "$?" == "0" ]]; then
+  echo "Checking out remote branch from repository: $branch"
+  git fetch origin $branch
+  git checkout $branch
+else
+  if [[ "$branch" == "master" ]]; then
+    echo "Careful! You are currently doing development on the MASTER branch!"
+  else
+    git checkout -B $branch
+  fi
+fi
+
 echo "Building Source Binaries in Background"
 make all > build.log 2> build.err &
-cd ..

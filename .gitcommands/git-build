@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/sh
+# Used for creating a nice look for the TDS build process
 
 make_recipe=${@:-all}
 dir=$(git rev-parse --show-toplevel)
@@ -29,10 +30,10 @@ echo -e "${RED}Building Recipe ${YELLOW}$make_recipe${NC}"
 echoFlag 'Listing Built Objects'
 
 # Make and output build sections as they happen
-make -C $directory $recipe > $build_log 2> $build_err
+make -C $directory $recipe > $build_log 2> $build_err &
 make_rc=$?
 makepid=$!
-tail -f -n +0 $build_log 2> /dev/null | grep Made &
+tail -f -n +0 $build_log 2> /dev/null | grep --color ade &
 tailpid=$!
 wait $makepid
 sleep 0.5
