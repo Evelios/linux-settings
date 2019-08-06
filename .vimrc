@@ -57,11 +57,14 @@ set showmatch         " Hilight matching brackets like [{()}]
 set splitright        " Default split behavior send new vertical window right
 set splitbelow        " Devault split behavior send new horizontal window down
 set lazyredraw        " Only redraw when needed. Can lead to more responsive redraws
-set foldenable        " Enable folding
+set tildeop           " Allows tilde ~ change case operator
 set scrolloff=3       " Always have 3 lines of context when scrolling
-" set foldlevelstart=10 " Open most folds by default
-" set foldnestmax=10    " Set the max folde level
-" set foldmethod=syntax " Folding styles: marker, manual, expr, syntax, diff
+
+" ---- Folding ----
+" set foldenable        " Enable folding
+" set foldlevelstart=0  " Open most folds by default
+" set foldnestmax=2     " Set the max folde level
+" set foldmethod=indent " Folding styles: marker, manual, expr, syntax, diff
 
 " ---- Searching ----
 set ignorecase        " Case insensitive search
@@ -99,7 +102,7 @@ endif
 " ---- Tabular ----
 nnoremap <leader>a= :Tabularize /=<cr>
 nnoremap <leader>a: :Tabularize /:<cr>
-nnoremap <leader>a// :Tabularize /\/\/
+nnoremap <leader>a// :Tabularize /\/\/<cr>
 
 " ---- Haskell Package Features ----
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -355,6 +358,9 @@ nnoremap <leader>e :!./%<cr>
 
 " Turn object call to pointer call
 "nnoremap <leader>p xi-><esc>
+
+" Search and replace on the current word
+nnoremap <leader>r yiw:%s/<c-r>"/
 
 " Insert double quotes with terminating semicolon
 nnoremap <leader>" a"";<esc>h
