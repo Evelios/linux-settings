@@ -1,0 +1,1 @@
+../../vimplugins/all/plugin/all.vim

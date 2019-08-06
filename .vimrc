@@ -2,6 +2,13 @@
 " ---- VIMRC
 " ------------------------------------------------------------------------------
 
+"{{{ Leader Characters
+
+nnoremap <space> <nop>
+let g:mapleader = " "
+let g:maplocalleader = "/"
+
+"}}}
 "{{{ Testing
 
 " Show the syntax hilighting group under the cursor
@@ -9,35 +16,17 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-fun! ShowFuncName()
-  let lnum = line(".")
-  let col = col(".")
-  echohl ModeMsg
-  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
-  echohl None
-  call search("\\%" . lnum . "l" . "\\%" . col . "c")
-endfun
+func! ToggleConceal()
+  if &conceallevel == 0
+    set conceallevel=1
+  else
+    set conceallevel=0
+  endif
+endfunc
 
-nnoremap <leader>rf :call ShowFuncName() <CR>
+nnoremap <leader>'c :call ToggleConceal()<cr>
 
-fun! AppendInInsert(char)
-  let lnum = line(".")
-  let col  = col(".")
-  :execute ":normal! A" . char
-  call cursor(lnum, col + 1)
-  :startinsert!
-endfun;
-
-inoremap <c-s> <esc>:call AppendSemi() <cr>
-
-autocmd BufReadPost,BufNewFile .vimrc set foldmethod=marker
-
-"}}}
-"{{{ Leader Characters
-
-nnoremap <space> <nop>
-let g:mapleader = " "
-let g:maplocalleader = "/"
+let g:markdown_folding = 1
 
 "}}}
 "{{{ General Configuration
@@ -52,8 +41,6 @@ colorscheme gruvbox
 set nowrap            " Do not wrap lines around. Let them get cut off
 set number            " Show line numbers
 set showcmd           " Show the previous command in the bottom bar
-set cursorline        " Hilight the current cursor line
-set showmatch         " Hilight matching brackets like [{()}]
 set splitright        " Default split behavior send new vertical window right
 set splitbelow        " Devault split behavior send new horizontal window down
 set lazyredraw        " Only redraw when needed. Can lead to more responsive redraws
@@ -61,10 +48,13 @@ set tildeop           " Allows tilde ~ change case operator
 set scrolloff=3       " Always have 3 lines of context when scrolling
 
 " ---- Folding ----
-" set foldenable        " Enable folding
-" set foldlevelstart=0  " Open most folds by default
-" set foldnestmax=2     " Set the max folde level
-" set foldmethod=indent " Folding styles: marker, manual, expr, syntax, diff
+set foldenable        " Enable folding
+set foldlevelstart=3  " Open most folds by default
+set foldnestmax=3     " Set the max fold level
+set foldmethod=syntax " Folding styles: marker, manual, expr, syntax, diff
+
+" ---- Bracket Matching ----
+set showmatch         " Hilight matching brackets like [{()}]
 
 " ---- Searching ----
 set ignorecase        " Case insensitive search
@@ -90,11 +80,22 @@ set expandtab        " Expand tabs out into spaces as indicated in the previous 
 set autoindent       " Turn on auto indenting to match the previous line
 " set smartindent      " Trys to do smarter indenting than autoindent
 
+" ---- Cursor Management ----
+set cursorline       " Hilight the current cursorline
+augroup cursorManagement
+  au!
+  autocmd InsertEnter,InsertLeave * set cursorline! " Toggle cursorline in insert mode
+augroup END
+
 " ---- Terminal Config ----
 if has('nvim')
   let g:neoterm_autoinsert=1
   set inccommand=nosplit     " Realtime view of search and replace
 endif
+
+" ---- Misc ----
+" Collapse folding characters in the .vimrc file
+autocmd BufReadPost,BufNewFile .vimrc set foldmethod=marker
 
 "}}}
 "{{{ Plugin Settings
@@ -117,7 +118,7 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:tex_flavor = 'latex'
 
 " ---- Markdown ----
-let g:markdown_fenced_languages = ['hs=haskell','py=python','js=javascript','sh','cpp']
+let g:markdown_fenced_languages = ['hs=haskell','py=python','js=javascript','sh','cpp','diff']
 
 " ---- NERDTree ----
 
@@ -126,7 +127,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Toggle the NERDTree file bar
-nnoremap <leader>f :NERDTreeToggle<cr>
+nnoremap <leader>'f :NERDTreeToggle<cr>
 
 " Close NERDTree when the only thing open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -179,7 +180,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
 let g:python_highlight_all = 1
+let g:syntastic_cpp_checkers = []
+let g:syntastic_c_checkers = []
+let g:syntastic_enable_perl_checker = 1
+let g:syntastic_perl_checkers = ['perl']
+
 
 " ---- Scrollfix ----
 " percentable of screen height to keep visual cursor on
@@ -191,11 +198,11 @@ let g:python_highlight_all = 1
 "}}}
 "{{{ Autogroups file auto commands
 
-augroup TrailingSpaces " Remove any trailing whitespace
-  au!
-  autocmd BufRead,BufWrite *.c,*.h,*.cpp,*.hpp,*.js,*.py,*.pl,*.sh,*.k,*.vim
-        \ if !&bin | silent! %s/\s\+$//ge | endif
-augroup END
+" augroup TrailingSpaces " Remove any trailing whitespace
+  " au!
+  " autocmd BufRead,BufWrite *.c,*.h,*.cpp,*.hpp,*.js,*.py,*.pl,*.sh,*.k,*.vim
+        " \ if !&bin | silent! %s/\s\+$//ge | endif
+" augroup END
 
 "}}}
 "{{{ Abbreviations
@@ -266,6 +273,26 @@ nnoremap <nop> :resize +4<cr>
 nnoremap <nop> :vertical resize +4<cr>
 nnoremap <nop> :vertical resize -4<cr>
 "}}}
+"{{{ File Management
+
+" Write to the file
+nnoremap <leader>fw :w<cr>
+nnoremap <leader>ffw :w!<cr>
+
+" Write and exit
+nnoremap <leader>fx :x<cr>
+nnoremap <leader>ffx :x!<cr>
+
+" Quit the file
+nnoremap <leader>fq :q<cr>
+nnoremap <leader>ffq :qa!<cr>
+
+"}}}
+"{{{ Tags
+
+nnoremap <leader>lt yiw:tag <c-r>"<cr>
+
+"}}}
 "{{{ Basic Keybindings
 
 " Edit your vimrc
@@ -275,20 +302,12 @@ nnoremap <leader>vr :source $MYVIMRC<cr>
 
 " Leave insert mode
 inoremap jk <esc>l
+inoremap Jk <esc>l
+inoremap jK <esc>l
+inoremap JK <esc>l
 inoremap <esc> <nop>
 
 
-" Write to the file
-nnoremap <leader>w :w<cr>
-
-" Write and exit
-nnoremap <leader>x :x<cr>
-
-" Quit the file
-nnoremap <leader>q :q<cr>
-
-" Quit Everything Force
-nnoremap <leader>qq :qa!<cr>
 
 " Insert a space in normal mode with spacebar
 nnoremap <c-space> i<space><esc>l
@@ -309,6 +328,7 @@ endif
 
 noremap <leader>sc :set syntax=combs<cr>
 noremap <leader>sp :set syntax=pinfo<cr>
+noremap <leader>sl :set syntax=log<cr>
 
 " ---- Movement Keybindings ----
 
@@ -336,8 +356,9 @@ noremap <up> <nop>
 noremap <down> <nop>
 
 "}}}
-"{{{ Deleting and Pasting
+"{{{ Copying, Cut, and Paste
 
+noremap <leader>y "py
 noremap <leader>d "pd
 noremap <leader>p "pp
 noremap <leader>P "pP
@@ -356,22 +377,11 @@ nnoremap <leader>n :noh<cr>
 " Execute the current file in vim
 nnoremap <leader>e :!./%<cr>
 
-" Turn object call to pointer call
-"nnoremap <leader>p xi-><esc>
-
-" Search and replace on the current word
-nnoremap <leader>r yiw:%s/<c-r>"/
-
-" Insert double quotes with terminating semicolon
-nnoremap <leader>" a"";<esc>h
-" Insert single quotes with terminating semicolon
-nnoremap <leader>' a'';<esc>h
-
-" Insert a function parenthesis and brackets
-nnoremap <leader>( a() {<cr><tab><cr><bs>}<esc>kk$hh
-
 " Insert a single character
 nnoremap <leader>i i_<esc>r
+
+" Join two lines - a remap from 'J'
+nnoremap <leader>J J
 
 "}}}
 "{{{ Insert Mode

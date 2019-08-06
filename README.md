@@ -34,8 +34,9 @@ for specific file types.
 + scrollfix
 
 **Editor Plugins**
-+ Goyo   : zenmode
-+ Pencil : writing plugin
++ Goyo        : zenmode
++ Pencil      : writing plugin
++ Vim-orgmode : task list
 
 **Syntax Plugins**
 + vim-javascript

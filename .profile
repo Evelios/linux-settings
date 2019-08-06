@@ -24,7 +24,6 @@ else
 
   # Use the bash terminal
   export SHELL=$(which bash 2> /dev/null)
-  . ~/.bashrc
 
 fi
 unset zsh_path
@@ -45,40 +44,34 @@ umask 002
 
 # ---- Source Config Files -----------------------------------------------------
 
-if [[ -e ~/.aliases ]]; then
-  . ~/.aliases
+if [[ -e ~/.aliasrc ]]; then
+  . ~/.aliasrc
 fi
 
-if [[ -e ~/.gf_aliases ]]; then
-  . ~/.gf_aliases
+if [[ -e ~/.gfaliasrc ]]; then
+  . ~/.gfaliasrc
 fi
 
 # ---- Environment Variables ---------------------------------------------------
 
-# Standard Path Variables
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:/sbin
+addToPath() {
+  if [[ -e "$1" ]]; then
+    export PATH=$PATH:"$1"
+  fi
+}
 
-# For the ddd debugger
-export PATH=$PATH:/usr/lib64:/usr/share/doc
-
-if [[ -e ~/.cabal/bin ]]; then
-  export PATH=$PATH:~/.cabal/bin
-fi
-
-if [[ -e ~/linux-settings/scripts ]]; then
-  export PATH=$PATH:~/linux-settings/scripts
-fi
+addToPath $HOME/.local/bin                      # Local Bin Path
+addToPath /bin                                  # Root binary baths
+addToPath /sbin
+addToPath /opt/rh/llvm-toolset-7/root/usr/bin/  # LLVM Framework
+addToPath /usr/lib64                            # For the ddd debugger
+addToPath /usr/share/doc
+addToPath ~/.cabal/bin                          # Haskell Cabal binaries
+addToPath ~/.gitcommands                        # Local git commands
+addToPath ~/scripts                             # Local script files
 
 # Mitosis Keyboard
 export GNU_INSTALL_ROOT=/usr/
-
-if [[ -e ~/.gitcommands ]]; then
-  export PATH=$PATH:~/.gitcommands
-fi
-
-if [[ -e ~/scripts ]]; then
-  export PATH=$PATH:~/scripts
-fi
 
 # Python Settings
 if [[ -e $(which python3 2> /dev/null) ]]; then
@@ -100,6 +93,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
 # Log into the default development environment
 if [[ "$HOSTNAME" == "vfc9jump01" || "$HOSTNAME" == "sfc9pfetxp01" || "$HOSTNAME" == "sfc9pfetxp02" ]]; then
   prod

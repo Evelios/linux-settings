@@ -17,6 +17,8 @@ export versions=/tod_nfs/afs/btv/data/tds/versions
 export test=$versions/test
 export pending=$versions/pending
 
+export MANPATH=/usr/man:/usr/share/man:/tae/tds/thirdparty/cadence/releases/supported_et_releases/man
+
 # ---- Temoprary ---------------------------------------------------------------
 
 function testmode {
@@ -27,14 +29,10 @@ function testmode {
 alias rtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
 
 function rtest_dev {
-  script=/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl
+  repo_dir=$(git rev-parse --show-toplevel)
+  script=$repo_dir/scripts/util/regression/regtest.pl
   email=thomas.waters2@globalfoundries.com
-  nohup $script -e $email dev "$@" &
-}
-
-function rtest_tpgl {
-  script=/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl
-  nohup $script tpgl "$@" &
+  nohup $script -e $email dev $repo_dir $pending &
 }
 
 alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
@@ -42,7 +40,7 @@ alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl
 # ---- Command Shortcuts -------------------------------------------------------
 
 alias diffsb="diff -r --exclude='program'"
-alias grepsb="grep -r --exclude-dir='program' --exclude='build.*'"
+alias grepsb="grep -r --exclude-dir='program' --exclude='build.*' --exclude='tags'"
 alias build="~/scripts/build.sh"
 
 function lnsrc {
@@ -58,6 +56,8 @@ function findtmd {
 # ---- Program Shortcuts -------------------------------------------------------
 
 alias dirdiff="/tod_nfs/afs/btv/data/tds/tools/dirdiff.pl"
+alias deploytds="/tod_nfs/afs/btv/data/tds/tools/tdsDeploy.k"
+alias deploy="/tod_nfs/afs/btv/data/tds/tools/sbDeploy.k"
 alias bc="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/bcompare.k"
 alias cpplint="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cpplint.py"
 alias regtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
@@ -74,6 +74,13 @@ function cadence {
   /tool/eda/eda_k26_g212_64/cadenceET/15.14.000/bin/et -gui &
 }
 
+# Cadence Modus
+function modus {
+  export CDS_LIC_FILE=27001@fc8engkey01:27001@mptkey01:27001@dedekey05:27038@dedekey05:27001@sgpedakey01,27001@sgpedakey02,27001@sgpedakey03
+  # /tod_nfs/afs/btv/data/tds/thirdparty/cadence/beta/bin/modus -gui &
+  /tod_nfs/afs/btv/data/tds/thirdparty/cadence/beta/bin/modus -legacy_gui &
+}
+
 function totalview {
   totalview=/tool/eda/apps/roguewaveTotalView/2018.3.8/toolworks/totalview.2018.3.8/bin
   export TOTALVIEW=totalview
@@ -87,10 +94,12 @@ function smallfsif {
 }
 
 function formatsmall {
-  formatsif $1
-  fsif=$(echo $1 | sed -e "s/\.sifpat/\.fsifpat/")
-  echo "Creating small sfipat ${fsif}_small"
-  smallfsif $fsif
+  for sif in "$@"; do
+    formatsif $sif
+    fsif=$(echo $sif | sed -e "s/\.sifpat/\.fsifpat/")
+    echo "Creating small sfipat ${fsif}_small"
+    smallfsif $fsif
+  done
 }
 
 function fl {
@@ -112,7 +121,7 @@ alias  trfmGui="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC"
 
 # ---- TDS Gui Calls ----
 
-alias tds="/tod_nfs/afs/btv/data/tds/versions/gui/scripts/setupTdsEnv.k gui &"
+alias tds="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/setupTdsEnv.k gui &"
 
 function tdssb {
   /tod_nfs/afs/btv/data/tds/sandboxes/twaters/$1/scripts/setupTdsEnv.k gui ON &
