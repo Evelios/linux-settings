@@ -20,22 +20,30 @@ alias rmatl="matlab -nodisplay -nodisplay -nosplash -nodesktop -r \"run('$1')\";
 alias vdiff="vimdiff"
 
 alias v="$EDITOR"
+
 # $1 The n'th lastest file to edit
 vl() {
   file_num=${1:-1}
-  dir=$(ls -ptr 2> /dev/null | grep -v / | tail -$file_num | head -1)
-  $EDITOR $dir
+  file=$(ls -ptr 2> /dev/null | grep -v / | tail -$file_num | head -1)
+  $EDITOR $file
+}
+
+# $1 The n'th lastest file to edit
+vlgit() {
+  file_num=${1:-1}
+  file=$(git diff --name-only | tail -$file_num | head -1)
+  $EDITOR $file
 }
 
 # Shortcuts to settings files
-alias vimrc="v ~/.vimrc"
-alias aliasrc="v ~/.aliasrc"
-alias gfaliasrc="v ~/.gfaliasrc"
-alias bashrc="v ~/.bashrc"
-alias zshrc="v ~/.zshrc"
-alias theme="v ~/.zsh_theme"
-alias profile="v ~/.profile"
-alias settings="v ~/.profile"
+alias vimrc="$EDITOR ~/.vimrc"
+alias aliasrc="$EDITOR ~/.aliasrc"
+alias gfaliasrc="$EDITOR ~/.gfaliasrc"
+alias bashrc="$EDITOR ~/.bashrc"
+alias zshrc="$EDITOR ~/.zshrc"
+alias theme="$EDITOR ~/.zsh_theme"
+alias profile="$EDITOR ~/.profile"
+alias settings="$EDITOR ~/.profile"
 alias refresh=". ~/.zshrc"
 
 # Assorted

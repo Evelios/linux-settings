@@ -5,12 +5,12 @@ endif
 " ---- Syntax Declerations ----
 
 " Comments
-syn match Comment '\v\+\-+'   " Lines starting with    +---
-syn match Comment '\v\-+'     " Dashed seperator lines ---
+syn match Comment '\v\+\-+'      " Lines starting with    +---
+syn match Comment '\v\-+'        " Dashed seperator lines ---
 syn match Comment '\v^\s*\|.*$'  " Lines starting with    |
 syn match Comment '\v^\s*\#.*$'  " Lines starting with    #
 syn match Comment '\v^\s*\*.*$'  " Lines starting with    *
-syn match Comment '\v//.*$'   " C style comments       //
+syn match Comment '\v//.*$'      " C style comments       //
 
 " Misc
 syn match dir       '\v\/[[:alnum:]_]+\/[[:alnum:]_@\/\-\.]+'
@@ -47,6 +47,11 @@ syn match rc_kw 'Return code' nextgroup=rc_op skipwhite
 syn match rc_op '\v:|\='      nextgroup=rc_num skipwhite contained display
 syn match rc_num '\v\d+'      contained display
 
+" Numeric Values
+syn match log_digit      '\v<\d+(\.\d*)?>'
+syn match log_odometer   '\v\d+(\.\d+){2,}'
+syn match log_percentage '\v\d+\.\d+\%'
+
 " ---- Linking ----
 
 " Misc
@@ -54,7 +59,7 @@ hi def link dir          Type
 hi def link quote        String
 hi def link list         Operator
 hi def link log_opers    Operator
-hi def link log_eq    Operator
+hi def link log_eq       Operator
 hi def link functionName Comment
 
 " Log Variables and Values
@@ -78,3 +83,8 @@ hi def link elapsed_time Constant
 hi def link rc_kw        Identifier
 hi def link rc_op        Operator
 hi def link rc_num       Constant
+
+" Numeric Values
+hi def link log_digit      Constant
+hi def link log_odometer   Constant
+hi def link log_percentage Constant

@@ -121,10 +121,6 @@ let g:markdown_fenced_languages = ['hs=haskell','py=python','js=javascript','sh'
 
 " ---- NERDTree ----
 
-" Open NERDTree when opening vim with no arguments
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 " Toggle the NERDTree file bar
 nnoremap <leader>'f :NERDTreeToggle<cr>
 
@@ -180,7 +176,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:python_highlight_all = 1
 let g:syntastic_cpp_checkers = []
 let g:syntastic_c_checkers = []
 let g:syntastic_enable_perl_checker = 1
@@ -258,13 +253,6 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
-
-if has('nvim')
-  " nnoremap <c-j> <c-\><c-n><c-w><c-j>
-  " nnoremap <c-k> <c-\><c-n><c-w><c-k>
-  " nnoremap <c-h> <c-\><c-n><c-w><c-h>
-  " nnoremap <c-l> <c-\><c-n><c-w><c-l>
-endif
 
 " Resize split windows
 nnoremap <nop> :resize -4<cr>
