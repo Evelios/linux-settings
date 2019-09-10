@@ -117,7 +117,7 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 let g:tex_flavor = 'latex'
 
 " ---- Markdown ----
-let g:markdown_fenced_languages = ['hs=haskell','py=python','js=javascript','sh','cpp','diff']
+let g:markdown_fenced_languages = ['hs=haskell','py=python','js=javascript','sh','cpp','diff','make']
 
 " ---- NERDTree ----
 

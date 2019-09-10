@@ -21,13 +21,6 @@ export MANPATH=/usr/man:/usr/share/man:/tae/tds/thirdparty/cadence/releases/supp
 
 # ---- Temoprary ---------------------------------------------------------------
 
-function testmode {
-  /nas/pnp1/twaters/jobs/testmode.k
-  formatsmall /nas/pnp4/bkessler/L01VU960_Zenith11/SIF_twaters/TMD1.spmisr_func0_diag.fsifpat
-}
-
-alias rtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
-
 function rtest_dev {
   repo_dir=$(git rev-parse --show-toplevel)
   script=$repo_dir/scripts/util/regression/regtest.pl
@@ -63,6 +56,7 @@ alias cpplint="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cpplint.py"
 alias regtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
 alias runpart="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/runpart.k"
 alias formatsif="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/formatsif.k"
+# alias formatsif="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/regression/scripts/util/formatsif.k"
 alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
 alias cppcheck="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cppcheck-1.86/cppcheck"
 alias sysload="/tod_nfs/afs/btv/data/tds/tools/systemStats.k"
@@ -124,7 +118,7 @@ alias  trfmGui="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC"
 alias tds="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/setupTdsEnv.k gui &"
 
 function tdssb {
-  /tod_nfs/afs/btv/data/tds/sandboxes/twaters/$1/scripts/setupTdsEnv.k gui ON &
+  /tod_nfs/afs/btv/data/tds/sandboxes/twaters/tds/$1/scripts/setupTdsEnv.k gui ON &
 }
 
 function tdsver {
@@ -138,7 +132,7 @@ function tdsver {
 alias advcombs="cd /afs/btv/data/tpgl/tdidefs/ENG"
 alias uflcombs="cd /gsa/btvgsa/projects/u/uflex_tpgl_gf/@COMBS"
 
-alias sb="cd $twaters"
+alias sb="cd $twaters/tds;ls -1"
 alias src="cd $twaters/src"
 alias ver="cd $versions"
 alias tools="cd /tod_nfs/afs/btv/data/tds/tools"

@@ -29,6 +29,15 @@ printHeader() {
 }
 
 printFooter() {
+  if [[ "$1" != "0" ]]; then
+    printBar
+    msg="\n  Exited with return code : $1"
+    if [[ $COLORIZE == 'true' ]]; then
+      echo -e "$(colorize "$msg")"
+    else
+      echo $msg
+    fi
+  fi
   printBar
 }
 
@@ -104,7 +113,7 @@ if [[ $PASS_FILE != true ]]; then
   eval "$run_command"
 fi
 
-printFooter
+printFooter $?
 
 # ---- Wait for modifications and run command ----------------------------------
 
@@ -121,13 +130,12 @@ while true; do
 
       # Run the user command
       if [[ $PASS_FILE == true ]]; then
-        # echo "$run_command $file"
         eval "$run_command $file"
       else
         eval "$run_command"
       fi
 
-      printFooter
+      printFooter $?
     fi
   done
 

@@ -15,6 +15,7 @@ cdpath=(
   # /tod_nfs/afs/btv/data/tds/versions
   /tod_nfs/afs/btv/data/tds/sandboxes
   /tod_nfs/afs/btv/data/tds/sandboxes/twaters
+  /tod_nfs/afs/btv/data/tds/sandboxes/twaters/tds
   /nas/pnp4/regression
   /nas
 )

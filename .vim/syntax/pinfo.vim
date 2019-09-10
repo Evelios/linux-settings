@@ -6,7 +6,7 @@ syn region  pinfoString     start='\v"'   end='\v"'
 syn region  pinfoComment    start='\v/\*' end='\v\*/'
 
 syn keyword pinfoStatement StartSection EndSection  nextgroup=pinfoSection skipwhite
-syn keyword pinfoBlock     Macro Header   nextgroup=pinfoSection skipwhite
+syn keyword pinfoBlock     Macro Header TVSense Hbmphy  nextgroup=pinfoSection skipwhite
 syn match   pinfoBlock     '\v\cStart\w*' nextgroup=pinfoSection skipwhite
 syn match   pinfoBlock     '\v\cEnd\w*'   nextgroup=pinfoSection skipwhite
 syn match   pinfoSection    '\v\w+' contained display
