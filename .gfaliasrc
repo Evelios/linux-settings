@@ -144,7 +144,7 @@ alias ver="cd $versions"
 alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
 alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
-alias reg="cd /nas/pnp4/regression"
+alias reg="cd /nas/pnp5/regression"
 
 # ---- Server SSH Commands -----------------------------------------------------
 
