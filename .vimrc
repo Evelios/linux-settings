@@ -46,6 +46,7 @@ set splitbelow        " Devault split behavior send new horizontal window down
 set lazyredraw        " Only redraw when needed. Can lead to more responsive redraws
 set tildeop           " Allows tilde ~ change case operator
 set scrolloff=3       " Always have 3 lines of context when scrolling
+set relativenumber    " Show line numbers in relative terms
 
 " ---- Folding ----
 set foldenable        " Enable folding
@@ -181,11 +182,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:python_highlight_all = 1
 let g:syntastic_cpp_checkers = []
 let g:syntastic_c_checkers = []
 let g:syntastic_enable_perl_checker = 1
 let g:syntastic_perl_checkers = ['perl']
+let g:syntastic_python_checkers = ['pylint']
 
 
 " ---- Scrollfix ----

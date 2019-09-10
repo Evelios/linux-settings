@@ -1,16 +1,16 @@
 #!/bin/bash
 
 usage() {
-  echo ''
-  echo 'This program watches a collection of files and runs a command whenever'
-  echo 'any of those files have changed.'
-  echo ''
-  echo 'Usage:'
-  echo '  follow [df] <command> <file(s)...>'
-  echo '    -f  : Pass the file that was changed to the command'
-  echo '    -c  : Colorize the output'
-  echo '    -h  : Print the help text'
-  echo ''
+  echo "
+  This program watches a collection of files and runs a command whenever
+  any of those files have changed.
+
+  Usage:
+    follow [df] <command> <file(s)...>
+      -f  : Pass the file that was changed to the command
+      -c  : Colorize the output
+      -h  : Print the help text
+  "
   exit 1
 }
 
@@ -118,6 +118,9 @@ while true; do
     if [[ "$modified_time" != "$initial_time" ]]; then
       printHeader $file
       file_timestamps[$file]="$modified_time"
+
+      # Pause for a moment to avoid file permission overlaps
+      sleep 0.010 # 10ms
 
       # Run the user command
       if [[ $PASS_FILE == true ]]; then

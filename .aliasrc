@@ -14,7 +14,11 @@ alias temp="sensors"  # install lm-sensors
 alias gpu_tests="phoronix-test-suite list-tests"
 alias gpu="phoronix-test-suite run unigine-heaven"
 alias todo="mkdir -p ~/Notes && $EDITOR ~/Notes/todo.md"
-alias rmatl="matlab -nodisplay -nodisplay -nosplash -nodesktop -r \"run('$1')\";exit;"
+
+rmatl() {
+  matlab -nodisplay -nodisplay -nosplash -nodesktop \
+    -r "$1;quit;"
+}
 
 # Editors
 alias vdiff="vimdiff"
