@@ -44,16 +44,17 @@ set showcmd           " Show the previous command in the bottom bar
 set splitright        " Default split behavior send new vertical window right
 set splitbelow        " Devault split behavior send new horizontal window down
 set lazyredraw        " Only redraw when needed. Can lead to more responsive redraws
+set tildeop           " Allows tilde ~ change case operator
 set scrolloff=3       " Always have 3 lines of context when scrolling
-
-" ---- Bracket Matching ----
-set showmatch         " Hilight matching brackets like [{()}]
 
 " ---- Folding ----
 set foldenable        " Enable folding
 set foldlevelstart=3  " Open most folds by default
 set foldnestmax=3     " Set the max fold level
 set foldmethod=syntax " Folding styles: marker, manual, expr, syntax, diff
+
+" ---- Bracket Matching ----
+set showmatch         " Hilight matching brackets like [{()}]
 
 " ---- Searching ----
 set ignorecase        " Case insensitive search
@@ -102,7 +103,7 @@ autocmd BufReadPost,BufNewFile .vimrc set foldmethod=marker
 " ---- Tabular ----
 nnoremap <leader>a= :Tabularize /=<cr>
 nnoremap <leader>a: :Tabularize /:<cr>
-nnoremap <leader>a// :Tabularize /\/\/
+nnoremap <leader>a// :Tabularize /\/\/<cr>
 
 " ---- Haskell Package Features ----
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
