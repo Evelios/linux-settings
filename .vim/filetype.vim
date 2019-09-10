@@ -12,6 +12,7 @@ au BufRead,BufNewFile *.md         setfiletype markdown
 au BufRead,BufNewFile .clang*      setfiletype yaml
 
 " GF File Type Syntaxes
+au BufRead,BufNewFile *.asc        setfiletype ufile
 au BufRead,BufNewFile *.fsifpat*   setfiletype fsifpat
 au BufRead,BufNewFile *.fcat       setfiletype cat
 au BufRead,BufNewFile *.fept       setfiletype ept

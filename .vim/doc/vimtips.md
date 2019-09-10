@@ -146,6 +146,15 @@ Take a look at *CtrlP* to make full use of the buffer functionality.
 * `:sh` run a shell in the terminal to run commands
   + `$ exit` close the shell and retun to vim
 
+## Insert Mode Commands
+
+* `<c-w>` delete a word
+* `<c-u>` delete a line
+* `<c-v>` insert a character literally
+* `<c-r> {reg}` insert a register buffer
+* `<c-n>` or `<c-p>` vim autocompletion
+* `<c-k> {char1} [char2]` insert a digraph
+* `<c-x>` enter a sub mode, see `ins-completion`
 
 # Improving Vim
 
