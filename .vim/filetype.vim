@@ -8,6 +8,9 @@ au BufRead,BufNewFile .gfaliasrc   setfiletype sh
 au BufRead,BufNewFile *.k          setfiletype sh
 au BufRead,BufNewFile *.md         setfiletype markdown
 
+" Custom File Types
+au BufRead,BufNewFile *.ptm        setfiletype plainmusic
+
 " Clang File Types
 au BufRead,BufNewFile .clang*      setfiletype yaml
 
