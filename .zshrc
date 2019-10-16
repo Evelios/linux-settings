@@ -53,8 +53,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-ZSH_THEME="agnoster_custom"
-# ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster_custom"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
