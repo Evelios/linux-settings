@@ -1,7 +1,31 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 backup_dir=~/.dot_backup
+
+dotfiles=(
+  .aliasrc
+  .bashrc
+  .dircolors
+  .gfaliasrc
+  .gitcommands
+  .gitconfig
+  .gitignore
+  .kshrc
+  .oh-my-zsh
+  .profile
+  scripts
+  .vim
+  .vimrc
+  .zprofile
+  .zsh_keybind
+  .zshrc
+)
+
+directories=(
+  .config
+  .fonts
+)
 
 if [[ ! -e ~/.fonts ]]; then
   mkdir ~/.fonts
@@ -19,14 +43,7 @@ fi
 echo "Putting backup of previous dot files in $backup_dir"
 mkdir $backup_dir
 
-for file in $(ls -A $script_directory); do
-  if [[ $file == "Putty-Fish-Of-Paradise.reg" ]]; then continue; fi
-  if [[ $file == "setup.sh"                   ]]; then continue; fi
-  if [[ $file == "check-installs.sh"          ]]; then continue; fi
-  if [[ $file == "README.md"                  ]]; then continue; fi
-  if [[ $file == ".config"                    ]]; then continue; fi
-  if [[ $file == ".git"                       ]]; then continue; fi
-
+for file in $dotfiles; do
   echo "  Linking up $file"
 
   # Move to create a backup
@@ -36,7 +53,6 @@ for file in $(ls -A $script_directory); do
 
   # Link config files to the git config files
   ln -s $script_directory/$file ~/$file
-
 done
 
 # Create the Neovim Setup Files

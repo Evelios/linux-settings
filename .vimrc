@@ -101,6 +101,30 @@ autocmd BufReadPost,BufNewFile .vimrc set foldmethod=marker
 "}}}
 "{{{ Plugin Settings
 
+" ---- Vim-Plug ----
+call plug#begin('~/.vim/plugged')
+
+let plugins = [
+      \'airblade/vim-gitgutter',
+      \'itchyny/lightline.vim',
+      \'jceb/vim-orgmode',
+      \'mengelbrecht/lightline-bufferline',
+      \'morhetz/gruvbox',
+      \'pangloss/vim-javascript',
+      \'plasticboy/vim-markdown',
+      \'scrooloose/nerdcommenter',
+      \'scrooloose/nerdtree',
+      \'tomasr/molokai',
+      \'vim-scripts/scrollfix',
+      \'vim-syntastic/syntastic']
+
+for plugin in plugins
+  Plug plugin
+endfor
+
+call plug#end()
+
+
 " ---- Tabular ----
 nnoremap <leader>a= :Tabularize /=<cr>
 nnoremap <leader>a: :Tabularize /:<cr>
