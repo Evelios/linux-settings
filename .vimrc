@@ -116,7 +116,8 @@ let plugins = [
       \'scrooloose/nerdtree',
       \'tomasr/molokai',
       \'vim-scripts/scrollfix',
-      \'vim-syntastic/syntastic']
+      \'vim-syntastic/syntastic',
+      \'godlygeek/tabular']
 
 for plugin in plugins
   Plug plugin
