@@ -106,6 +106,7 @@ call plug#begin('~/.vim/plugged')
 
 let plugins = [
       \'airblade/vim-gitgutter',
+      \'godlygeek/tabular',
       \'itchyny/lightline.vim',
       \'jceb/vim-orgmode',
       \'mengelbrecht/lightline-bufferline',
@@ -115,9 +116,9 @@ let plugins = [
       \'scrooloose/nerdcommenter',
       \'scrooloose/nerdtree',
       \'tomasr/molokai',
+      \'tpope/vim-speeddating',
       \'vim-scripts/scrollfix',
-      \'vim-syntastic/syntastic',
-      \'godlygeek/tabular']
+      \'vim-syntastic/syntastic',]
 
 for plugin in plugins
   Plug plugin
