@@ -60,6 +60,11 @@ python3_libraries=(
   neovim
 )
 
+debian_packages=(
+  # Oni
+  https://github.com/onivim/oni/releases/download/v0.3.9/Oni-0.3.9-amd64-linux.deb
+)
+
 install_setup
 add_repositories          "${repositories[@]}"
 update_package_manager

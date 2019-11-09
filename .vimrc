@@ -6,7 +6,7 @@
 
 nnoremap <space> <nop>
 let g:mapleader = " "
-let g:maplocalleader = "/"
+let g:maplocalleader = ","
 
 "}}}
 "{{{ Testing
@@ -109,6 +109,7 @@ let plugins = [
       \'godlygeek/tabular',
       \'itchyny/lightline.vim',
       \'jceb/vim-orgmode',
+      \'junegunn/goyo.vim',
       \'mengelbrecht/lightline-bufferline',
       \'morhetz/gruvbox',
       \'pangloss/vim-javascript',
@@ -312,7 +313,11 @@ nnoremap <leader>lt yiw:tag <c-r>"<cr>
 "{{{ Basic Keybindings
 
 " Edit your vimrc
-nnoremap <leader>ve :tabe $MYVIMRC<cr>
+if has('nvim')
+  nnoremap <leader>ve :tabe ~/.vimrc<cr>
+else
+  nnoremap <leader>ve :tabe $MYVIMRC<cr>
+endif
 " Reload or Source your vimrc
 nnoremap <leader>vr :source $MYVIMRC<cr>
 
