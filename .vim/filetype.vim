@@ -7,6 +7,7 @@ au BufRead,BufNewFile .gfaliasrc   setfiletype sh
 " Standard File Type Mapings
 au BufRead,BufNewFile *.k          setfiletype sh
 au BufRead,BufNewFile *.md         setfiletype markdown
+au BufRead,BufNewFile *.lytex      setfiletype tex
 
 " Custom File Types
 au BufRead,BufNewFile *.ptm        setfiletype plainmusic
