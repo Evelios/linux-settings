@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Bash Code Libraries
 . install-lib.sh
 
 repositories=(
@@ -18,14 +19,21 @@ packages=(
   npm
   python
   python3
+  haskell-platform
   vim
   neovim
   texlive-full
   lilypond
+  zlib1g-dev
 
   # Libraries
+  libsound2-dev
   liberror-perl
   ruby`ruby -e 'puts RUBY_VERSION[/\d+\.\d+/]'`-dev
+
+  # Audio
+  jackd
+  timidity
 
   # Games
   lutris
@@ -71,6 +79,9 @@ update_package_manager
 install_packages          "${packages[@]}"
 install_python_libraries  "${python_libraries[@]}"
 install_python3_libraries "${python3_libraries[@]}"
+
+# Allow the user to use dialout for usb connections
+adduser $USER dialout
 
 # Set Up Zsh
 # gem install neovim

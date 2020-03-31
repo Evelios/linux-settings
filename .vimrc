@@ -26,8 +26,6 @@ endfunc
 
 nnoremap <leader>'c :call ToggleConceal()<cr>
 
-let g:markdown_folding = 1
-
 "}}}
 "{{{ General Configuration
 
@@ -95,6 +93,7 @@ if has('nvim')
 endif
 
 " ---- Misc ----
+
 " Collapse folding characters in the .vimrc file
 autocmd BufReadPost,BufNewFile .vimrc set foldmethod=marker
 
@@ -106,6 +105,8 @@ call plug#begin('~/.vim/plugged')
 
 let plugins = [
       \'airblade/vim-gitgutter',
+      \'antew/vim-elm-analyse',
+      \'dense-analysis/ale',
       \'godlygeek/tabular',
       \'itchyny/lightline.vim',
       \'jceb/vim-orgmode',
@@ -114,12 +115,13 @@ let plugins = [
       \'morhetz/gruvbox',
       \'pangloss/vim-javascript',
       \'plasticboy/vim-markdown',
+      \'reedes/vim-pencil',
       \'scrooloose/nerdcommenter',
       \'scrooloose/nerdtree',
       \'tomasr/molokai',
-      \'tpope/vim-speeddating',
       \'vim-scripts/scrollfix',
-      \'vim-syntastic/syntastic',]
+      \'tpope/vim-speeddating',
+      \'zaptic/elm-vim']
 
 for plugin in plugins
   Plug plugin
@@ -127,11 +129,14 @@ endfor
 
 call plug#end()
 
+" ---- Ale ----
+let g:ale_elm_analyse_use_global = 1
 
 " ---- Tabular ----
 nnoremap <leader>a= :Tabularize /=<cr>
 nnoremap <leader>a: :Tabularize /:<cr>
 nnoremap <leader>a// :Tabularize /\/\/<cr>
+nnoremap <leader>a, :Tabularize /,<cr>
 
 " ---- Haskell Package Features ----
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -194,23 +199,6 @@ autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 " ---- Semantic Highlight ----
 nnoremap <Leader>h :SemanticHighlightToggle<cr>
-
-" ---- syntastic ----
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_cpp_checkers = []
-let g:syntastic_c_checkers = []
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_perl_checkers = ['perl']
-let g:syntastic_python_checkers = ['pylint']
-
 
 " ---- Scrollfix ----
 " percentable of screen height to keep visual cursor on
@@ -293,6 +281,7 @@ nnoremap <nop> :vertical resize -4<cr>
 "{{{ File Management
 
 " Write to the file
+nnoremap <c-s> :w<cr>
 nnoremap <leader>fw :w<cr>
 nnoremap <leader>ffw :w!<cr>
 
@@ -387,10 +376,9 @@ noremap <leader>P "pP
 "}}}
 "{{{ Normal Mode
 
-" Move the current line down
-nnoremap <leader>j ddp
-" Move the current line up
-nnoremap <leader>k kddpk
+" Move the current line
+nnoremap <a-j> ddp
+nnoremap <a-k> kddpk
 
 " Remove Highlighting
 nnoremap <leader>n :noh<cr>
@@ -408,9 +396,6 @@ nnoremap <leader>J J
 "{{{ Insert Mode
 
 " ---- Code Syntax Additions ----
-
-" Add in the surrounding curly brackets
-inoremap {{ {<cr><cr><bs>}<esc>k$a
 
 " Map Ctrl-Backspace to delete the previous word
 inoremap <C-BS> <C-W>

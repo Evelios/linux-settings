@@ -8,7 +8,6 @@ usage() {
   Usage:
     follow [df] <command> <file(s)...>
       -f  : Pass the file that was changed to the command
-      -c  : Colorize the output
       -h  : Print the help text
   "
   exit 1
@@ -73,13 +72,11 @@ elif [[ $# == 1 ]]; then
   echo "Provide Files To Run"
 fi
 
-while getopts ":fch" opt; do
+COLORIZE=true
+while getopts ":fh" opt; do
   case $opt in
     f)
       PASS_FILE=true
-      ;;
-    c)
-      COLORIZE=true
       ;;
     h)
       usage
@@ -110,6 +107,7 @@ done
 # ---- Run command at the start of execution -----------------------------------
 
 if [[ $PASS_FILE != true ]]; then
+  clear
   eval "$run_command"
 fi
 
@@ -125,11 +123,17 @@ while true; do
 
     # Check to see if the file has been updated
     if [[ "$modified_time" != "$initial_time" ]]; then
+
+      # Clear the terminal for legability
+      clear
+
+      # Show which file was modified and when
       printHeader $file
       file_timestamps[$file]="$modified_time"
 
       # Pause for a moment to avoid file permission overlaps
       sleep 0.010 # 10ms
+
 
       # Run the user command
       if [[ $PASS_FILE == true ]]; then
