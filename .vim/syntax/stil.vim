@@ -12,18 +12,52 @@ syn region stilSingleQuote start="\v'" end="\v'"
 syn region stilTickQuote   start='\v`' end="\v`"
 syn match  stilNumeric '\v<[+-]?[0-9][0-9\.]*>'
 syn match  stilComment '\v//.*$'
+syn region stilComment start='/\*' end='\*/'
+
+syn keyword stilConstant
+  \ In
+  \ Out
+  \ InOut
+  \ Supply
+  \ Pseudo
+  \ TerminateHigh
+  \ TerminateLow
+  \ TerminateOff
+  \ TerminateUnknown
+  \ U D Z
+  \ ForceUp
+  \ ForceDown
+  \ ForceOff
+  \ Hex
+  \ Dec
+  \ MSB
+  \ LSB
 
 " Stil Specific
 syn keyword stilHeader STIL nextgroup=stilNumeric
 
-syn keyword stilKeyword 
-  \ Signals SignalGroups Spec Selector Timing WaveformTable
-  \ Pattern PatternBurst PatternExec 
+syn keyword stilSection
+  \ STIL
+  \ Header
+  \ Signals
+  \ SignalGroups
+  \ Spec
+  \ Category
+  \ Selector
+  \ Timing
+  \ WaveformTable
+  \ Pattern
+  \ PatternBurst
+  \ PatternExec
+  \ Include
+  \ Ann
+  \ UserKeywords
+  \ UserFunctions
   \ nextgroup=stilBlockName skipwhite
 
 syn match   stilBlockName '\v\w(\w|-)+' contained display
 
-syn keyword stilSpecName Min Typ Max
+syn keyword stilSpecName Min Typ Max Meas
 
 "syn region stilBlock start='{' end='}' fold transparent
 
@@ -36,6 +70,7 @@ hi link stilComment           Comment
 
 " Stil Specific
 hi link stilKeyword           Statement
-hi link stilHeader            Identifier
-hi link stilBlockName         Function 
+hi link stilSection           Statement
+hi link stilBlockName         Function
 hi link stilSpecName          Type
+hi link stilConstant          Type

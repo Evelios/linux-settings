@@ -21,7 +21,7 @@ rmatl() {
 }
 
 # Editors
-alias vdiff="vimdiff"
+alias vdiff="$EDITOR -d"
 
 alias v="$EDITOR"
 
@@ -61,8 +61,9 @@ alias untar="tar -zxvf"
 alias 7z="p7zip"
 
 # Directory Listings
-time_style='--time-style=+"%a %b %d %l:%M"'
+time_style='--time-style=+"%a %b %d %Y %l:%M"'
 alias l="ls"
+alias l1="ls -1"
 alias la="ls -A"                             # List all files including hidden
 alias lf="ls --color=always | grep -v /"     # List all non-directory files
 alias ll="ls -lrth $time_style"              # Descriptive listing
@@ -105,6 +106,10 @@ alias path='tr ":" "\n" <<< "$PATH"'
 alias delcore="rm core*"
 alias fext="find . -type f -name '*.*' | sed 's|.*\.||' | sort -u"
 
+function title {
+   PROMPT_COMMAND="echo -ne \"\033]0;$1\007\""
+ }
+
 # Create a backup of a file
 function bak {
   cp -pr $1 ${1}.bak
@@ -141,4 +146,13 @@ function swap {
   mv $1   $tmp
   mv $2   $1
   mv $tmp $2
+}
+
+# Run a search and replace on a bunch of input files
+function replace {
+  search="$1"; shift
+  replace="$1"; shift
+  files="$@"
+
+  sed -i "s/$search/$replace/g" $files
 }

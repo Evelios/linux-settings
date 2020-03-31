@@ -25,7 +25,7 @@ function rtest_dev {
   repo_dir=$(git rev-parse --show-toplevel)
   script=$repo_dir/scripts/util/regression/regtest.pl
   email=thomas.waters2@globalfoundries.com
-  nohup $script -e $email dev $repo_dir $pending &
+  nohup $script dev $repo_dir $pending &
 }
 
 alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl"
@@ -33,8 +33,7 @@ alias dirdiff_test="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/tools/dirdiff.pl
 # ---- Command Shortcuts -------------------------------------------------------
 
 alias diffsb="diff -r --exclude='program'"
-alias grepsb="grep -r --exclude-dir='program' --exclude='build.*' --exclude='tags'"
-alias build="~/scripts/build.sh"
+alias g="grep -ri --exclude-dir='program' --exclude='build.*' --exclude='tags' --exclude='.mypy_cache' --exclude='.pytest_cache'"
 
 function lnsrc {
   rm src
@@ -53,19 +52,18 @@ alias deploytds="/tod_nfs/afs/btv/data/tds/tools/tdsDeploy.k"
 alias deploy="/tod_nfs/afs/btv/data/tds/tools/sbDeploy.k"
 alias bc="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/bcompare.k"
 alias cpplint="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cpplint.py"
-alias regtest="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/regtest.pl"
 alias runpart="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/regression/runpart.k"
 alias formatsif="/tod_nfs/afs/btv/data/tds/versions/pending/scripts/util/formatsif.k"
-# alias formatsif="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/regression/scripts/util/formatsif.k"
 alias trfm="/tool/TRFM_APP/PROD/TRFileManager/bin/TRFileMoverGUI GPRODREC &"
 alias cppcheck="/tod_nfs/afs/btv/data/tds/sandboxes/twaters/scripts/cppcheck-1.86/cppcheck"
 alias sysload="/tod_nfs/afs/btv/data/tds/tools/systemStats.k"
+alias nsize="df -h /nas/pnp1 /nas/pnp2 /nas/pnp3 /nas/pnp4 /nas/pnp5 /asics /tod_nfs/afs/btv/data/tds"
 
 # Cadence 15.13
 function cadence {
+  cadence_ver=15.14_1937285_1853342.EHF
   export CDS_LIC_FILE=27001@fc8engkey01:27001@sgpedakey01,27001@sgpedakey02,27001@sgpedakey03:27001@dedekey06
-  # /tool/eda/eda_k26_g212_64/cadenceET/15.13.000/bin/et -gui &
-  /tool/eda/eda_k26_g212_64/cadenceET/15.14.000/bin/et -gui &
+  /tool/eda/eda_k26_g212_64/cadenceET/$cadence_ver/bin/et -gui &
 }
 
 # Cadence Modus
@@ -138,7 +136,7 @@ alias ver="cd $versions"
 alias tools="cd /tod_nfs/afs/btv/data/tds/tools"
 alias nas="cd $nas"
 alias gsa="/gsa/btvgsa/projects/u/uflex_tpgl_gf"
-alias reg="cd /nas/pnp5/regression"
+alias reg="cd /nas/pnp4/regression"
 
 # ---- Server SSH Commands -----------------------------------------------------
 
@@ -148,15 +146,12 @@ alias prod1="ssh -X fc9pftdsp01"
 alias prod2="ssh -X fc9pftdsp02"
 alias prod3="ssh -X fc9pftdsp03"
 alias prod4="ssh -X fc9pftdsp04"
-
-# Dev
-# alias dev="ssh -X fc9pftdsp08"
-alias dev1="ssh -X fc9pftdsp05"   # Gitlab Box
-alias dev2="ssh -X fc9pftdsp06"     # TDS Development Box
-alias dev3="ssh -X fc9pftdsp07"     # TDS Development Box
-alias dev4="ssh -X fc9pftdsp08"     # TDS Development Box
-# alias dev5="ssh -X fc9pftdsp09"     # Allicated for SFTP Service
-# alias dev6="ssh -X fc9pftdsp10"   # Allocated for the NAS space
+alias prod5="ssh -X fc9pftdsp05"     # Gitlab Box
+alias prod6="ssh -X fc9pftdsp06"     # TDS Development Box
+alias prod7="ssh -X fc9pftdsp07"     # TDS Development Box
+alias prod8="ssh -X fc9pftdsp08"     # TDS Development Box
+alias prod9="ssh -X fc9pftdsp09"     # Allicated for SFTP Service
+# alias prod10="ssh -X fc9pftdsp10"   # Allocated for the NAS space
 
 # EPSR
 alias epsr1="ssh -X fc9pfepsrp01"

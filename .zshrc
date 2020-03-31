@@ -56,6 +56,9 @@ plugins=(
 # ZSH_THEME="agnoster_custom"
 ZSH_THEME="agnoster"
 
+# Allow the title of the terminal to be set by the user
+DISABLE_AUTO_TITLE="true"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

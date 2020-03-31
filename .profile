@@ -95,6 +95,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Log into the default development environment
-if [[ "$HOSTNAME" == "vfc9jump01" || "$HOSTNAME" == "sfc9pfetxp01" || "$HOSTNAME" == "sfc9pfetxp02" ]]; then
+if [[ "$HOSTNAME" == "vfc9jump01" || "$HOSTNAME" == "vfc9jump02" || "$HOSTNAME" == "pfetxv12p01" ]]; then
   prod
 fi

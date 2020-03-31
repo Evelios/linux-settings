@@ -43,7 +43,7 @@ set splitright        " Default split behavior send new vertical window right
 set splitbelow        " Devault split behavior send new horizontal window down
 set lazyredraw        " Only redraw when needed. Can lead to more responsive redraws
 set tildeop           " Allows tilde ~ change case operator
-set scrolloff=3       " Always have 3 lines of context when scrolling
+set scrolloff=10      " Always have 10 lines of context when scrolling
 set relativenumber    " Show line numbers in relative terms
 
 " ---- Folding ----
@@ -107,6 +107,7 @@ let plugins = [
       \'airblade/vim-gitgutter',
       \'antew/vim-elm-analyse',
       \'dense-analysis/ale',
+      \'gf3/peg.vim',
       \'godlygeek/tabular',
       \'itchyny/lightline.vim',
       \'jceb/vim-orgmode',
@@ -130,7 +131,28 @@ endfor
 call plug#end()
 
 " ---- Ale ----
-let g:ale_elm_analyse_use_global = 1
+if has('nvim')
+  let g:ale_fixers = { 'python': [
+        \ 'autopep8',
+        \ 'remove_trailing_lines',
+        \ 'trim_whitespace'
+        \ ]}
+
+  let g:ale_linters = { 'python': [
+        \ 'pylint',
+        \ 'mypy',
+        \ ]}
+
+  " let g:ale_lint_on_text_changed
+  let g:ale_lint_on_insert_leave = 1
+  let g:ale_lint_on_enter = 1
+  let g:ale_fix_on_save = 1
+  let g:ale_linters_explicit = 1
+
+  " Use the quickfix instead of loclist
+  " let g:ale_set_loclist = 0
+  " let g:ale_set_quickfix = 1
+endif
 
 " ---- Tabular ----
 nnoremap <leader>a= :Tabularize /=<cr>
@@ -307,6 +329,7 @@ if has('nvim')
 else
   nnoremap <leader>ve :tabe $MYVIMRC<cr>
 endif
+
 " Reload or Source your vimrc
 nnoremap <leader>vr :source $MYVIMRC<cr>
 
@@ -316,8 +339,6 @@ inoremap Jk <esc>l
 inoremap jK <esc>l
 inoremap JK <esc>l
 inoremap <esc> <nop>
-
-
 
 " Insert a space in normal mode with spacebar
 nnoremap <c-space> i<space><esc>l

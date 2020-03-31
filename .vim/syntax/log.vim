@@ -2,22 +2,25 @@ if exists("b:current_syntax")
   finish
 endif
 
+" Include diff files in logfiles
+source ~/.local/share/nvim/runtime/syntax/diff.vim
+
 " ---- Syntax Declerations ----
 
 " Comments
 syn match logComment '\v\+\-+'      " Lines starting with    +---
-syn match logComment '\v\-+'        " Dashed seperator lines ---
+syn match logComment '\v\s+\-+'        " Dashed seperator lines ---
 syn match logComment '\v^\s*\|.*$'  " Lines starting with    |
 syn match logComment '\v^\s*\#.*$'  " Lines starting with    #
 syn match logComment '\v^\s*\*.*$'  " Lines starting with    *
 syn match logComment '\v//.*$'      " C style comments       //
 
 " Misc
-syn match dir       '\v\/[[:alnum:]_]+\/[[:alnum:]_@\/\-\.]+'
+syn match dir       '\v\/?[[:alnum:]_]*\/[[:alnum:]_@\/\-\.]+'
 syn match quote     '\v\".*\"'       " Double Quote
 syn match quote     '\v\'.*\''       " Single Quote
 syn match list      '\v^\s+[\-\+]\s' " Match lists starting with - or +
-syn match log_opers '\v\@|\=|:|;|\>|\<|,'            " Match various operators in logfiles
+syn match log_opers '\v\=|:|;|\>|\<|,'            " Match various operators in logfiles
 syn match functionName '\v\[\w+(::\w+)?\]($)@=' " The function call printed from MSG statements
 syn region parens start="(" end=")" oneline contains=log_val
 
@@ -33,7 +36,7 @@ syn match warn    '\v^W\-'
 syn match err     '\v^E\-' nextgroup=atten skipwhite
 syn match severe  '\v^S\-' nextgroup=atten skipwhite
 syn match term    '\v^T\-' nextgroup=atten skipwhite
-syn region atten start='\v.' end='\v^(\w|\s*$)@=' contains=dir,quote,seperator,functionName contained display
+syn region atten start='\v.' end='\v^([^\s]|\s*$)@=' contains=dir,quote,seperator,functionName contained display
 
 " Summary Statements
 syn match elapsed_kw 'Elapsed Time' nextgroup=elapsed_op skipwhite

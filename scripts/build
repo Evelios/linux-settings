@@ -30,19 +30,13 @@ echo -e "${RED}Building Recipe ${YELLOW}$make_recipe${NC}"
 echoFlag 'Listing Built Objects'
 
 # Make and output build sections as they happen
-make $make_recipe > $build_log 2> $build_err &
-make_rc=$?
-makepid=$!
-tail -f -n +0 $build_log 2> /dev/null | grep --color Made &
-tailpid=$!
-wait $makepid
-sleep 0.5
-kill $tailpid
+make $make_recipe 2> $build_err | tee $build_log | grep --color Made
+make_rc=${PIPESTATUS[0]}
 
-errors=$(grep -i error $build_err)
-
-if [[ ! -z "$errors" ]]; then
+if [[ $make_rc != 0 ]]; then
+  errors=$(grep -i error $build_err)
   echoFlag "Listing Build Errors"
+  echo "$errors"
 fi
 
 echo ''

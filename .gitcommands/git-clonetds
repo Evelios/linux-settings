@@ -40,5 +40,8 @@ else
   fi
 fi
 
+echo "Creating Tags File"
+ctags -R .
+
 echo "Building Source Binaries in Background"
-make all > build.log 2> build.err &
+make multi > build.log 2> build.err &
