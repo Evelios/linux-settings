@@ -114,6 +114,7 @@ let plugins = [
       \'junegunn/goyo.vim',
       \'mengelbrecht/lightline-bufferline',
       \'morhetz/gruvbox',
+      \'neoclide/coc.nvim',
       \'pangloss/vim-javascript',
       \'plasticboy/vim-markdown',
       \'reedes/vim-pencil',
@@ -329,6 +330,9 @@ if has('nvim')
 else
   nnoremap <leader>ve :tabe $MYVIMRC<cr>
 endif
+
+" Refresh the vim window
+nnoremap <leader>c <c-l>
 
 " Reload or Source your vimrc
 nnoremap <leader>vr :source $MYVIMRC<cr>
