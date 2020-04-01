@@ -53,8 +53,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-# ZSH_THEME="agnoster_custom"
-ZSH_THEME="agnoster"
+ZSH_THEME="agnoster_custom"
+#ZSH_THEME="agnoster"
 
 # Allow the title of the terminal to be set by the user
 DISABLE_AUTO_TITLE="true"
