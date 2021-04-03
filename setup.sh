@@ -31,8 +31,8 @@ if [[ ! -e ~/.fonts ]]; then
   mkdir ~/.fonts
 fi
 
-echo "Installing DejaVuSansMono Fonts"
-cp -r DejaVuSansMono ~/.fonts
+echo "Installing Fonts"
+cp -r .fonts ~/.fonts
 
 
 # Create backup directories
@@ -43,7 +43,7 @@ fi
 echo "Putting backup of previous dot files in $backup_dir"
 mkdir $backup_dir
 
-for file in $dotfiles; do
+for file in "${dotfiles[@]}"; do
   echo "  Linking up $file"
 
   # Move to create a backup

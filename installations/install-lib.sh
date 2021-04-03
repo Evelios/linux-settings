@@ -4,8 +4,6 @@ install_setup() {
     exit 1
   fi
 
-  # Use the downloads directory as the staging ground
-  cd ~/Downloads
 }
 
 update_package_manager() {
@@ -74,4 +72,17 @@ install_python3_library() {
 
 is_installed_python3() {
   python3 -c "import $1" 2> /dev/null
+}
+
+install_npm_packages() {
+  for library in "$@";do
+    npm install -g $library
+  done
+}
+
+install_elm() {
+  curl -L -o elm.gz https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz
+  gunzip elm.gz
+  chmod +x elm
+  mv elm /usr/local/bin/
 }

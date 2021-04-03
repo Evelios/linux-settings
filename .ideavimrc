@@ -1,0 +1,75 @@
+" ------------------------------------------------------------------------------
+" ---- INTELLIJ VIMRC
+" ------------------------------------------------------------------------------
+"
+"{{{ Leader Characters
+"
+nnoremap <space> <nop>
+let g:mapleader = " "
+let g:maplocalleader = ","
+
+"}}}
+"{{{ Tab Management
+
+" Move inbetween tabs
+nnoremap <leader>tn :tabnext<cr>
+nnoremap <leader>tp :tabprevious<cr>
+
+" Close the current tab
+nnoremap <leader>tc :tabclose<cr>
+
+"}}}
+"{{{ Window Management
+
+" Move between split windows
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-h> <c-w><c-h>
+nnoremap <c-l> <c-w><c-l>
+
+"}}}
+"{{{ Basic Keybindings
+"
+" Leave insert mode
+inoremap jk <esc>l
+inoremap Jk <esc>l
+inoremap jK <esc>l
+inoremap JK <esc>l
+inoremap <esc> <nop>
+
+" Insert a space in normal mode with spacebar
+nnoremap <c-space> i<space><esc>
+
+" Insert a newline after the cursor in normal mode
+nnoremap <c-cr> o<esc>k
+
+" Remove Highlighting
+nnoremap <leader>n :noh<cr>
+
+"}}}
+"{{{ Movement Keybindings
+
+" Move to beginning / end of the line
+noremap H 0
+" noremap H ^   <-- Use this to go to the first character on the line
+noremap L $
+noremap $ <nop>
+noremap ^ <nop>
+
+" Move through softwrap lines
+nnoremap j gj
+nnoremap k gk
+
+" Move up / down half a page
+noremap J <c-d>
+noremap K <c-u>
+noremap <c-d> <nop>
+noremap <c-u> <nop>
+
+" Unmap the arrow keys
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+
+"}}}

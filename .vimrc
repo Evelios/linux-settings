@@ -114,7 +114,6 @@ let plugins = [
       \'junegunn/goyo.vim',
       \'mengelbrecht/lightline-bufferline',
       \'morhetz/gruvbox',
-      \'neoclide/coc.nvim',
       \'pangloss/vim-javascript',
       \'plasticboy/vim-markdown',
       \'reedes/vim-pencil',
@@ -365,7 +364,8 @@ noremap <leader>sc :set syntax=combs<cr>
 noremap <leader>sp :set syntax=pinfo<cr>
 noremap <leader>sl :set syntax=log<cr>
 
-" ---- Movement Keybindings ----
+"}}}
+"{{{ Syntax Keybindings
 
 " Move to beginning / end of the line
 noremap H 0

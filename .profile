@@ -69,6 +69,7 @@ addToPath /usr/share/doc
 addToPath ~/.cabal/bin                          # Haskell Cabal binaries
 addToPath ~/.gitcommands                        # Local git commands
 addToPath ~/scripts                             # Local script files
+addToPath /home/linuxbrew/.linuxbrew/bin
 
 # Mitosis Keyboard
 export GNU_INSTALL_ROOT=/usr/

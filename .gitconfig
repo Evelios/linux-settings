@@ -30,8 +30,8 @@
 [github]
   user = evelios
 [user]
-  name = Waters, Thomas (ENG)
-  email = thomas.waters2@globalfoundries.com
+	name = Thomas Waters
+	email = twaters117@gmail.com
 [merge]
   tool = diffconflicts
   conflictstyle = diff3
@@ -43,3 +43,12 @@
   tool = nvimdiff
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[push]
+	default = current
+[core]
+	autocrlf = input
